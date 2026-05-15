@@ -1,2766 +1,2733 @@
-# Auto-generated from SQL Server
-# Schema: dbo | Database: Foundation
-
+# Auto-generated from SQL Server - Database: Foundation
+ 
 ActiveRecord::Schema[8.1].define(version: 20260515_000000) do
-
-
-  create_table "ASSET_ACCESSORY", force: :cascade do |t|
-    t.bigint "ASSET_ACCESSORY_ID", null: false
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.string "ASSET_ACCESSORY_CODE", limit: 25
-    t.string "ASSET_ACCESSORY_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "ASSET_ATTR", force: :cascade do |t|
-    t.bigint "ASSET_ATTR_ID", null: false
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.bigint "REF_ATTR_ID", null: false
-    t.boolean "IS_EDITABLE_AFTER_GO_LIVE", null: false
-  end
-
-
-  create_table "ASSET_CATEGORY", force: :cascade do |t|
-    t.bigint "ASSET_CATEGORY_ID", null: false
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.string "ASSET_CATEGORY_CODE", limit: 25, null: false
-    t.string "ASSET_CATEGORY_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "ASSET_DOC_LIST", force: :cascade do |t|
-    t.bigint "ASSET_DOC_LIST_ID", null: false
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.bigint "REF_ASSET_DOC_ID", null: false
-    t.boolean "IS_MAIN_DOC", null: false
-    t.boolean "IS_VALUE_NEEDED", null: false
-    t.boolean "IS_PLEDGE", null: false
-    t.boolean "IS_BORROW", null: false
-    t.boolean "IS_MANDATORY_NEW", null: false
-    t.boolean "IS_MANDATORY_USED", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_EXP_DT_MANDATORY", default: false, null: false
-  end
-
-
-  create_table "ASSET_MASTER", force: :cascade do |t|
-    t.bigint "ASSET_MASTER_ID", null: false
-    t.bigint "ASSET_CATEGORY_ID"
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.string "ASSET_CODE", limit: 25, null: false
-    t.string "ASSET_NAME", limit: 50, null: false
-    t.integer "HIERARCHY_LVL", null: false
-    t.string "FULL_ASSET_CODE", limit: 250, null: false
-    t.string "FULL_ASSET_NAME", limit: 500, null: false
-    t.bigint "PARENT_ID"
-    t.boolean "IS_FINAL", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "RESERVE_FIELD_1", limit: 2000
-    t.string "RESERVE_FIELD_2", limit: 2000
-    t.string "RESERVE_FIELD_3", limit: 2000
-    t.string "RESERVE_FIELD_4", limit: 2000
-    t.string "RESERVE_FIELD_5", limit: 2000
-  end
-
-
-  create_table "ASSET_MASTER_ATTR_CONTENT", force: :cascade do |t|
-    t.bigint "ASSET_MASTER_ATTR_CONTENT_ID", null: false
-    t.bigint "ASSET_MASTER_ID", null: false
-    t.bigint "ASSET_ATTR_ID", null: false
-    t.string "ATTR_CONTENT", limit: 50, null: false
-  end
-
-
-  create_table "ASSET_NEGATIVE", force: :cascade do |t|
-    t.bigint "ASSET_NEGATIVE_ID", null: false
-    t.bigint "ASSET_MASTER_ID", null: false
-    t.string "SERIAL_NO_1", limit: 25
-    t.string "SERIAL_NO_2", limit: 25
-    t.string "SERIAL_NO_3", limit: 25
-    t.string "SERIAL_NO_4", limit: 25
-    t.string "SERIAL_NO_5", limit: 25
-    t.string "MR_NEG_ASSET_SOURCE_CODE", limit: 25, null: false
-    t.string "NOTES", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "ASSET_NEGATIVE_HIST", force: :cascade do |t|
-    t.bigint "ASSET_NEGATIVE_HIST_ID", null: false
-    t.bigint "ASSET_NEGATIVE_ID", null: false
-    t.string "MR_NEG_ASSET_SOURCE_CODE", limit: 25, null: false
-    t.string "NOTES", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-    t.integer "VERSION", null: false
-  end
-
-
-  create_table "ASSET_SCHM_D", force: :cascade do |t|
-    t.bigint "ASSET_SCHM_D_ID", null: false
-    t.bigint "ASSET_SCHM_H_ID", null: false
-    t.bigint "ASSET_MASTER_ID", null: false
-  end
-
-
-  create_table "ASSET_SCHM_H", force: :cascade do |t|
-    t.bigint "ASSET_SCHM_H_ID", null: false
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.string "ASSET_SCHM_CODE", limit: 25, null: false
-    t.string "ASSET_SCHM_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_SYSTEM", default: false, null: false
-  end
-
-
-  create_table "ASSET_TYPE", force: :cascade do |t|
-    t.bigint "ASSET_TYPE_ID", null: false
-    t.string "ASSET_TYPE_CODE", limit: 25, null: false
-    t.string "ASSET_TYPE_NAME", limit: 50, null: false
-    t.integer "MAX_HIERARCHY_LEVEL", null: false
-    t.string "HIERARCHY_LABEL_LEVEL_1", limit: 50
-    t.string "HIERARCHY_LABEL_LEVEL_2", limit: 50
-    t.string "HIERARCHY_LABEL_LEVEL_3", limit: 50
-    t.string "HIERARCHY_LABEL_LEVEL_4", limit: 50
-    t.string "HIERARCHY_LABEL_LEVEL_5", limit: 50
-    t.string "SERIAL_NO_1_LABEL", limit: 50
-    t.string "SERIAL_NO_2_LABEL", limit: 50
-    t.string "SERIAL_NO_3_LABEL", limit: 50
-    t.string "SERIAL_NO_4_LABEL", limit: 50
-    t.string "SERIAL_NO_5_LABEL", limit: 50
-    t.boolean "IS_MNDTRY_SERIAL_NO_1"
-    t.boolean "IS_MNDTRY_SERIAL_NO_2"
-    t.boolean "IS_MNDTRY_SERIAL_NO_3"
-    t.boolean "IS_MNDTRY_SERIAL_NO_4"
-    t.boolean "IS_MNDTRY_SERIAL_NO_5"
-    t.boolean "IS_LOAN_OBJ", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.integer "TOTAL_SERIAL_NO_LABEL", default: 0, null: false
-  end
-
-
-  create_table "AUTH_API", force: :cascade do |t|
-    t.bigint "AUTH_API_ID", null: false
-    t.bigint "REF_API_ID", null: false
-    t.bigint "REF_FORM_ID", null: false
-  end
-
-
-  create_table "AUTH_FORM", force: :cascade do |t|
-    t.bigint "AUTH_FORM_ID", null: false
-    t.bigint "REF_FORM_ID", null: false
-    t.bigint "REF_ROLE_ID", null: false
-    t.string "FORM_FEATURE", limit: 2000
-  end
-
-
-  create_table "CENTER_GRP", force: :cascade do |t|
-    t.bigint "CENTER_GRP_ID", null: false
-    t.string "CENTER_GRP_CODE", limit: 25, null: false
-    t.string "CENTER_GRP_NAME", limit: 50, null: false
-    t.string "MR_CENTER_GRP_TYPE_CODE", limit: 25, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "CENTER_GRP_OFFICE_MBR", force: :cascade do |t|
-    t.bigint "CENTER_GRP_OFFICE_MBR_ID", null: false
-    t.bigint "CENTER_GRP_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.boolean "IS_COORDINATOR", null: false
-  end
-
-
-  create_table "COA_SCHM", force: :cascade do |t|
-    t.bigint "COA_SCHM_ID", null: false
-    t.string "SCHM_CODE", limit: 25, null: false
-    t.string "SCHM_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "CUST", force: :cascade do |t|
-    t.bigint "CUST_ID", null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 250, null: false
-    t.string "MR_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "MR_CUST_MODEL_CODE", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.boolean "IS_VIP", null: false
-    t.string "ORIGINAL_OFFICE_CODE", limit: 25
-    t.boolean "IS_AFFILIATE_WITH_MF", null: false
-    t.string "VIP_NOTES", limit: 2000
-    t.boolean "IS_CUSTOMER", default: false, null: false
-    t.boolean "IS_FAMILY", default: false, null: false
-    t.boolean "IS_GUARANTOR", default: false, null: false
-    t.boolean "IS_SHAREHOLDER", default: false, null: false
-    t.string "THIRD_PARTY_TRX_NO", limit: 50
-    t.datetime "ValidFrom", default: "getdate", null: false
-    t.datetime "ValidTill", default: "9999-12-31 23:59:59", null: false
-    t.string "ModifiedUser", limit: 64
-    t.string "THIRD_PARTY_RSLT_H_GROUP_NO", limit: 25
-    t.boolean "IS_CUST_GRP", default: false, null: false
-  end
-
-
-  create_table "CUST_ADDR", force: :cascade do |t|
-    t.bigint "CUST_ADDR_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "MR_CUST_ADDR_TYPE_CODE", limit: 25, null: false
-    t.string "ADDR", limit: 500
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "CITY", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.string "MR_BUILDING_OWNERSHIP_CODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "NOTES", limit: 2000
-    t.string "SUB_ZIPCODE", limit: 25
-    t.decimal "STAY_LENGTH", precision: 17, scale: 2
-    t.datetime "STAY_SINCE"
-  end
-
-
-  create_table "CUST_ADDR_ATTR_CONTENT", force: :cascade do |t|
-    t.bigint "CUST_ADDR_ATTR_CONTENT_ID", null: false
-    t.bigint "CUST_ADDR_ID", null: false
-    t.string "ATTR_VALUE", limit: 500, null: false
-    t.bigint "REF_ATTR_ID", default: 0, null: false
-  end
-
-
-  create_table "CUST_ADDR_ATTR_CONTENT_HIST", force: :cascade do |t|
-    t.bigint "CUST_ADDR_ATTR_CONTENT_HIST_ID", null: false
-    t.bigint "CUST_ADDR_ID", null: false
-    t.string "ATTR_VALUE", limit: 500, null: false
-    t.bigint "REF_ATTR_ID", default: 0, null: false
-  end
-
-
-  create_table "CUST_ADDR_HIST", force: :cascade do |t|
-    t.bigint "CUST_ADDR_HIST_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.bigint "CUST_ADDR_ID", null: false
-    t.string "MR_CUST_ADDR_TYPE_CODE", limit: 25, null: false
-    t.string "ADDR", limit: 500
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "CITY", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.string "SUB_ZIPCODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "MR_BUILDING_OWNERSHIP_CODE", limit: 25
-    t.string "NOTES", limit: 2000
-    t.decimal "STAY_LENGTH", precision: 17, scale: 2
-    t.datetime "STAY_SINCE"
-  end
-
-
-  create_table "CUST_ASSET", force: :cascade do |t|
-    t.bigint "CUST_ASSET_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "MR_CUST_ASSET_TYPE_CODE", limit: 100, null: false
-    t.string "ASSET_DESCR", limit: 127
-    t.decimal "ASSET_VALUE", precision: 17, scale: 2
-    t.integer "ASSET_QTY"
-    t.decimal "ASSET_TOTAL_VALUE", precision: 17, scale: 2
-  end
-
-
-  create_table "CUST_ATTR_CONTENT", force: :cascade do |t|
-    t.bigint "CUST_ATTR_CONTENT_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "ATTR_VALUE", limit: 500, null: false
-    t.bigint "REF_ATTR_ID", default: 0, null: false
-  end
-
-
-  create_table "CUST_ATTR_CONTENT_HIST", force: :cascade do |t|
-    t.bigint "CUST_ATTR_CONTENT_HIST_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "ATTR_VALUE", limit: 500, null: false
-    t.bigint "REF_ATTR_ID", default: 0, null: false
-    t.integer "SEQ_NO", default: 0, null: false
-  end
-
-
-  create_table "CUST_BANK_ACC", force: :cascade do |t|
-    t.bigint "CUST_BANK_ACC_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BANK_BRANCH", limit: 25, null: false
-    t.string "BANK_ACC_NO", limit: 250, null: false
-    t.string "BANK_ACC_NAME", limit: 250, null: false
-    t.boolean "IS_BANK_STMNT", null: false
-    t.string "BANK_BRANCH_REG_RPT_CODE", limit: 25
-    t.decimal "BALANCE_AMT", precision: 17, scale: 2, null: false
-    t.boolean "IS_DEFAULT", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "END_PERIOD", limit: 25
-    t.string "START_PERIOD", limit: 25
-    t.decimal "BEG_BALANCE_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-  end
-
-
-  create_table "CUST_BANK_STMNT", force: :cascade do |t|
-    t.bigint "CUST_BANK_STMNT_ID", null: false
-    t.bigint "CUST_BANK_ACC_ID", null: false
-    t.string "MONTH", limit: 25, null: false
-    t.string "YEAR", limit: 25, null: false
-    t.integer "DEBIT_TRX_COUNT"
-    t.decimal "DEBIT_AMT", precision: 17, scale: 2, null: false
-    t.integer "CREDIT_TRX_COUNT"
-    t.decimal "CREDIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "BALANCE_AMT", precision: 17, scale: 2, null: false
-  end
-
-
-  create_table "CUST_BANK_STMNT_D", force: :cascade do |t|
-    t.bigint "CUST_BANK_STMNT_D_ID", null: false
-    t.bigint "CUST_BANK_STMNT_H_ID", null: false
-    t.string "MONTH", limit: 25, null: false
-    t.string "YEAR", limit: 25, null: false
-    t.decimal "DEBIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "CREDIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "BALANCE_AMT", precision: 17, scale: 2, null: false
-    t.integer "DEBIT_TRX_COUNT"
-    t.integer "CREDIT_TRX_COUNT"
-  end
-
-
-  create_table "CUST_COMPANY", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "MR_COMPANY_TYPE_CODE", limit: 25
-    t.bigint "REF_INDUSTRY_TYPE_ID"
-    t.string "REGISTRATION_NO", limit: 50
-    t.string "LICENSE_NO", limit: 50
-    t.integer "NUM_OF_EMP"
-    t.string "MR_INVESTMENT_TYPE_CODE", limit: 25
-    t.datetime "ESTABLISHMENT_DT"
-    t.boolean "IS_AFFILIATED", null: false
-    t.string "WEBSITE", limit: 50
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-    t.boolean "IS_TAXABLE", default: false, null: false
-    t.bigint "REF_SECTOR_ECONOMY_SLIK_ID"
-    t.string "ModifiedUser", limit: 64
-    t.string "ESTABLISHMENT_CITY", limit: 50
-  end
-
-
-  create_table "CUST_COMPANY_CONTACT_PERSON", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_CONTACT_PERSON_ID", null: false
-    t.bigint "CUST_COMPANY_ID", null: false
-    t.string "CONTACT_PERSON_NAME", limit: 250
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.string "JOB_TITLE_NAME", limit: 50
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "MR_GENDER_CODE", limit: 25, null: false
-    t.datetime "BIRTH_DT"
-    t.string "BIRTH_PLACE", limit: 100
-    t.string "ID_NO", limit: 25
-    t.string "MR_CUST_RELATIONSHIP_CODE", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "MOBILE_PHN_NO_3", limit: 25
-  end
-
-
-  create_table "CUST_COMPANY_FIN_DATA", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_FIN_DATA_ID", null: false
-    t.bigint "CUST_COMPANY_ID", null: false
-    t.decimal "GROSS_MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.decimal "GROSS_PROFIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "RETURN_OF_INVESTMENT_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "RETURN_OF_EQUITY_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "RETURN_OF_ASSET_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "PROFIT_MARGIN_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "CURRENT_RATIO_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "DEBT_EQUITY_RATIO_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "INV_TURN_OVER_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "AR_TURN_OVER_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "GROWTH_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "WORKING_CAPITAL_AMT", precision: 17, scale: 2, null: false
-    t.decimal "OTH_MONTHLY_INST_AMT", precision: 17, scale: 2, null: false
-    t.datetime "DATE_AS_OF"
-    t.decimal "REVENUE", precision: 17, scale: 2, null: false
-    t.decimal "OPR_COST", precision: 17, scale: 2, null: false
-    t.decimal "PROFIT_BEFORE_TAX", precision: 17, scale: 2, null: false
-    t.decimal "CURR_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "NET_FIXED_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "TOTAL_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "CURR_LIABLTS", precision: 17, scale: 2, null: false
-    t.decimal "LONG_TEMR_LIABLTS", precision: 17, scale: 2, null: false
-    t.decimal "SHAREHOLDER_EQUITY", precision: 17, scale: 2, null: false
-    t.decimal "CURR_RATIO", precision: 17, scale: 2, null: false
-  end
-
-
-  create_table "CUST_COMPANY_HIST", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_HIST_ID", null: false
-    t.bigint "CUST_COMPANY_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "MR_COMPANY_TYPE_CODE", limit: 25
-    t.bigint "REF_INDUSTRY_TYPE_ID"
-    t.string "REGISTRATION_NO", limit: 50
-    t.string "LICENSE_NO", limit: 50
-    t.integer "NUM_OF_EMP"
-    t.string "MR_INVESTMENT_TYPE_CODE", limit: 25
-    t.datetime "ESTABLISHMENT_DT"
-    t.boolean "IS_AFFILIATED", null: false
-    t.string "WEBSITE", limit: 50
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-  end
-
-
-  create_table "CUST_COMPANY_LEGAL_DOC", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_LEGAL_DOC_ID", null: false
-    t.bigint "CUST_COMPANY_ID", null: false
-    t.string "MR_LEGAL_DOC_TYPE_CODE", limit: 25
-    t.string "DOC_NO", limit: 25
-    t.datetime "DOC_DT"
-    t.datetime "DOC_EXPIRED_DT"
-    t.string "DOC_NOTES", limit: 2000
-    t.string "NOTARY_NAME", limit: 250
-    t.string "NOTARY_LOCATION", limit: 2000
-    t.boolean "IS_EXP_DT_MANDATORY", default: false, null: false
-    t.string "DOC_NAME", limit: 100
-    t.boolean "NEED_LEGAL_OPINION", default: false, null: false
-    t.bigint "DOC_DMS_ID"
-    t.string "DOC_UPLOAD_NAME", limit: 100
-  end
-
-
-  create_table "CUST_COMPANY_MGMNT_SHRHOLDER", force: :cascade do |t|
-    t.bigint "CUST_COMPANY_MGMNT_SHRHOLDER_ID", null: false
-    t.bigint "CUST_ID"
-    t.bigint "SHAREHOLDER_ID"
-    t.decimal "SHARE_PRCNT", precision: 9, scale: 6
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_OWNER", null: false
-    t.boolean "IS_SIGNER", null: false
-    t.datetime "ESTABLISHMENT_DT"
-    t.string "MR_POSITION_SLIK_CODE", limit: 50
-    t.string "MR_PUBLIC_TYPE_CODE", limit: 50
-    t.string "MR_SHRHOLDER_TYPE_CODE", limit: 50
-    t.string "PUBLIC_ADDR", limit: 1000
-    t.string "PUBLIC_AREA_CODE_1", limit: 50
-    t.string "PUBLIC_AREA_CODE_2", limit: 50
-    t.string "PUBLIC_AREA_CODE_3", limit: 50
-    t.string "PUBLIC_AREA_CODE_4", limit: 50
-    t.string "PUBLIC_CITY", limit: 50
-    t.string "PUBLIC_IDENTITY_NO", limit: 100
-    t.string "PUBLIC_NAME", limit: 500
-    t.string "PUBLIC_ZIPCODE", limit: 50
-    t.datetime "BUSINESS_START_DT"
-    t.datetime "SIGNER_END_DT"
-    t.string "SPOUSE_CHECK_FLAG", limit: 25
-  end
-
-
-  create_table "CUST_EXPSR_APP_AGR_HIST", force: :cascade do |t|
-    t.bigint "CUST_EXPSR_APP_AGR_HIST_ID", null: false
-    t.bigint "CUST_EXPSR_H_ID", null: false
-    t.string "APP_NO", limit: 100, null: false
-    t.string "AGRMNT_NO", limit: 100
-    t.datetime "GO_LIVE_DT"
-    t.string "OFFERING_NAME", limit: 100
-    t.string "APP_STAT", limit: 50
-    t.string "APP_STEP", limit: 50
-    t.string "CONTRACT_STAT", limit: 50
-    t.decimal "OS_PRINCIPAL", precision: 17, scale: 2, null: false
-    t.string "FPD", limit: 25
-    t.string "CUST_NAME", limit: 500
-    t.string "ROLE_CUST", limit: 50
-    t.decimal "OVERDUE_AMT", precision: 17, scale: 2
-    t.integer "OVERDUE_DAYS"
-  end
-
-
-  create_table "CUST_EXPSR_BUCKET", force: :cascade do |t|
-    t.bigint "CUST_EXPSR_BUCKET_ID", null: false
-    t.bigint "CUST_EXPSR_D_ID", null: false
-    t.bigint "ORDER_NO", null: false
-    t.string "BUCKET_RANGE", limit: 50
-    t.decimal "VALUE", precision: 17, scale: 2, null: false
-  end
-
-
-  create_table "CUST_EXPSR_D", force: :cascade do |t|
-    t.bigint "CUST_EXPSR_D_ID", null: false
-    t.bigint "CUST_EXPSR_H_ID", null: false
-    t.string "EXPOSURE_TYPE", limit: 25
-    t.decimal "OS_PRINCIPAL_AMT", precision: 17, scale: 2, null: false
-    t.decimal "OS_INTEREST_AMT", precision: 17, scale: 2, null: false
-    t.decimal "OS_AR_BALANCE", precision: 17, scale: 2, null: false
-    t.decimal "MAX_AR", precision: 17, scale: 2, null: false
-    t.decimal "MAX_INSTALLMENT_AMT", precision: 17, scale: 2, null: false
-    t.integer "TOTAL_AGRMNT_OVERDUE", null: false
-    t.integer "MAX_OVERDUE_DAYS", null: false
-    t.decimal "MAX_OVERDUE_AMT", precision: 17, scale: 2, null: false
-    t.integer "SPAN_OF_MONTH", null: false
-    t.integer "ACTIVE_AGRMNT", null: false
-    t.integer "AGRMNT_IN_PROCESS", null: false
-    t.integer "AGRMNT_REJECTED", null: false
-    t.integer "AGRMNT_CANCELLED", null: false
-    t.integer "AGRMNT_REPOSSESS", null: false
-    t.integer "AGRMNT_PAID_OFF", null: false
-    t.integer "AGRMNT_WRITTEN_OFF", null: false
-    t.integer "AGRMNT_NON_ACRUAL", null: false
-    t.integer "AGRMNT_FPD", null: false
-    t.string "FPD_INDICATOR", limit: 50
-    t.string "FPD_INDICATOR_DESCR", limit: 500
-    t.integer "BOUNCE_CHEQUE", null: false
-    t.integer "ASSET_IN_FINANCING", null: false
-    t.integer "ASSET_REPOSSESSED", null: false
-    t.integer "ASSET_INVENTORIED", null: false
-    t.string "OVERDUE_INDICATOR", limit: 50
-    t.string "OVERDUE_INDICATOR_DESCR", limit: 500
-  end
-
-
-  create_table "CUST_EXPSR_H", force: :cascade do |t|
-    t.bigint "CUST_EXPSR_H_ID", null: false
-    t.bigint "CUST_EXPSR_INFO_ID", null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 500
-    t.string "CUST_INDICATOR", limit: 50
-    t.string "CUST_INDICATOR_DESCR", limit: 500
-    t.string "ID_TYPE", limit: 50
-    t.string "ID_NO", limit: 50
-    t.string "RELATION_WITH_CUST", limit: 50
-    t.string "RELATION_TYPE", limit: 25
-  end
-
-
-  create_table "CUST_EXPSR_INFO", force: :cascade do |t|
-    t.bigint "CUST_EXPSR_INFO_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 500
-    t.string "CUST_INDICATOR", limit: 50
-    t.string "CUST_INDICATOR_DESCR", limit: 500
-    t.integer "CUST_EXPSR_VERSION", null: false
-    t.datetime "AS_OF_DATE", null: false
-    t.string "CAPTURE_STAT", limit: 25
-  end
-
-
-  create_table "CUST_FIN_DATA_ATTR_CONTENT", force: :cascade do |t|
-    t.bigint "CUST_FIN_DATA_ATTR_CONTENT_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.bigint "REF_ATTR_ID", null: false
-    t.string "ATTR_VALUE", limit: 500, null: false
-    t.string "ATTR_GROUP", limit: 25
-  end
-
-
-  create_table "CUST_GRP", force: :cascade do |t|
-    t.bigint "CUST_GRP_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.bigint "MEMBER_CUST_ID", null: false
-    t.string "MR_CUST_RELATIONSHIP_CODE", limit: 25
-    t.string "CUST_GRP_NOTES", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "CUST_HIST", force: :cascade do |t|
-    t.bigint "CUST_HIST_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 250, null: false
-    t.string "MR_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "MR_CUST_MODEL_CODE", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.boolean "IS_VIP", null: false
-    t.string "ORIGINAL_OFFICE_CODE", limit: 25
-    t.boolean "IS_AFFILIATE_WITH_MF", null: false
-    t.string "VIP_NOTES", limit: 2000
-  end
-
-
-  create_table "CUST_ID_TYPE_HIST", force: :cascade do |t|
-    t.bigint "CUST_ID_TYPE_HIST_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "MR_ID_TYPE_CODE", limit: 25, null: false
-    t.string "ID_NO", limit: 25, null: false
-  end
-
-
-  create_table "CUST_OTHER_INFO", force: :cascade do |t|
-    t.bigint "CUST_OTHER_INFO_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.bigint "LBPPMS_CNTRPRT_ID", null: false
-    t.bigint "LBPPMS_BIZ_SUSTAIN_ID", null: false
-    t.bigint "LBPPMS_BIZ_SCL_ID", default: 0, null: false
-    t.bigint "LBPPMS_DEBT_GRP_ID", default: 0, null: false
-    t.string "LBPPMS_BIZ_SCL_CODE", limit: 25
-    t.string "LBPPMS_BIZ_SUSTAIN_CODE", limit: 25
-    t.string "LBPPMS_CNTRPRT_CODE", limit: 25
-    t.string "LBPPMS_DEBT_GRP_CODE", limit: 25
-  end
-
-
-  create_table "CUST_PERSONAL", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "CUST_FULL_NAME", limit: 250
-    t.string "CUST_PREFIX_NAME", limit: 100
-    t.string "CUST_SUFFIX_NAME", limit: 100
-    t.string "NICK_NAME", limit: 50
-    t.string "BIRTH_PLACE", limit: 25
-    t.datetime "BIRTH_DT"
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MR_RELIGION_CODE", limit: 25
-    t.string "MR_EDUCATION_CODE", limit: 25
-    t.string "MR_NATIONALITY_CODE", limit: 25
-    t.string "WNA_COUNTRY_CODE", limit: 25
-    t.string "MR_MARITAL_STAT_CODE", limit: 25
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-    t.string "FAMILY_CARD_NO", limit: 25
-    t.integer "NO_OF_DEPENDENTS"
-    t.integer "NO_OF_RESIDENCE"
-    t.boolean "IS_REST_IN_PEACE", null: false
-    t.string "MR_SALUTATION_CODE", limit: 25
-    t.string "EMAIL_3", limit: 25
-    t.string "MOBILE_PHN_NO_3", limit: 25
-    t.string "ModifiedUser", limit: 64
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-  end
-
-
-  create_table "CUST_PERSONAL_EMERGENCY_CONTACT", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_EMERGENCY_CONTACT_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "CONTACT_PERSON_NAME", limit: 250
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.string "BIRTH_PLACE", limit: 100
-    t.datetime "BIRTH_DT"
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MR_RELIGION_CODE", limit: 25
-    t.string "MR_EDUCATION_CODE", limit: 25
-    t.string "MR_JOB_PROFESSION_CODE", limit: 25
-    t.string "MR_MARITAL_STAT_CODE", limit: 25
-    t.string "MR_NATIONALITY_CODE", limit: 25
-    t.string "NATIONALITY_COUNTRY_CODE", limit: 25
-    t.string "MR_CUST_RELATIONSHIP_CODE", limit: 25
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL", limit: 50
-    t.string "ADDR", limit: 500
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "CITY", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.string "SUB_ZIPCODE", limit: 25
-    t.string "CONTACT_PERSON_CUST_NO", limit: 50
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.string "PHN_1", limit: 25
-    t.string "PHN_2", limit: 25
-    t.string "PHN_3", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_EXT_3", limit: 5
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-    t.string "MOBILE_PHN_NO_3", limit: 25
-  end
-
-
-  create_table "CUST_PERSONAL_FAMILY", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_FAMILY_ID", null: false
-    t.bigint "CUST_ID"
-    t.bigint "FAMILY_ID"
-    t.string "MR_CUST_RELATIONSHIP", limit: 50, null: false
-  end
-
-
-  create_table "CUST_PERSONAL_FIN_DATA", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_FIN_DATA_ID", null: false
-    t.bigint "CUST_PERSONAL_ID", null: false
-    t.decimal "MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.decimal "MONTHLY_EXPENSE_AMT", precision: 17, scale: 2, null: false
-    t.decimal "MONTHLY_INSTALLMENT_AMT", precision: 17, scale: 2, null: false
-    t.string "MR_SOURCE_OF_INCOME_CODE", limit: 25
-    t.decimal "SPOUSE_MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.boolean "IS_JOIN_INCOME", null: false
-    t.decimal "NETT_INCOME_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.decimal "NETT_PROFIT_MONTHLY_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.decimal "OTHER_INCOME_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.decimal "OTHER_MONTHLY_INSTALLMENT_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.decimal "TOTAL_INCOME_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.datetime "DATE_AS_OF"
-  end
-
-
-  create_table "CUST_PERSONAL_HIST", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_HIST_ID", null: false
-    t.bigint "CUST_PERSONAL_ID", null: false
-    t.bigint "CUST_ID", null: false
-    t.string "CUST_FULL_NAME", limit: 250
-    t.string "CUST_PREFIX_NAME", limit: 100
-    t.string "CUST_SUFFIX_NAME", limit: 100
-    t.string "NICK_NAME", limit: 50
-    t.string "BIRTH_PLACE", limit: 25
-    t.datetime "BIRTH_DT"
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MR_RELIGION_CODE", limit: 25
-    t.string "MR_EDUCATION_CODE", limit: 25
-    t.string "MR_NATIONALITY_CODE", limit: 25
-    t.string "WNA_COUNTRY_CODE", limit: 25
-    t.string "MR_MARITAL_STAT_CODE", limit: 25
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-    t.string "FAMILY_CARD_NO", limit: 25
-    t.integer "NO_OF_DEPENDENTS"
-    t.integer "NO_OF_RESIDENCE"
-    t.boolean "IS_REST_IN_PEACE", null: false
-    t.string "MR_SALUTATION_CODE", limit: 25
-    t.string "EMAIL_3", limit: 25
-    t.string "MOBILE_PHN_NO_3", limit: 25
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-  end
-
-
-  create_table "CUST_PERSONAL_JOB_DATA", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_JOB_DATA_ID", null: false
-    t.bigint "CUST_ID"
-    t.bigint "REF_PROFESSION_ID"
-    t.string "COY_NAME", limit: 250
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.bigint "REF_INDUSTRY_TYPE_ID"
-    t.string "MR_JOB_STAT_CODE", limit: 25
-    t.string "PROFESSIONAL_NO", limit: 50
-    t.string "JOB_TITLE_NAME", limit: 50
-    t.datetime "EMPLOYMENT_ESTABLISHMENT_DT"
-    t.boolean "IS_MF_EMP", null: false
-    t.string "MR_COY_SCALE_CODE", limit: 25
-    t.integer "NO_OF_EMPLOY"
-    t.string "MR_INVESTMENT_TYPE_CODE", limit: 25
-    t.bigint "JOB_ADDR_ID"
-    t.string "PREV_COY_NAME", limit: 50
-    t.datetime "PREV_EMPLOYMENT_DT"
-    t.bigint "PREV_JOB_ADDR_ID"
-    t.string "EMP_NO", limit: 25
-    t.string "OTH_BIZ_NAME", limit: 50
-    t.string "OTH_BIZ_TYPE", limit: 25
-    t.string "OTH_BIZ_INDUSTRY_TYPE_CODE", limit: 25
-    t.string "OTH_BIZ_JOB_POSITION", limit: 25
-    t.datetime "OTH_BIZ_ESTABLISHMENT_DT"
-    t.bigint "OTH_BIZ_ADDR_ID"
-    t.boolean "IS_WELLKNOWN_COY"
-    t.string "MR_WELLKNOWN_COY_CODE", limit: 25
-  end
-
-
-  create_table "EMP_BANK_ACC", force: :cascade do |t|
-    t.bigint "EMP_BANK_ACC_ID", null: false
-    t.bigint "REF_EMP_ID", null: false
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BANK_BRANCH", limit: 50
-    t.string "BANK_BRANCH_REG_CODE", limit: 25
-    t.string "BANK_ACC_NO", limit: 250, null: false
-    t.string "BANK_ACC_NAME", limit: 250, null: false
-  end
-
-
-  create_table "EXCHANGE_RATE", force: :cascade do |t|
-    t.bigint "EXCHANGE_RATE_ID", null: false
-    t.bigint "REF_CURR_ID", null: false
-    t.datetime "CURR_DT", null: false
-    t.decimal "EXCHANGE_RATE_AMT", precision: 17, scale: 2, null: false
-    t.datetime "POSTING_DT", default: "01-01-0001 00:00:00", null: false
-    t.datetime "VALUE_DT", default: "01-01-0001 00:00:00", null: false
-  end
-
-
-  create_table "GENERAL_SETTING", force: :cascade do |t|
-    t.bigint "GENERAL_SETTING_ID", null: false
-    t.string "GS_CODE", limit: 25, null: false
-    t.string "GS_NAME", limit: 50, null: false
-    t.string "GS_VALUE", limit: 1500, null: false
-    t.string "GS_DESCR", limit: 2000
-    t.string "MODULE_CODE", limit: 25, null: false
-    t.string "ROLE_CODE", limit: 250
-    t.boolean "IS_UPDATABLE", default: false, null: false
-  end
-
-
-  create_table "HOLIDAY_SCHM_D", force: :cascade do |t|
-    t.bigint "HOLIDAY_SCHM_D_ID", null: false
-    t.bigint "HOLIDAY_SCHM_H_ID", null: false
-    t.datetime "HOLIDAY_DT", null: false
-    t.string "DESCR", limit: 50, null: false
-    t.boolean "IS_PUBLIC_HOLIDAY", null: false
-  end
-
-
-  create_table "HOLIDAY_SCHM_H", force: :cascade do |t|
-    t.bigint "HOLIDAY_SCHM_H_ID", null: false
-    t.string "HOLIDAY_SCHM_CODE", limit: 25, null: false
-    t.string "HOLIDAY_SCHM_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "JOURNAL_LOG", force: :cascade do |t|
-    t.bigint "JOURNAL_LOG_ID", null: false
-    t.string "SYSTEM_FROM", limit: 50
-    t.string "PAYLOAD", limit: 127, null: false
-    t.string "STATUS", limit: 25, null: false
-    t.boolean "IS_EXEC", null: false
-    t.boolean "IS_SUCCESS", null: false
-    t.datetime "EXEC_DT"
-    t.string "SP_NAME", limit: 50
-    t.string "ERROR_MESSAGE", limit: 127
-  end
-
-
-  create_table "JOURNAL_LOG_FAILED_D", force: :cascade do |t|
-    t.bigint "JOURNAL_LOG_FAILED_D_ID", null: false
-    t.bigint "JOURNAL_LOG_FAILED_H_ID", null: false
-    t.string "SCHEME_CODE", limit: 25, null: false
-    t.string "LINE_DESCRIPTION", limit: 100, null: false
-    t.string "DC", limit: 0, null: false
-    t.string "ORIGIN_CURR_CODE", limit: 25, null: false
-    t.decimal "ORIGIN_AMT", precision: 17, scale: 2, null: false
-    t.decimal "CURR_RATE", precision: 17, scale: 2, null: false
-    t.decimal "AMOUNT", precision: 17, scale: 2, null: false
-    t.string "PAY_ALLOC_CODE", limit: 25
-    t.string "COA_BRANCH", limit: 25
-    t.string "COA", limit: 25
-    t.string "PAY_ALLOC_CODE_X", limit: 25
-    t.string "COA_BRANCH_X", limit: 25
-    t.string "COA_X", limit: 25
-    t.string "PRODUCT_ID", limit: 25
-    t.string "DEPARTMENT_ID", limit: 25
-    t.string "ANALYSIS_TRACK_MNT_1_ID", limit: 25
-    t.string "ANALYSIS_TRACK_MNT_2_ID", limit: 25
-  end
-
-
-  create_table "JOURNAL_LOG_FAILED_H", force: :cascade do |t|
-    t.bigint "JOURNAL_LOG_FAILED_H_ID", null: false
-    t.string "OFFICE_CODE", limit: 25, null: false
-    t.string "JR_NO", limit: 50, null: false
-    t.string "TXN_CODE", limit: 25, null: false
-    t.datetime "POSTING_DT", null: false
-    t.datetime "VALUE_DT", null: false
-    t.string "REF_NO", limit: 50, null: false
-    t.string "STATUS", limit: 1, null: false
-    t.string "ERR_MSG", limit: 2000, null: false
-    t.boolean "IS_RERUN", null: false
-    t.bigint "JOURNAL_LOG_ID", null: false
-  end
-
-
-  create_table "JR_M_ENTITY", force: :cascade do |t|
-    t.bigint "JR_M_ENTITY_ID", null: false
-    t.bigint "JR_M_HEADER_ID", null: false
-    t.string "ENTITY_TYPE", limit: 100, null: false
-  end
-
-
-  create_table "JR_M_GROUP", force: :cascade do |t|
-    t.bigint "JR_M_GROUP_ID", null: false
-    t.bigint "JR_M_HEADER_ID", null: false
-    t.string "GROUP_NAME", limit: 100, null: false
-  end
-
-
-  create_table "JR_M_GROUP_D_FACT", force: :cascade do |t|
-    t.bigint "JR_M_GROUP_D_FACT_ID", null: false
-    t.bigint "JR_M_GROUP_ID", null: false
-    t.string "D_FACT_ALIAS", limit: 100, null: false
-    t.string "D_FACT_PROPERTY", limit: 100, null: false
-    t.string "D_FACT_TYPE", limit: 50, null: false
-  end
-
-
-  create_table "JR_M_GROUP_D_R", force: :cascade do |t|
-    t.bigint "JR_M_GROUP_D_R_ID", null: false
-    t.bigint "JR_M_HEADER_R_ID", null: false
-    t.string "GROUP_NAME", limit: 50, null: false
-    t.integer "D_SEQ_NO", null: false
-  end
-
-
-  create_table "JR_M_GROUP_FACT_R", force: :cascade do |t|
-    t.bigint "JR_M_GROUP_FACT_R_ID", null: false
-    t.bigint "JR_M_GROUP_D_R_ID", null: false
-    t.string "D_FACT_ALIAS", limit: 100, null: false
-    t.string "D_FACT_VALUE", limit: 50, null: false
-    t.string "D_FACT_TYPE", limit: 25, null: false
-    t.string "D_FACT_PROPERTY_R", limit: 110, null: false
-  end
-
-
-  create_table "JR_M_HEADER", force: :cascade do |t|
-    t.bigint "JR_M_HEADER_ID", null: false
-    t.string "SUB_SYSTEM", limit: 100, null: false
-    t.string "TRX_TYPE_CODE", limit: 50, null: false
-    t.string "TRX_DESC", limit: 250, null: false
-  end
-
-
-  create_table "JR_M_HEADER_FACT", force: :cascade do |t|
-    t.bigint "JR_M_HEADER_FACT_ID", null: false
-    t.bigint "JR_M_HEADER_ID", null: false
-    t.string "H_FACT_ALIAS", limit: 100, null: false
-    t.string "H_FACT_PROPERTY", limit: 100, null: false
-    t.string "H_FACT_TYPE", limit: 50, null: false
-  end
-
-
-  create_table "JR_M_HEADER_FACT_R", force: :cascade do |t|
-    t.bigint "JR_M_HEADER_FACT_R_ID", null: false
-    t.bigint "JR_M_HEADER_R_ID", null: false
-    t.string "H_FACT_ALIAS", limit: 100, null: false
-    t.string "H_FACT_VALUES", limit: 50, null: false
-    t.string "H_FACT_TYPE", limit: 25, null: false
-    t.string "H_FACT_PROPERTY_R", limit: 110, null: false
-  end
-
-
-  create_table "JR_M_HEADER_R", force: :cascade do |t|
-    t.bigint "JR_M_HEADER_R_ID", null: false
-    t.string "TRX_SUB_SYSTEM", limit: 25, null: false
-    t.string "TRX_EVENT_CODE", limit: 25, null: false
-    t.string "TRX_TYPE_CODE", limit: 25, null: false
-    t.string "TRX_NO", limit: 50, null: false
-    t.datetime "TRX_DT", null: false
-    t.string "TRX_OFFICE_CODE", limit: 25, null: false
-    t.string "TRX_USERNAME", limit: 50, null: false
-    t.string "JR_NO", limit: 25, null: false
-    t.datetime "JR_REQ_DT", null: false
-    t.string "ERR_MSG", limit: 50, null: false
-    t.string "HAS_BEEN_RERUN", limit: 0
-  end
-
-
-  create_table "JR_M_ITEM_VALUE", force: :cascade do |t|
-    t.bigint "JR_M_ITEM_VALUE_ID", null: false
-    t.bigint "JR_M_GROUP_ID", null: false
-    t.string "IV_ALIAS", limit: 100, null: false
-    t.string "IV_PROPERTY", limit: 100, null: false
-  end
-
-
-  create_table "JR_M_ITEM_VALUE_R", force: :cascade do |t|
-    t.bigint "JR_M_ITEM_VALUE_R_ID", null: false
-    t.bigint "JR_M_GROUP_D_R_ID", null: false
-    t.string "IV_ALIAS", limit: 100, null: false
-    t.decimal "IV_VALUE", precision: 17, scale: 2, null: false
-    t.string "IV_PROPERTY_R", limit: 110, null: false
-  end
-
-
-  create_table "JR_SOURCE_FILE", force: :cascade do |t|
-    t.bigint "JR_SOURCE_FILE_ID", null: false
-    t.string "FILE_CODE", limit: 25
-    t.string "FILE_NAME", limit: 100
-    t.binary "DATA"
-    t.integer "VERSION", null: false
-    t.datetime "START_DATE", null: false
-  end
-
-
-  create_table "LBPPMS_BIZ_SCL", force: :cascade do |t|
-    t.string "LBPPMS_BIZ_SCL_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 50, null: false
-    t.string "BI_CODE", limit: 5, null: false
-    t.string "LBPP_CODE", limit: 5, null: false
-    t.bigint "LBPPMS_BIZ_SCL_ID", null: false
-  end
-
-
-  create_table "LBPPMS_BIZ_SUSTAIN", force: :cascade do |t|
-    t.bigint "LBPPMS_BIZ_SUSTAIN_ID", null: false
-    t.string "DESCR", limit: 250
-    t.string "BI_CODE", limit: 5
-    t.string "LBPP_CODE", limit: 5
-    t.string "LBPPMS_BIZ_SUSTAIN_CODE", limit: 25, null: false
-  end
-
-
-  create_table "LBPPMS_CNTRPRT", force: :cascade do |t|
-    t.bigint "LBPPMS_CNTRPRT_ID", null: false
-    t.string "DESCR", limit: 250, null: false
-    t.string "BI_CODE", limit: 5, null: false
-    t.string "LBPP_CODE", limit: 5, null: false
-    t.string "LBPPMS_CNTRPRT_CODE", limit: 25, null: false
-  end
-
-
-  create_table "LBPPMS_DEBT_GRP", force: :cascade do |t|
-    t.string "LBPPMS_DEBT_GRP_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 50, null: false
-    t.string "BI_CODE", limit: 5, null: false
-    t.string "LBPP_CODE", limit: 5, null: false
-    t.bigint "LBPPMS_DEBT_GRP_ID", null: false
-  end
-
-
-  create_table "MASTER_SEQUENCE", force: :cascade do |t|
-    t.bigint "MASTER_SEQUENCE_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.string "MASTER_SEQ_CODE", limit: 25, null: false
-    t.string "SEQ_NAME", limit: 50, null: false
-    t.integer "SEQ_NO", null: false
-    t.integer "LENGTH_NO", null: false
-    t.string "RESET_FLAG", limit: 0, null: false
-    t.string "PREFIX", limit: 2, null: false
-    t.boolean "IS_MONTH", null: false
-    t.boolean "IS_YEAR", null: false
-    t.boolean "IS_BRANCH", null: false
-    t.string "SUFFIX", limit: 1
-    t.string "DELIMITER", limit: 0
-    t.boolean "IS_USE_CHECK_DIGIT", null: false
-    t.string "MODULE_CODE", limit: 25, null: false
-    t.string "APP_CODE", limit: 25
-  end
-
-
-  create_table "NEGATIVE_CUST", force: :cascade do |t|
-    t.bigint "NEGATIVE_CUST_ID", null: false
-    t.bigint "CUST_ID"
-    t.string "MR_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 250, null: false
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.string "BIRTH_PLACE", limit: 50
-    t.datetime "BIRTH_DT"
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "LEGAL_ADDR", limit: 100
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.string "CITY", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "MOBILE_PHN", limit: 25
-    t.string "MR_NEG_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "MR_NEG_CUST_SOURCE_CODE", limit: 25, null: false
-    t.string "NOTES", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-    t.string "NEG_CUST_CAUSE", limit: 100
-    t.string "NEGATIVE_CUST_NO", limit: 50
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "MOBILE_PHN_NO_3", limit: 25
-  end
-
-
-  create_table "NEGATIVE_CUST_CHANGE_TRX", force: :cascade do |t|
-    t.bigint "NEGATIVE_CUST_CHANGE_TRX_ID", null: false
-    t.bigint "NEGATIVE_CUST_ID", null: false
-    t.string "TRX_NO", limit: 50, null: false
-    t.string "MR_TRX_STAT_CODE", limit: 25, null: false
-    t.string "MR_NEG_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "MR_NEG_CUST_SOURCE_CODE", limit: 25, null: false
-    t.string "NOTES", limit: 2000
-    t.string "RFA_NO", limit: 50
-    t.datetime "REQ_DT"
-    t.datetime "APV_DT"
-    t.datetime "EXE_DT"
-    t.string "NEG_CUST_CAUSE", limit: 100
-    t.boolean "IS_ACTIVE"
-  end
-
-
-  create_table "NEGATIVE_CUST_HIST", force: :cascade do |t|
-    t.bigint "NEGATIVE_CUST_HIST_ID", null: false
-    t.bigint "NEGATIVE_CUST_ID", null: false
-    t.string "MR_CUST_TYPE_CODE", limit: 50, null: false
-    t.string "CUST_NO", limit: 100
-    t.string "CUST_NAME", limit: 250, null: false
-    t.string "MR_ID_TYPE_CODE", limit: 50
-    t.string "ID_NO", limit: 50
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 50
-    t.string "BIRTH_PLACE", limit: 100
-    t.datetime "BIRTH_DT"
-    t.string "MR_GENDER_CODE", limit: 50
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "LEGAL_ADDR", limit: 200
-    t.string "AREA_CODE_1", limit: 50
-    t.string "AREA_CODE_2", limit: 50
-    t.string "AREA_CODE_3", limit: 50
-    t.string "AREA_CODE_4", limit: 50
-    t.string "ZIPCODE", limit: 50
-    t.string "CITY", limit: 50
-    t.string "PHN_AREA_1", limit: 20
-    t.string "PHN_1", limit: 50
-    t.string "PHN_EXT_1", limit: 10
-    t.string "PHN_AREA_2", limit: 20
-    t.string "PHN_2", limit: 50
-    t.string "PHN_EXT_2", limit: 10
-    t.string "PHN_AREA_3", limit: 20
-    t.string "PHN_3", limit: 50
-    t.string "PHN_EXT_3", limit: 10
-    t.string "FAX_AREA", limit: 20
-    t.string "FAX", limit: 50
-    t.string "MOBILE_PHN", limit: 50
-    t.string "MR_NEG_CUST_TYPE_CODE", limit: 50, null: false
-    t.string "MR_NEG_CUST_SOURCE_CODE", limit: 50, null: false
-    t.string "NOTES", limit: 127
-    t.boolean "IS_ACTIVE", null: false
-    t.string "NEG_CUST_CAUSE", limit: 200
-    t.string "NEGATIVE_CUST_NO", limit: 100
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "MOBILE_PHN_NO_3", limit: 25
-  end
-
-
-  create_table "Netwrix_audit_errors", force: :cascade do |t|
-    t.string "ErrorID", default: "newid", null: false
-    t.datetime "ErrorTime", default: "getutcdate", null: false
-    t.string "Workstation", default: "host_name", null: false
-    t.string "Application", default: "app_name", null: false
-    t.string "DataBaseName", limit: 64, default: "db_name", null: false
-    t.string "TableName", limit: 64, null: false
-    t.integer "MessageID", null: false
-    t.string "Message", null: false
-    t.index ["ErrorTime"], name: "NetwrixErrorTimeClustered"
-    t.index ["MessageID"], name: "NetwrixMessageIDNonClustered"
-  end
-
-
-  create_table "OFFICE_BANK_ACC", force: :cascade do |t|
-    t.bigint "OFFICE_BANK_ACC_ID", null: false
-    t.string "OFFICE_BANK_ACC_CODE", limit: 25, null: false
-    t.string "OFFICE_BANK_ACC_BRANCH", limit: 50
-    t.string "OFFICE_BANK_ACC_NAME", limit: 250, null: false
-    t.string "OFFICE_BANK_ACC_NO", limit: 250, null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.bigint "REF_BANK_ID", null: false
-    t.bigint "REF_CURR_ID", null: false
-    t.boolean "IS_LEGAL_DOC"
-    t.string "MR_BANK_ACC_PURPOSE_CODE", limit: 25, null: false
-    t.string "BANK_ACC_TYPE", limit: 25
-    t.string "BASE_COA", limit: 25
-    t.string "BANK_BRANCH_REG_RPT_CODE", limit: 25
-    t.string "BANK_ADDR", limit: 2000
-    t.string "BANK_CITY", limit: 25
-    t.string "BANK_AREA_CODE_1", limit: 25
-    t.string "BANK_AREA_CODE_2", limit: 25
-    t.string "BANK_AREA_CODE_3", limit: 25
-    t.string "BANK_AREA_CODE_4", limit: 25
-    t.string "BANK_ZIPCODE", limit: 25
-    t.string "BANK_PHN_AREA_1", limit: 5
-    t.string "BANK_PHN_1", limit: 25
-    t.string "BANK_PHN_EXT_1", limit: 10
-    t.string "BANK_PHN_AREA_2", limit: 5
-    t.string "BANK_PHN_2", limit: 25
-    t.string "BANK_PHN_EXT_2", limit: 10
-    t.string "BANK_PHN_AREA_3", limit: 5
-    t.string "BANK_PHN_3", limit: 25
-    t.string "BANK_PHN_EXT_3", limit: 10
-    t.string "BANK_FAX_AREA", limit: 5
-    t.string "BANK_FAX", limit: 25
-    t.string "CNTCT_PERSON_JOB_TITLE", limit: 25
-    t.string "CNTCT_PERSON_NAME", limit: 250
-    t.boolean "IS_ACTIVE", null: false
-    t.decimal "END_BAL_AMT", precision: 17, scale: 2, default: "00:00:00", null: false
-    t.string "MR_KONVEN_SYARIAH_CODE", limit: 25
-  end
-
-
-  create_table "REF_API", force: :cascade do |t|
-    t.bigint "REF_API_ID", null: false
-    t.bigint "REF_MODULE_ID", null: false
-    t.string "REF_API_URL", limit: 500, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_APP_SRC", force: :cascade do |t|
-    t.bigint "REF_APP_SRC_ID", null: false
-    t.string "APP_SRC_CODE", limit: 25
-    t.string "APP_SRC_NAME", limit: 50
-    t.string "DESCR", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-    t.string "MR_APP_SRC_TYPE_CODE", limit: 50
-    t.datetime "PERIOD_FROM", null: false
-    t.datetime "PERIOD_TO", null: false
-    t.datetime "MAX_APV_DT", null: false
-  end
-
-
-  create_table "REF_APP_SRC_OFFICE_MBR", force: :cascade do |t|
-    t.bigint "REF_APP_SRC_OFFICE_MBR_ID", null: false
-    t.bigint "REF_APP_SRC_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-  end
-
-
-  create_table "REF_ASSET_DOC", force: :cascade do |t|
-    t.bigint "REF_ASSET_DOC_ID", null: false
-    t.string "ASSET_DOC_CODE", limit: 25, null: false
-    t.string "ASSET_DOC_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_ATTR", force: :cascade do |t|
-    t.bigint "REF_ATTR_ID", null: false
-    t.string "ATTR_CODE", limit: 25, null: false
-    t.string "ATTR_NAME", limit: 50, null: false
-    t.integer "ATTR_LENGTH"
-    t.string "ATTR_TYPE_CODE", limit: 25, null: false
-    t.string "ATTR_INPUT_TYPE", limit: 25, null: false
-    t.string "ATTR_VALUE", limit: 500
-    t.string "ATTR_GROUP", limit: 25
-    t.string "PATTERN_CODE", limit: 25
-    t.string "PATTERN_VALUE", limit: 2000
-    t.boolean "IS_SYSTEM", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "RSV_FIELD_1", limit: 250
-    t.string "RSV_FIELD_2", limit: 250
-    t.string "RSV_FIELD_3", limit: 250
-    t.string "RSV_FIELD_4", limit: 250
-    t.string "RSV_FIELD_5", limit: 250
-    t.string "DEFAULT_VALUE", limit: 25
-    t.boolean "IS_MANDATORY", default: false, null: false
-  end
-
-
-  create_table "REF_ATTR_TYPE", force: :cascade do |t|
-    t.bigint "REF_ATTR_TYPE_ID", null: false
-    t.string "ATTR_TYPE_CODE", limit: 25, null: false
-    t.string "ATTR_TYPE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_SYSTEM", null: false
-    t.string "RSV_FIELD_1_DESC", limit: 250
-    t.string "RSV_FIELD_2_DESC", limit: 250
-    t.string "RSV_FIELD_3_DESC", limit: 250
-    t.string "RSV_FIELD_4_DESC", limit: 250
-    t.string "RSV_FIELD_5_DESC", limit: 250
-  end
-
-
-  create_table "REF_BANK", force: :cascade do |t|
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BANK_CODE", limit: 25, null: false
-    t.string "BANK_NAME", limit: 50, null: false
-    t.string "REG_RPT_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
-    t.string "RTGS_CODE", limit: 25
-    t.string "BANK_COUNTRY_CODE", limit: 25
-  end
-
-
-  create_table "REF_BIZ_UNIT", force: :cascade do |t|
-    t.bigint "REF_BIZ_UNIT_ID", null: false
-    t.string "BIZ_UNIT_CODE", limit: 25, null: false
-    t.string "BIZ_UNIT_NAME", limit: 50, null: false
-    t.string "DESCR", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_COA", force: :cascade do |t|
-    t.bigint "REF_COA_ID", null: false
-    t.bigint "REF_ACCT_BOOK_ID", null: false
-    t.bigint "COA_SCHM_ID"
-    t.string "MR_ENTITY_TYPE", limit: 25, null: false
-    t.string "MR_ENTITY_CODE", limit: 25, null: false
-    t.string "PAYMENT_ALLOC_CODE", limit: 25, null: false
-    t.string "CURR_CODE", limit: 25, null: false
-    t.string "COA", limit: 25, null: false
-  end
-
-
-  create_table "REF_COUNTRY", force: :cascade do |t|
-    t.bigint "REF_COUNTRY_ID", null: false
-    t.string "COUNTRY_CODE", limit: 25, null: false
-    t.string "COUNTRY_NAME", limit: 50, null: false
-  end
-
-
-  create_table "REF_COY", force: :cascade do |t|
-    t.bigint "REF_COY_ID", null: false
-    t.string "COY_CODE", limit: 25, null: false
-    t.string "FULL_NAME", limit: 250, null: false
-    t.string "SHORT_NAME", limit: 50
-    t.string "INITIAL_NAME", limit: 25
-    t.string "TAX_ID_NO", limit: 25
-    t.string "REGISTRATION_NO", limit: 25
-    t.string "LICENSE_NO", limit: 25
-    t.string "REG_RPT_CODE", limit: 25
-    t.string "ADDR", limit: 500
-    t.string "ZIPCODE", limit: 25
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "CNTCT_PERSON_NAME", limit: 250
-    t.string "CNTCT_PERSON_JOB_TITLE", limit: 50
-    t.string "CNTCT_PERSON_EMAIL", limit: 100
-    t.string "CNTCT_PERSON_MOBILE_PHN_NO_1", limit: 25
-    t.string "CNTCT_PERSON_MOBILE_PHN_NO_2", limit: 25
-    t.string "CITY", limit: 25
-  end
-
-
-  create_table "REF_CURR", force: :cascade do |t|
-    t.bigint "REF_CURR_ID", null: false
-    t.string "CURR_CODE", limit: 25, null: false
-    t.string "CURR_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.decimal "MIN_REFUND_AMT", precision: 17, scale: 2, null: false
-    t.bigint "COF_ID"
-    t.string "REG_RPT_CODE", limit: 25
-    t.integer "ROUNDED_AMT", default: 0, null: false
-  end
-
-
-  create_table "REF_ECONOMIC_SECTOR", force: :cascade do |t|
-    t.bigint "REF_ECONOMIC_SECTOR_ID", null: false
-    t.string "ECONOMIC_SECTOR_CODE", limit: 25, null: false
-    t.string "ECONOMIC_SECTOR_NAME", limit: 100, null: false
-    t.string "REG_RPT_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_EMP", force: :cascade do |t|
-    t.bigint "REF_EMP_ID", null: false
-    t.string "EMP_NO", limit: 25, null: false
-    t.string "EMP_NAME", limit: 50, null: false
-    t.datetime "JOIN_DT", null: false
-    t.string "ADDR", limit: 500, null: false
-    t.string "ZIPCODE", limit: 25
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 100
-    t.string "EMAIL_2", limit: 100
-    t.boolean "IS_EXT", null: false
-    t.string "TAX_ID_NO", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.string "IMAGE_LOCATION", limit: 100
-    t.string "LOGINSOFTPHONE", limit: 10
-    t.boolean "IS_LEAVE", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "CITY", limit: 25, null: false
-    t.string "MR_EMP_GRADE_LVL_TYPE_CODE", limit: 127
-    t.datetime "EXPECTED_END_DT"
-  end
-
-
-  create_table "REF_EMP_LEAVE_MNGMNT", force: :cascade do |t|
-    t.bigint "REF_EMP_LEAVE_MNGMNT_ID", null: false
-    t.bigint "REF_EMP_ID", null: false
-    t.datetime "START_DT", null: false
-    t.datetime "END_DT", null: false
-    t.boolean "IS_PASSED", null: false
-  end
-
-
-  create_table "REF_FIN_INFO", force: :cascade do |t|
-    t.bigint "REF_FIN_INFO_ID", null: false
-    t.string "REF_FIN_INFO_CODE", limit: 25
-    t.string "REF_FIN_INFO_NAME", limit: 50
-    t.bigint "REF_FIN_INFO_GROUP_ID", null: false
-    t.string "REF_FIN_INFO_GROUP_CODE", limit: 25
-    t.string "REF_FIN_INFO_TYPE", limit: 25
-    t.string "REF_CUST_TYPE", limit: 25
-    t.string "REF_CUST_MODEL", limit: 25
-  end
-
-
-  create_table "REF_FORM", force: :cascade do |t|
-    t.bigint "REF_FORM_ID", null: false
-    t.string "FORM_CODE", limit: 25, null: false
-    t.string "TITLE", limit: 50, null: false
-    t.string "PATH", limit: 500, null: false
-    t.string "ICON", limit: 50
-    t.string "CLASS", limit: 50
-    t.string "BADGE_CLASS", limit: 50
-    t.string "FORM_CONFIGURATION", limit: 2000
-    t.bigint "PARENT_ID"
-    t.integer "ORDER_NO", null: false
-    t.integer "HIERARCHY_NO", null: false
-    t.boolean "IS_HIDDEN", null: false
-    t.boolean "IS_EXTERNAL_LINK", null: false
-    t.bigint "REF_MODULE_ID", null: false
-    t.string "PARAMS", limit: 2000
-    t.boolean "IS_MFE", default: false, null: false
-  end
-
-
-  create_table "REF_INDUSTRY_TYPE", force: :cascade do |t|
-    t.bigint "REF_INDUSTRY_TYPE_ID", null: false
-    t.string "INDUSTRY_TYPE_CODE", limit: 25, null: false
-    t.string "INDUSTRY_TYPE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.bigint "REF_INDUSTRY_TYPE_CATEGORY_ID"
-  end
-
-
-  create_table "REF_INDUSTRY_TYPE_CATEGORY", force: :cascade do |t|
-    t.bigint "REF_INDUSTRY_TYPE_CATEGORY_ID", null: false
-    t.string "REF_INDUSTRY_TYPE_CATEGORY_CODE", limit: 50, null: false
-    t.string "REF_INDUSTRY_TYPE_CATEGORY_NAME", limit: 100, null: false
-    t.bigint "REF_ECONOMIC_SECTOR_ID", null: false
-    t.string "REG_RPT_CODE", limit: 50
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_INS_CLAIM_DOC", force: :cascade do |t|
-    t.bigint "REF_INS_CLAIM_DOC_ID", null: false
-    t.string "REF_INS_CLAIM_DOC_CODE", limit: 25, null: false
-    t.string "REF_INS_CLAIM_DOC_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-  end
-
-
-  create_table "REF_JOB_TITLE", force: :cascade do |t|
-    t.bigint "REF_JOB_TITLE_ID", null: false
-    t.string "JOB_TITLE_CODE", limit: 25, null: false
-    t.string "JOB_TITLE_NAME", limit: 50, null: false
-    t.string "DESCR", limit: 2000
-    t.boolean "IS_ACTIVE", default: true, null: false
-  end
-
-
-  create_table "REF_LOB", force: :cascade do |t|
-    t.bigint "REF_LOB_ID", null: false
-    t.string "LOB_CODE", limit: 25, null: false
-    t.string "LOB_NAME", limit: 50, null: false
-    t.string "REG_RPT_CODE", limit: 25
-    t.string "BIZ_TMPLT_CODE", limit: 25, null: false
+ 
+  create_table "asset_accessory", force: :cascade do |t|
+    t.bigint "asset_accessory_id", null: false
+    t.bigint "asset_type_id", null: false
+    t.string "asset_accessory_code", limit: 25
+    t.string "asset_accessory_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "asset_attr", force: :cascade do |t|
+    t.bigint "asset_attr_id", null: false
+    t.bigint "asset_type_id", null: false
+    t.bigint "ref_attr_id", null: false
+    t.boolean "is_editable_after_go_live", null: false
+  end
+ 
+  create_table "asset_category", force: :cascade do |t|
+    t.bigint "asset_category_id", null: false
+    t.bigint "asset_type_id", null: false
+    t.string "asset_category_code", limit: 25, null: false
+    t.string "asset_category_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "asset_doc_list", force: :cascade do |t|
+    t.bigint "asset_doc_list_id", null: false
+    t.bigint "asset_type_id", null: false
+    t.bigint "ref_asset_doc_id", null: false
+    t.boolean "is_main_doc", null: false
+    t.boolean "is_value_needed", null: false
+    t.boolean "is_pledge", null: false
+    t.boolean "is_borrow", null: false
+    t.boolean "is_mandatory_new", null: false
+    t.boolean "is_mandatory_used", null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_exp_dt_mandatory", default: false, null: false
+  end
+ 
+  create_table "asset_master", force: :cascade do |t|
+    t.bigint "asset_master_id", null: false
+    t.bigint "asset_category_id"
+    t.bigint "asset_type_id", null: false
+    t.string "asset_code", limit: 25, null: false
+    t.string "asset_name", limit: 50, null: false
+    t.integer "hierarchy_lvl", null: false
+    t.string "full_asset_code", limit: 250, null: false
+    t.string "full_asset_name", limit: 500, null: false
+    t.bigint "parent_id"
+    t.boolean "is_final", null: false
+    t.boolean "is_active", null: false
+    t.string "reserve_field_1", limit: 2000
+    t.string "reserve_field_2", limit: 2000
+    t.string "reserve_field_3", limit: 2000
+    t.string "reserve_field_4", limit: 2000
+    t.string "reserve_field_5", limit: 2000
+  end
+ 
+  create_table "asset_master_attr_content", force: :cascade do |t|
+    t.bigint "asset_master_attr_content_id", null: false
+    t.bigint "asset_master_id", null: false
+    t.bigint "asset_attr_id", null: false
+    t.string "attr_content", limit: 50, null: false
+  end
+ 
+  create_table "asset_negative", force: :cascade do |t|
+    t.bigint "asset_negative_id", null: false
+    t.bigint "asset_master_id", null: false
+    t.string "serial_no_1", limit: 25
+    t.string "serial_no_2", limit: 25
+    t.string "serial_no_3", limit: 25
+    t.string "serial_no_4", limit: 25
+    t.string "serial_no_5", limit: 25
+    t.string "mr_neg_asset_source_code", limit: 25, null: false
+    t.string "notes", limit: 2000
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "asset_negative_hist", force: :cascade do |t|
+    t.bigint "asset_negative_hist_id", null: false
+    t.bigint "asset_negative_id", null: false
+    t.string "mr_neg_asset_source_code", limit: 25, null: false
+    t.string "notes", limit: 2000
+    t.boolean "is_active", null: false
+    t.integer "version", null: false
+  end
+ 
+  create_table "asset_schm_d", force: :cascade do |t|
+    t.bigint "asset_schm_d_id", null: false
+    t.bigint "asset_schm_h_id", null: false
+    t.bigint "asset_master_id", null: false
+  end
+ 
+  create_table "asset_schm_h", force: :cascade do |t|
+    t.bigint "asset_schm_h_id", null: false
+    t.bigint "asset_type_id", null: false
+    t.string "asset_schm_code", limit: 25, null: false
+    t.string "asset_schm_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_system", default: false, null: false
+  end
+ 
+  create_table "asset_type", force: :cascade do |t|
+    t.bigint "asset_type_id", null: false
+    t.string "asset_type_code", limit: 25, null: false
+    t.string "asset_type_name", limit: 50, null: false
+    t.integer "max_hierarchy_level", null: false
+    t.string "hierarchy_label_level_1", limit: 50
+    t.string "hierarchy_label_level_2", limit: 50
+    t.string "hierarchy_label_level_3", limit: 50
+    t.string "hierarchy_label_level_4", limit: 50
+    t.string "hierarchy_label_level_5", limit: 50
+    t.string "serial_no_1_label", limit: 50
+    t.string "serial_no_2_label", limit: 50
+    t.string "serial_no_3_label", limit: 50
+    t.string "serial_no_4_label", limit: 50
+    t.string "serial_no_5_label", limit: 50
+    t.boolean "is_mndtry_serial_no_1"
+    t.boolean "is_mndtry_serial_no_2"
+    t.boolean "is_mndtry_serial_no_3"
+    t.boolean "is_mndtry_serial_no_4"
+    t.boolean "is_mndtry_serial_no_5"
+    t.boolean "is_loan_obj", null: false
+    t.boolean "is_active", null: false
+    t.integer "total_serial_no_label", default: 0, null: false
+  end
+ 
+  create_table "auth_api", force: :cascade do |t|
+    t.bigint "auth_api_id", null: false
+    t.bigint "ref_api_id", null: false
+    t.bigint "ref_form_id", null: false
+  end
+ 
+  create_table "auth_form", force: :cascade do |t|
+    t.bigint "auth_form_id", null: false
+    t.bigint "ref_form_id", null: false
+    t.bigint "ref_role_id", null: false
+    t.string "form_feature", limit: 2000
+  end
+ 
+  create_table "center_grp", force: :cascade do |t|
+    t.bigint "center_grp_id", null: false
+    t.string "center_grp_code", limit: 25, null: false
+    t.string "center_grp_name", limit: 50, null: false
+    t.string "mr_center_grp_type_code", limit: 25, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "center_grp_office_mbr", force: :cascade do |t|
+    t.bigint "center_grp_office_mbr_id", null: false
+    t.bigint "center_grp_id", null: false
+    t.bigint "ref_office_id", null: false
+    t.boolean "is_coordinator", null: false
+  end
+ 
+  create_table "coa_schm", force: :cascade do |t|
+    t.bigint "coa_schm_id", null: false
+    t.string "schm_code", limit: 25, null: false
+    t.string "schm_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "cust", force: :cascade do |t|
+    t.bigint "cust_id", null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 250, null: false
+    t.string "mr_cust_type_code", limit: 25, null: false
+    t.string "mr_cust_model_code", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 25
+    t.boolean "is_vip", null: false
+    t.string "original_office_code", limit: 25
+    t.boolean "is_affiliate_with_mf", null: false
+    t.string "vip_notes", limit: 2000
+    t.boolean "is_customer", default: false, null: false
+    t.boolean "is_family", default: false, null: false
+    t.boolean "is_guarantor", default: false, null: false
+    t.boolean "is_shareholder", default: false, null: false
+    t.string "third_party_trx_no", limit: 50
+    t.datetime "validfrom", default: "getdate", null: false
+    t.datetime "validtill", default: "9999-12-31 23:59:59", null: false
+    t.string "modifieduser", limit: 64
+    t.string "third_party_rslt_h_group_no", limit: 25
+    t.boolean "is_cust_grp", default: false, null: false
+  end
+ 
+  create_table "cust_addr", force: :cascade do |t|
+    t.bigint "cust_addr_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "mr_cust_addr_type_code", limit: 25, null: false
+    t.string "addr", limit: 500
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "city", limit: 25
+    t.string "zipcode", limit: 25
+    t.string "mr_building_ownership_code", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "notes", limit: 2000
+    t.string "sub_zipcode", limit: 25
+    t.decimal "stay_length", precision: 17, scale: 2
+    t.datetime "stay_since"
+  end
+ 
+  create_table "cust_addr_attr_content", force: :cascade do |t|
+    t.bigint "cust_addr_attr_content_id", null: false
+    t.bigint "cust_addr_id", null: false
+    t.string "attr_value", limit: 500, null: false
+    t.bigint "ref_attr_id", default: 0, null: false
+  end
+ 
+  create_table "cust_addr_attr_content_hist", force: :cascade do |t|
+    t.bigint "cust_addr_attr_content_hist_id", null: false
+    t.bigint "cust_addr_id", null: false
+    t.string "attr_value", limit: 500, null: false
+    t.bigint "ref_attr_id", default: 0, null: false
+  end
+ 
+  create_table "cust_addr_hist", force: :cascade do |t|
+    t.bigint "cust_addr_hist_id", null: false
+    t.bigint "cust_id", null: false
+    t.bigint "cust_addr_id", null: false
+    t.string "mr_cust_addr_type_code", limit: 25, null: false
+    t.string "addr", limit: 500
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "city", limit: 25
+    t.string "zipcode", limit: 25
+    t.string "sub_zipcode", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "mr_building_ownership_code", limit: 25
+    t.string "notes", limit: 2000
+    t.decimal "stay_length", precision: 17, scale: 2
+    t.datetime "stay_since"
+  end
+ 
+  create_table "cust_asset", force: :cascade do |t|
+    t.bigint "cust_asset_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "mr_cust_asset_type_code", limit: 100, null: false
+    t.string "asset_descr", limit: 127
+    t.decimal "asset_value", precision: 17, scale: 2
+    t.integer "asset_qty"
+    t.decimal "asset_total_value", precision: 17, scale: 2
+  end
+ 
+  create_table "cust_attr_content", force: :cascade do |t|
+    t.bigint "cust_attr_content_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "attr_value", limit: 500, null: false
+    t.bigint "ref_attr_id", default: 0, null: false
+  end
+ 
+  create_table "cust_attr_content_hist", force: :cascade do |t|
+    t.bigint "cust_attr_content_hist_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "attr_value", limit: 500, null: false
+    t.bigint "ref_attr_id", default: 0, null: false
+    t.integer "seq_no", default: 0, null: false
+  end
+ 
+  create_table "cust_bank_acc", force: :cascade do |t|
+    t.bigint "cust_bank_acc_id", null: false
+    t.bigint "cust_id", null: false
+    t.bigint "ref_bank_id", null: false
+    t.string "bank_branch", limit: 25, null: false
+    t.string "bank_acc_no", limit: 250, null: false
+    t.string "bank_acc_name", limit: 250, null: false
+    t.boolean "is_bank_stmnt", null: false
+    t.string "bank_branch_reg_rpt_code", limit: 25
+    t.decimal "balance_amt", precision: 17, scale: 2, null: false
+    t.boolean "is_default", null: false
+    t.boolean "is_active", null: false
+    t.string "end_period", limit: 25
+    t.string "start_period", limit: 25
+    t.decimal "beg_balance_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+  end
+ 
+  create_table "cust_bank_stmnt", force: :cascade do |t|
+    t.bigint "cust_bank_stmnt_id", null: false
+    t.bigint "cust_bank_acc_id", null: false
+    t.string "month", limit: 25, null: false
+    t.string "year", limit: 25, null: false
+    t.integer "debit_trx_count"
+    t.decimal "debit_amt", precision: 17, scale: 2, null: false
+    t.integer "credit_trx_count"
+    t.decimal "credit_amt", precision: 17, scale: 2, null: false
+    t.decimal "balance_amt", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "cust_bank_stmnt_d", force: :cascade do |t|
+    t.bigint "cust_bank_stmnt_d_id", null: false
+    t.bigint "cust_bank_stmnt_h_id", null: false
+    t.string "month", limit: 25, null: false
+    t.string "year", limit: 25, null: false
+    t.decimal "debit_amt", precision: 17, scale: 2, null: false
+    t.decimal "credit_amt", precision: 17, scale: 2, null: false
+    t.decimal "balance_amt", precision: 17, scale: 2, null: false
+    t.integer "debit_trx_count"
+    t.integer "credit_trx_count"
+  end
+ 
+  create_table "cust_company", force: :cascade do |t|
+    t.bigint "cust_company_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "mr_company_type_code", limit: 25
+    t.bigint "ref_industry_type_id"
+    t.string "registration_no", limit: 50
+    t.string "license_no", limit: 50
+    t.integer "num_of_emp"
+    t.string "mr_investment_type_code", limit: 25
+    t.datetime "establishment_dt"
+    t.boolean "is_affiliated", null: false
+    t.string "website", limit: 50
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+    t.boolean "is_taxable", default: false, null: false
+    t.bigint "ref_sector_economy_slik_id"
+    t.string "modifieduser", limit: 64
+    t.string "establishment_city", limit: 50
+  end
+ 
+  create_table "cust_company_contact_person", force: :cascade do |t|
+    t.bigint "cust_company_contact_person_id", null: false
+    t.bigint "cust_company_id", null: false
+    t.string "contact_person_name", limit: 250
+    t.string "mr_job_position_code", limit: 25
+    t.string "job_title_name", limit: 50
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "mr_gender_code", limit: 25, null: false
+    t.datetime "birth_dt"
+    t.string "birth_place", limit: 100
+    t.string "id_no", limit: 25
+    t.string "mr_cust_relationship_code", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "mobile_phn_no_3", limit: 25
+  end
+ 
+  create_table "cust_company_fin_data", force: :cascade do |t|
+    t.bigint "cust_company_fin_data_id", null: false
+    t.bigint "cust_company_id", null: false
+    t.decimal "gross_monthly_income_amt", precision: 17, scale: 2, null: false
+    t.decimal "gross_profit_amt", precision: 17, scale: 2, null: false
+    t.decimal "return_of_investment_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "return_of_equity_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "return_of_asset_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "profit_margin_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "current_ratio_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "debt_equity_ratio_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "inv_turn_over_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "ar_turn_over_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "growth_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "working_capital_amt", precision: 17, scale: 2, null: false
+    t.decimal "oth_monthly_inst_amt", precision: 17, scale: 2, null: false
+    t.datetime "date_as_of"
+    t.decimal "revenue", precision: 17, scale: 2, null: false
+    t.decimal "opr_cost", precision: 17, scale: 2, null: false
+    t.decimal "profit_before_tax", precision: 17, scale: 2, null: false
+    t.decimal "curr_asset", precision: 17, scale: 2, null: false
+    t.decimal "net_fixed_asset", precision: 17, scale: 2, null: false
+    t.decimal "total_asset", precision: 17, scale: 2, null: false
+    t.decimal "curr_liablts", precision: 17, scale: 2, null: false
+    t.decimal "long_temr_liablts", precision: 17, scale: 2, null: false
+    t.decimal "shareholder_equity", precision: 17, scale: 2, null: false
+    t.decimal "curr_ratio", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "cust_company_hist", force: :cascade do |t|
+    t.bigint "cust_company_hist_id", null: false
+    t.bigint "cust_company_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "mr_company_type_code", limit: 25
+    t.bigint "ref_industry_type_id"
+    t.string "registration_no", limit: 50
+    t.string "license_no", limit: 50
+    t.integer "num_of_emp"
+    t.string "mr_investment_type_code", limit: 25
+    t.datetime "establishment_dt"
+    t.boolean "is_affiliated", null: false
+    t.string "website", limit: 50
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+  end
+ 
+  create_table "cust_company_legal_doc", force: :cascade do |t|
+    t.bigint "cust_company_legal_doc_id", null: false
+    t.bigint "cust_company_id", null: false
+    t.string "mr_legal_doc_type_code", limit: 25
+    t.string "doc_no", limit: 25
+    t.datetime "doc_dt"
+    t.datetime "doc_expired_dt"
+    t.string "doc_notes", limit: 2000
+    t.string "notary_name", limit: 250
+    t.string "notary_location", limit: 2000
+    t.boolean "is_exp_dt_mandatory", default: false, null: false
+    t.string "doc_name", limit: 100
+    t.boolean "need_legal_opinion", default: false, null: false
+    t.bigint "doc_dms_id"
+    t.string "doc_upload_name", limit: 100
+  end
+ 
+  create_table "cust_company_mgmnt_shrholder", force: :cascade do |t|
+    t.bigint "cust_company_mgmnt_shrholder_id", null: false
+    t.bigint "cust_id"
+    t.bigint "shareholder_id"
+    t.decimal "share_prcnt", precision: 9, scale: 6
+    t.string "mr_job_position_code", limit: 25
+    t.boolean "is_active", null: false
+    t.boolean "is_owner", null: false
+    t.boolean "is_signer", null: false
+    t.datetime "establishment_dt"
+    t.string "mr_position_slik_code", limit: 50
+    t.string "mr_public_type_code", limit: 50
+    t.string "mr_shrholder_type_code", limit: 50
+    t.string "public_addr", limit: 1000
+    t.string "public_area_code_1", limit: 50
+    t.string "public_area_code_2", limit: 50
+    t.string "public_area_code_3", limit: 50
+    t.string "public_area_code_4", limit: 50
+    t.string "public_city", limit: 50
+    t.string "public_identity_no", limit: 100
+    t.string "public_name", limit: 500
+    t.string "public_zipcode", limit: 50
+    t.datetime "business_start_dt"
+    t.datetime "signer_end_dt"
+    t.string "spouse_check_flag", limit: 25
+  end
+ 
+  create_table "cust_expsr_app_agr_hist", force: :cascade do |t|
+    t.bigint "cust_expsr_app_agr_hist_id", null: false
+    t.bigint "cust_expsr_h_id", null: false
+    t.string "app_no", limit: 100, null: false
+    t.string "agrmnt_no", limit: 100
+    t.datetime "go_live_dt"
+    t.string "offering_name", limit: 100
+    t.string "app_stat", limit: 50
+    t.string "app_step", limit: 50
+    t.string "contract_stat", limit: 50
+    t.decimal "os_principal", precision: 17, scale: 2, null: false
+    t.string "fpd", limit: 25
+    t.string "cust_name", limit: 500
+    t.string "role_cust", limit: 50
+    t.decimal "overdue_amt", precision: 17, scale: 2
+    t.integer "overdue_days"
+  end
+ 
+  create_table "cust_expsr_bucket", force: :cascade do |t|
+    t.bigint "cust_expsr_bucket_id", null: false
+    t.bigint "cust_expsr_d_id", null: false
+    t.bigint "order_no", null: false
+    t.string "bucket_range", limit: 50
+    t.decimal "value", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "cust_expsr_d", force: :cascade do |t|
+    t.bigint "cust_expsr_d_id", null: false
+    t.bigint "cust_expsr_h_id", null: false
+    t.string "exposure_type", limit: 25
+    t.decimal "os_principal_amt", precision: 17, scale: 2, null: false
+    t.decimal "os_interest_amt", precision: 17, scale: 2, null: false
+    t.decimal "os_ar_balance", precision: 17, scale: 2, null: false
+    t.decimal "max_ar", precision: 17, scale: 2, null: false
+    t.decimal "max_installment_amt", precision: 17, scale: 2, null: false
+    t.integer "total_agrmnt_overdue", null: false
+    t.integer "max_overdue_days", null: false
+    t.decimal "max_overdue_amt", precision: 17, scale: 2, null: false
+    t.integer "span_of_month", null: false
+    t.integer "active_agrmnt", null: false
+    t.integer "agrmnt_in_process", null: false
+    t.integer "agrmnt_rejected", null: false
+    t.integer "agrmnt_cancelled", null: false
+    t.integer "agrmnt_repossess", null: false
+    t.integer "agrmnt_paid_off", null: false
+    t.integer "agrmnt_written_off", null: false
+    t.integer "agrmnt_non_acrual", null: false
+    t.integer "agrmnt_fpd", null: false
+    t.string "fpd_indicator", limit: 50
+    t.string "fpd_indicator_descr", limit: 500
+    t.integer "bounce_cheque", null: false
+    t.integer "asset_in_financing", null: false
+    t.integer "asset_repossessed", null: false
+    t.integer "asset_inventoried", null: false
+    t.string "overdue_indicator", limit: 50
+    t.string "overdue_indicator_descr", limit: 500
+  end
+ 
+  create_table "cust_expsr_h", force: :cascade do |t|
+    t.bigint "cust_expsr_h_id", null: false
+    t.bigint "cust_expsr_info_id", null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 500
+    t.string "cust_indicator", limit: 50
+    t.string "cust_indicator_descr", limit: 500
+    t.string "id_type", limit: 50
+    t.string "id_no", limit: 50
+    t.string "relation_with_cust", limit: 50
+    t.string "relation_type", limit: 25
+  end
+ 
+  create_table "cust_expsr_info", force: :cascade do |t|
+    t.bigint "cust_expsr_info_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 500
+    t.string "cust_indicator", limit: 50
+    t.string "cust_indicator_descr", limit: 500
+    t.integer "cust_expsr_version", null: false
+    t.datetime "as_of_date", null: false
+    t.string "capture_stat", limit: 25
+  end
+ 
+  create_table "cust_fin_data_attr_content", force: :cascade do |t|
+    t.bigint "cust_fin_data_attr_content_id", null: false
+    t.bigint "cust_id", null: false
+    t.bigint "ref_attr_id", null: false
+    t.string "attr_value", limit: 500, null: false
+    t.string "attr_group", limit: 25
+  end
+ 
+  create_table "cust_grp", force: :cascade do |t|
+    t.bigint "cust_grp_id", null: false
+    t.bigint "cust_id", null: false
+    t.bigint "member_cust_id", null: false
+    t.string "mr_cust_relationship_code", limit: 25
+    t.string "cust_grp_notes", limit: 2000
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "cust_hist", force: :cascade do |t|
+    t.bigint "cust_hist_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 250, null: false
+    t.string "mr_cust_type_code", limit: 25, null: false
+    t.string "mr_cust_model_code", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 25
+    t.boolean "is_vip", null: false
+    t.string "original_office_code", limit: 25
+    t.boolean "is_affiliate_with_mf", null: false
+    t.string "vip_notes", limit: 2000
+  end
+ 
+  create_table "cust_id_type_hist", force: :cascade do |t|
+    t.bigint "cust_id_type_hist_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "mr_id_type_code", limit: 25, null: false
+    t.string "id_no", limit: 25, null: false
+  end
+ 
+  create_table "cust_other_info", force: :cascade do |t|
+    t.bigint "cust_other_info_id", null: false
+    t.bigint "cust_id", null: false
+    t.bigint "lbppms_cntrprt_id", null: false
+    t.bigint "lbppms_biz_sustain_id", null: false
+    t.bigint "lbppms_biz_scl_id", default: 0, null: false
+    t.bigint "lbppms_debt_grp_id", default: 0, null: false
+    t.string "lbppms_biz_scl_code", limit: 25
+    t.string "lbppms_biz_sustain_code", limit: 25
+    t.string "lbppms_cntrprt_code", limit: 25
+    t.string "lbppms_debt_grp_code", limit: 25
+  end
+ 
+  create_table "cust_personal", force: :cascade do |t|
+    t.bigint "cust_personal_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "cust_full_name", limit: 250
+    t.string "cust_prefix_name", limit: 100
+    t.string "cust_suffix_name", limit: 100
+    t.string "nick_name", limit: 50
+    t.string "birth_place", limit: 25
+    t.datetime "birth_dt"
+    t.string "mother_maiden_name", limit: 250
+    t.string "mr_gender_code", limit: 25
+    t.string "mr_religion_code", limit: 25
+    t.string "mr_education_code", limit: 25
+    t.string "mr_nationality_code", limit: 25
+    t.string "wna_country_code", limit: 25
+    t.string "mr_marital_stat_code", limit: 25
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+    t.string "family_card_no", limit: 25
+    t.integer "no_of_dependents"
+    t.integer "no_of_residence"
+    t.boolean "is_rest_in_peace", null: false
+    t.string "mr_salutation_code", limit: 25
+    t.string "email_3", limit: 25
+    t.string "mobile_phn_no_3", limit: 25
+    t.string "modifieduser", limit: 64
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+  end
+ 
+  create_table "cust_personal_emergency_contact", force: :cascade do |t|
+    t.bigint "cust_personal_emergency_contact_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "contact_person_name", limit: 250
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.string "birth_place", limit: 100
+    t.datetime "birth_dt"
+    t.string "mother_maiden_name", limit: 250
+    t.string "mr_gender_code", limit: 25
+    t.string "mr_religion_code", limit: 25
+    t.string "mr_education_code", limit: 25
+    t.string "mr_job_profession_code", limit: 25
+    t.string "mr_marital_stat_code", limit: 25
+    t.string "mr_nationality_code", limit: 25
+    t.string "nationality_country_code", limit: 25
+    t.string "mr_cust_relationship_code", limit: 25
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email", limit: 50
+    t.string "addr", limit: 500
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "city", limit: 25
+    t.string "zipcode", limit: 25
+    t.string "sub_zipcode", limit: 25
+    t.string "contact_person_cust_no", limit: 50
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 25
+    t.string "phn_1", limit: 25
+    t.string "phn_2", limit: 25
+    t.string "phn_3", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_area_2", limit: 10
+    t.string "phn_area_3", limit: 10
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_ext_3", limit: 5
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+    t.string "mobile_phn_no_3", limit: 25
+  end
+ 
+  create_table "cust_personal_family", force: :cascade do |t|
+    t.bigint "cust_personal_family_id", null: false
+    t.bigint "cust_id"
+    t.bigint "family_id"
+    t.string "mr_cust_relationship", limit: 50, null: false
+  end
+ 
+  create_table "cust_personal_fin_data", force: :cascade do |t|
+    t.bigint "cust_personal_fin_data_id", null: false
+    t.bigint "cust_personal_id", null: false
+    t.decimal "monthly_income_amt", precision: 17, scale: 2, null: false
+    t.decimal "monthly_expense_amt", precision: 17, scale: 2, null: false
+    t.decimal "monthly_installment_amt", precision: 17, scale: 2, null: false
+    t.string "mr_source_of_income_code", limit: 25
+    t.decimal "spouse_monthly_income_amt", precision: 17, scale: 2, null: false
+    t.boolean "is_join_income", null: false
+    t.decimal "nett_income_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+    t.decimal "nett_profit_monthly_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+    t.decimal "other_income_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+    t.decimal "other_monthly_installment_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+    t.decimal "total_income_amt", precision: 17, scale: 2, default: "00:00:00", null: false
+    t.datetime "date_as_of"
+  end
+ 
+  create_table "cust_personal_hist", force: :cascade do |t|
+    t.bigint "cust_personal_hist_id", null: false
+    t.bigint "cust_personal_id", null: false
+    t.bigint "cust_id", null: false
+    t.string "cust_full_name", limit: 250
+    t.string "cust_prefix_name", limit: 100
+    t.string "cust_suffix_name", limit: 100
+    t.string "nick_name", limit: 50
+    t.string "birth_place", limit: 25
+    t.datetime "birth_dt"
+    t.string "mother_maiden_name", limit: 250
+    t.string "mr_gender_code", limit: 25
+    t.string "mr_religion_code", limit: 25
+    t.string "mr_education_code", limit: 25
+    t.string "mr_nationality_code", limit: 25
+    t.string "wna_country_code", limit: 25
+    t.string "mr_marital_stat_code", limit: 25
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+    t.string "family_card_no", limit: 25
+    t.integer "no_of_dependents"
+    t.integer "no_of_residence"
+    t.boolean "is_rest_in_peace", null: false
+    t.string "mr_salutation_code", limit: 25
+    t.string "email_3", limit: 25
+    t.string "mobile_phn_no_3", limit: 25
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+  end
+ 
+  create_table "cust_personal_job_data", force: :cascade do |t|
+    t.bigint "cust_personal_job_data_id", null: false
+    t.bigint "cust_id"
+    t.bigint "ref_profession_id"
+    t.string "coy_name", limit: 250
+    t.string "mr_job_position_code", limit: 25
+    t.bigint "ref_industry_type_id"
+    t.string "mr_job_stat_code", limit: 25
+    t.string "professional_no", limit: 50
+    t.string "job_title_name", limit: 50
+    t.datetime "employment_establishment_dt"
+    t.boolean "is_mf_emp", null: false
+    t.string "mr_coy_scale_code", limit: 25
+    t.integer "no_of_employ"
+    t.string "mr_investment_type_code", limit: 25
+    t.bigint "job_addr_id"
+    t.string "prev_coy_name", limit: 50
+    t.datetime "prev_employment_dt"
+    t.bigint "prev_job_addr_id"
+    t.string "emp_no", limit: 25
+    t.string "oth_biz_name", limit: 50
+    t.string "oth_biz_type", limit: 25
+    t.string "oth_biz_industry_type_code", limit: 25
+    t.string "oth_biz_job_position", limit: 25
+    t.datetime "oth_biz_establishment_dt"
+    t.bigint "oth_biz_addr_id"
+    t.boolean "is_wellknown_coy"
+    t.string "mr_wellknown_coy_code", limit: 25
+  end
+ 
+  create_table "emp_bank_acc", force: :cascade do |t|
+    t.bigint "emp_bank_acc_id", null: false
+    t.bigint "ref_emp_id", null: false
+    t.bigint "ref_bank_id", null: false
+    t.string "bank_branch", limit: 50
+    t.string "bank_branch_reg_code", limit: 25
+    t.string "bank_acc_no", limit: 250, null: false
+    t.string "bank_acc_name", limit: 250, null: false
+  end
+ 
+  create_table "exchange_rate", force: :cascade do |t|
+    t.bigint "exchange_rate_id", null: false
+    t.bigint "ref_curr_id", null: false
+    t.datetime "curr_dt", null: false
+    t.decimal "exchange_rate_amt", precision: 17, scale: 2, null: false
+    t.datetime "posting_dt", default: "01-01-0001 00:00:00", null: false
+    t.datetime "value_dt", default: "01-01-0001 00:00:00", null: false
+  end
+ 
+  create_table "general_setting", force: :cascade do |t|
+    t.bigint "general_setting_id", null: false
+    t.string "gs_code", limit: 25, null: false
+    t.string "gs_name", limit: 50, null: false
+    t.string "gs_value", limit: 1500, null: false
+    t.string "gs_descr", limit: 2000
+    t.string "module_code", limit: 25, null: false
+    t.string "role_code", limit: 250
+    t.boolean "is_updatable", default: false, null: false
+  end
+ 
+  create_table "holiday_schm_d", force: :cascade do |t|
+    t.bigint "holiday_schm_d_id", null: false
+    t.bigint "holiday_schm_h_id", null: false
+    t.datetime "holiday_dt", null: false
+    t.string "descr", limit: 50, null: false
+    t.boolean "is_public_holiday", null: false
+  end
+ 
+  create_table "holiday_schm_h", force: :cascade do |t|
+    t.bigint "holiday_schm_h_id", null: false
+    t.string "holiday_schm_code", limit: 25, null: false
+    t.string "holiday_schm_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "journal_log", force: :cascade do |t|
+    t.bigint "journal_log_id", null: false
+    t.string "system_from", limit: 50
+    t.string "payload", limit: 127, null: false
+    t.string "status", limit: 25, null: false
+    t.boolean "is_exec", null: false
+    t.boolean "is_success", null: false
+    t.datetime "exec_dt"
+    t.string "sp_name", limit: 50
+    t.string "error_message", limit: 127
+  end
+ 
+  create_table "journal_log_failed_d", force: :cascade do |t|
+    t.bigint "journal_log_failed_d_id", null: false
+    t.bigint "journal_log_failed_h_id", null: false
+    t.string "scheme_code", limit: 25, null: false
+    t.string "line_description", limit: 100, null: false
+    t.string "dc", limit: 0, null: false
+    t.string "origin_curr_code", limit: 25, null: false
+    t.decimal "origin_amt", precision: 17, scale: 2, null: false
+    t.decimal "curr_rate", precision: 17, scale: 2, null: false
+    t.decimal "amount", precision: 17, scale: 2, null: false
+    t.string "pay_alloc_code", limit: 25
+    t.string "coa_branch", limit: 25
+    t.string "coa", limit: 25
+    t.string "pay_alloc_code_x", limit: 25
+    t.string "coa_branch_x", limit: 25
+    t.string "coa_x", limit: 25
+    t.string "product_id", limit: 25
+    t.string "department_id", limit: 25
+    t.string "analysis_track_mnt_1_id", limit: 25
+    t.string "analysis_track_mnt_2_id", limit: 25
+  end
+ 
+  create_table "journal_log_failed_h", force: :cascade do |t|
+    t.bigint "journal_log_failed_h_id", null: false
+    t.string "office_code", limit: 25, null: false
+    t.string "jr_no", limit: 50, null: false
+    t.string "txn_code", limit: 25, null: false
+    t.datetime "posting_dt", null: false
+    t.datetime "value_dt", null: false
+    t.string "ref_no", limit: 50, null: false
+    t.string "status", limit: 1, null: false
+    t.string "err_msg", limit: 2000, null: false
+    t.boolean "is_rerun", null: false
+    t.bigint "journal_log_id", null: false
+  end
+ 
+  create_table "jr_m_entity", force: :cascade do |t|
+    t.bigint "jr_m_entity_id", null: false
+    t.bigint "jr_m_header_id", null: false
+    t.string "entity_type", limit: 100, null: false
+  end
+ 
+  create_table "jr_m_group", force: :cascade do |t|
+    t.bigint "jr_m_group_id", null: false
+    t.bigint "jr_m_header_id", null: false
+    t.string "group_name", limit: 100, null: false
+  end
+ 
+  create_table "jr_m_group_d_fact", force: :cascade do |t|
+    t.bigint "jr_m_group_d_fact_id", null: false
+    t.bigint "jr_m_group_id", null: false
+    t.string "d_fact_alias", limit: 100, null: false
+    t.string "d_fact_property", limit: 100, null: false
+    t.string "d_fact_type", limit: 50, null: false
+  end
+ 
+  create_table "jr_m_group_d_r", force: :cascade do |t|
+    t.bigint "jr_m_group_d_r_id", null: false
+    t.bigint "jr_m_header_r_id", null: false
+    t.string "group_name", limit: 50, null: false
+    t.integer "d_seq_no", null: false
+  end
+ 
+  create_table "jr_m_group_fact_r", force: :cascade do |t|
+    t.bigint "jr_m_group_fact_r_id", null: false
+    t.bigint "jr_m_group_d_r_id", null: false
+    t.string "d_fact_alias", limit: 100, null: false
+    t.string "d_fact_value", limit: 50, null: false
+    t.string "d_fact_type", limit: 25, null: false
+    t.string "d_fact_property_r", limit: 110, null: false
+  end
+ 
+  create_table "jr_m_header", force: :cascade do |t|
+    t.bigint "jr_m_header_id", null: false
+    t.string "sub_system", limit: 100, null: false
+    t.string "trx_type_code", limit: 50, null: false
+    t.string "trx_desc", limit: 250, null: false
+  end
+ 
+  create_table "jr_m_header_fact", force: :cascade do |t|
+    t.bigint "jr_m_header_fact_id", null: false
+    t.bigint "jr_m_header_id", null: false
+    t.string "h_fact_alias", limit: 100, null: false
+    t.string "h_fact_property", limit: 100, null: false
+    t.string "h_fact_type", limit: 50, null: false
+  end
+ 
+  create_table "jr_m_header_fact_r", force: :cascade do |t|
+    t.bigint "jr_m_header_fact_r_id", null: false
+    t.bigint "jr_m_header_r_id", null: false
+    t.string "h_fact_alias", limit: 100, null: false
+    t.string "h_fact_values", limit: 50, null: false
+    t.string "h_fact_type", limit: 25, null: false
+    t.string "h_fact_property_r", limit: 110, null: false
+  end
+ 
+  create_table "jr_m_header_r", force: :cascade do |t|
+    t.bigint "jr_m_header_r_id", null: false
+    t.string "trx_sub_system", limit: 25, null: false
+    t.string "trx_event_code", limit: 25, null: false
+    t.string "trx_type_code", limit: 25, null: false
+    t.string "trx_no", limit: 50, null: false
+    t.datetime "trx_dt", null: false
+    t.string "trx_office_code", limit: 25, null: false
+    t.string "trx_username", limit: 50, null: false
+    t.string "jr_no", limit: 25, null: false
+    t.datetime "jr_req_dt", null: false
+    t.string "err_msg", limit: 50, null: false
+    t.string "has_been_rerun", limit: 0
+  end
+ 
+  create_table "jr_m_item_value", force: :cascade do |t|
+    t.bigint "jr_m_item_value_id", null: false
+    t.bigint "jr_m_group_id", null: false
+    t.string "iv_alias", limit: 100, null: false
+    t.string "iv_property", limit: 100, null: false
+  end
+ 
+  create_table "jr_m_item_value_r", force: :cascade do |t|
+    t.bigint "jr_m_item_value_r_id", null: false
+    t.bigint "jr_m_group_d_r_id", null: false
+    t.string "iv_alias", limit: 100, null: false
+    t.decimal "iv_value", precision: 17, scale: 2, null: false
+    t.string "iv_property_r", limit: 110, null: false
+  end
+ 
+  create_table "jr_source_file", force: :cascade do |t|
+    t.bigint "jr_source_file_id", null: false
+    t.string "file_code", limit: 25
+    t.string "file_name", limit: 100
+    t.binary "data"
+    t.integer "version", null: false
+    t.datetime "start_date", null: false
+  end
+ 
+  create_table "lbppms_biz_scl", force: :cascade do |t|
+    t.string "lbppms_biz_scl_code", limit: 25, null: false
+    t.string "descr", limit: 50, null: false
+    t.string "bi_code", limit: 5, null: false
+    t.string "lbpp_code", limit: 5, null: false
+    t.bigint "lbppms_biz_scl_id", null: false
+  end
+ 
+  create_table "lbppms_biz_sustain", force: :cascade do |t|
+    t.bigint "lbppms_biz_sustain_id", null: false
+    t.string "descr", limit: 250
+    t.string "bi_code", limit: 5
+    t.string "lbpp_code", limit: 5
+    t.string "lbppms_biz_sustain_code", limit: 25, null: false
+  end
+ 
+  create_table "lbppms_cntrprt", force: :cascade do |t|
+    t.bigint "lbppms_cntrprt_id", null: false
+    t.string "descr", limit: 250, null: false
+    t.string "bi_code", limit: 5, null: false
+    t.string "lbpp_code", limit: 5, null: false
+    t.string "lbppms_cntrprt_code", limit: 25, null: false
+  end
+ 
+  create_table "lbppms_debt_grp", force: :cascade do |t|
+    t.string "lbppms_debt_grp_code", limit: 25, null: false
+    t.string "descr", limit: 50, null: false
+    t.string "bi_code", limit: 5, null: false
+    t.string "lbpp_code", limit: 5, null: false
+    t.bigint "lbppms_debt_grp_id", null: false
+  end
+ 
+  create_table "master_sequence", force: :cascade do |t|
+    t.bigint "master_sequence_id", null: false
+    t.bigint "ref_office_id", null: false
+    t.string "master_seq_code", limit: 25, null: false
+    t.string "seq_name", limit: 50, null: false
+    t.integer "seq_no", null: false
+    t.integer "length_no", null: false
+    t.string "reset_flag", limit: 0, null: false
+    t.string "prefix", limit: 2, null: false
+    t.boolean "is_month", null: false
+    t.boolean "is_year", null: false
+    t.boolean "is_branch", null: false
+    t.string "suffix", limit: 1
+    t.string "delimiter", limit: 0
+    t.boolean "is_use_check_digit", null: false
+    t.string "module_code", limit: 25, null: false
+    t.string "app_code", limit: 25
+  end
+ 
+  create_table "negative_cust", force: :cascade do |t|
+    t.bigint "negative_cust_id", null: false
+    t.bigint "cust_id"
+    t.string "mr_cust_type_code", limit: 25, null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 250, null: false
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 25
+    t.string "birth_place", limit: 50
+    t.datetime "birth_dt"
+    t.string "mr_gender_code", limit: 25
+    t.string "mother_maiden_name", limit: 250
+    t.string "legal_addr", limit: 100
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "zipcode", limit: 25
+    t.string "city", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "mobile_phn", limit: 25
+    t.string "mr_neg_cust_type_code", limit: 25, null: false
+    t.string "mr_neg_cust_source_code", limit: 25, null: false
+    t.string "notes", limit: 2000
+    t.boolean "is_active", null: false
+    t.string "neg_cust_cause", limit: 100
+    t.string "negative_cust_no", limit: 50
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "mobile_phn_no_3", limit: 25
+  end
+ 
+  create_table "negative_cust_change_trx", force: :cascade do |t|
+    t.bigint "negative_cust_change_trx_id", null: false
+    t.bigint "negative_cust_id", null: false
+    t.string "trx_no", limit: 50, null: false
+    t.string "mr_trx_stat_code", limit: 25, null: false
+    t.string "mr_neg_cust_type_code", limit: 25, null: false
+    t.string "mr_neg_cust_source_code", limit: 25, null: false
+    t.string "notes", limit: 2000
+    t.string "rfa_no", limit: 50
+    t.datetime "req_dt"
+    t.datetime "apv_dt"
+    t.datetime "exe_dt"
+    t.string "neg_cust_cause", limit: 100
+    t.boolean "is_active"
+  end
+ 
+  create_table "negative_cust_hist", force: :cascade do |t|
+    t.bigint "negative_cust_hist_id", null: false
+    t.bigint "negative_cust_id", null: false
+    t.string "mr_cust_type_code", limit: 50, null: false
+    t.string "cust_no", limit: 100
+    t.string "cust_name", limit: 250, null: false
+    t.string "mr_id_type_code", limit: 50
+    t.string "id_no", limit: 50
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 50
+    t.string "birth_place", limit: 100
+    t.datetime "birth_dt"
+    t.string "mr_gender_code", limit: 50
+    t.string "mother_maiden_name", limit: 250
+    t.string "legal_addr", limit: 200
+    t.string "area_code_1", limit: 50
+    t.string "area_code_2", limit: 50
+    t.string "area_code_3", limit: 50
+    t.string "area_code_4", limit: 50
+    t.string "zipcode", limit: 50
+    t.string "city", limit: 50
+    t.string "phn_area_1", limit: 20
+    t.string "phn_1", limit: 50
+    t.string "phn_ext_1", limit: 10
+    t.string "phn_area_2", limit: 20
+    t.string "phn_2", limit: 50
+    t.string "phn_ext_2", limit: 10
+    t.string "phn_area_3", limit: 20
+    t.string "phn_3", limit: 50
+    t.string "phn_ext_3", limit: 10
+    t.string "fax_area", limit: 20
+    t.string "fax", limit: 50
+    t.string "mobile_phn", limit: 50
+    t.string "mr_neg_cust_type_code", limit: 50, null: false
+    t.string "mr_neg_cust_source_code", limit: 50, null: false
+    t.string "notes", limit: 127
+    t.boolean "is_active", null: false
+    t.string "neg_cust_cause", limit: 200
+    t.string "negative_cust_no", limit: 100
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "mobile_phn_no_3", limit: 25
+  end
+ 
+  create_table "netwrix_audit_errors", force: :cascade do |t|
+    t.string "errorid", default: "newid", null: false
+    t.datetime "errortime", default: "getutcdate", null: false
+    t.string "workstation", default: "host_name", null: false
+    t.string "application", default: "app_name", null: false
+    t.string "databasename", limit: 64, default: "db_name", null: false
+    t.string "tablename", limit: 64, null: false
+    t.integer "messageid", null: false
+    t.string "message", null: false
+    t.index ["errortime"], name: "NetwrixErrorTimeClustered"
+    t.index ["messageid"], name: "NetwrixMessageIDNonClustered"
+  end
+ 
+  create_table "office_bank_acc", force: :cascade do |t|
+    t.bigint "office_bank_acc_id", null: false
+    t.string "office_bank_acc_code", limit: 25, null: false
+    t.string "office_bank_acc_branch", limit: 50
+    t.string "office_bank_acc_name", limit: 250, null: false
+    t.string "office_bank_acc_no", limit: 250, null: false
+    t.bigint "ref_office_id", null: false
+    t.bigint "ref_bank_id", null: false
+    t.bigint "ref_curr_id", null: false
+    t.boolean "is_legal_doc"
+    t.string "mr_bank_acc_purpose_code", limit: 25, null: false
+    t.string "bank_acc_type", limit: 25
+    t.string "base_coa", limit: 25
+    t.string "bank_branch_reg_rpt_code", limit: 25
+    t.string "bank_addr", limit: 2000
+    t.string "bank_city", limit: 25
+    t.string "bank_area_code_1", limit: 25
+    t.string "bank_area_code_2", limit: 25
+    t.string "bank_area_code_3", limit: 25
+    t.string "bank_area_code_4", limit: 25
+    t.string "bank_zipcode", limit: 25
+    t.string "bank_phn_area_1", limit: 5
+    t.string "bank_phn_1", limit: 25
+    t.string "bank_phn_ext_1", limit: 10
+    t.string "bank_phn_area_2", limit: 5
+    t.string "bank_phn_2", limit: 25
+    t.string "bank_phn_ext_2", limit: 10
+    t.string "bank_phn_area_3", limit: 5
+    t.string "bank_phn_3", limit: 25
+    t.string "bank_phn_ext_3", limit: 10
+    t.string "bank_fax_area", limit: 5
+    t.string "bank_fax", limit: 25
+    t.string "cntct_person_job_title", limit: 25
+    t.string "cntct_person_name", limit: 250
+    t.boolean "is_active", null: false
+    t.decimal "end_bal_amt", precision: 17, scale: 2, default: "00:00:00", null: false
     t.string "mr_konven_syariah_code", limit: 25
   end
-
-
-  create_table "REF_MASTER", force: :cascade do |t|
-    t.bigint "REF_MASTER_ID", null: false
-    t.string "MASTER_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 2000, null: false
-    t.string "REF_MASTER_TYPE_CODE", limit: 25, null: false
-    t.integer "SEQ_NO", null: false
-    t.string "RESERVE_FIELD_1", limit: 2000
-    t.string "RESERVE_FIELD_2", limit: 2000
-    t.string "RESERVE_FIELD_3", limit: 2000
-    t.string "RESERVE_FIELD_4", limit: 2000
-    t.string "RESERVE_FIELD_5", limit: 2000
-    t.boolean "IS_DELETABLE", null: false
-    t.boolean "IS_SYSTEM", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_DEFAULT_VALUE", default: false, null: false
-    t.string "DEFAULT_VALUE", limit: 25
-    t.string "MAPPING_CODE", limit: 25
+ 
+  create_table "ref_api", force: :cascade do |t|
+    t.bigint "ref_api_id", null: false
+    t.bigint "ref_module_id", null: false
+    t.string "ref_api_url", limit: 500, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_MASTER_TYPE", force: :cascade do |t|
-    t.string "REF_MASTER_TYPE_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 50, null: false
-    t.string "MODULE_CODE", limit: 25, null: false
-    t.string "ROLE_CODE", limit: 250
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_SYSTEM", null: false
+ 
+  create_table "ref_app_src", force: :cascade do |t|
+    t.bigint "ref_app_src_id", null: false
+    t.string "app_src_code", limit: 25
+    t.string "app_src_name", limit: 50
+    t.string "descr", limit: 2000
+    t.boolean "is_active", null: false
+    t.string "mr_app_src_type_code", limit: 50
+    t.datetime "period_from", null: false
+    t.datetime "period_to", null: false
+    t.datetime "max_apv_dt", null: false
   end
-
-
-  create_table "REF_MODULE", force: :cascade do |t|
-    t.bigint "REF_MODULE_ID", null: false
-    t.string "MODULE_CODE", limit: 25, null: false
-    t.string "MODULE_NAME", limit: 50, null: false
+ 
+  create_table "ref_app_src_office_mbr", force: :cascade do |t|
+    t.bigint "ref_app_src_office_mbr_id", null: false
+    t.bigint "ref_app_src_id", null: false
+    t.bigint "ref_office_id", null: false
   end
-
-
-  create_table "REF_OFFICE", force: :cascade do |t|
-    t.bigint "REF_OFFICE_ID", null: false
-    t.string "OFFICE_CODE", limit: 25, null: false
-    t.string "OFFICE_NAME", limit: 50, null: false
-    t.string "MR_KONVEN_SYARIAH_CODE", limit: 25
-    t.string "OFFICE_ADDR", limit: 100, null: false
-    t.string "ZIPCODE", limit: 25, null: false
-    t.string "AREA_CODE_1", limit: 25, null: false
-    t.string "AREA_CODE_2", limit: 25, null: false
-    t.string "AREA_CODE_3", limit: 25, null: false
-    t.string "AREA_CODE_4", limit: 25, null: false
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.string "CNTCT_PERSON_NAME", limit: 250, null: false
-    t.string "CNTCT_PERSON_JOB_TITLE", limit: 50, null: false
-    t.string "CNTCT_PERSON_EMAIL_1", limit: 100, null: false
-    t.string "CNTCT_PERSON_EMAIL_2", limit: 100
-    t.string "MR_OFFICE_CLASS_CODE", limit: 25, null: false
-    t.bigint "REF_OFFICE_AREA_ID"
-    t.boolean "IS_ACTIVE", null: false
-    t.bigint "PARENT_ID"
-    t.boolean "IS_OFFICE_CLOSE", null: false
-    t.datetime "OFFICE_OPENING_DT"
-    t.boolean "IS_ALLOW_APP_CREATED", null: false
-    t.bigint "HOLIDAY_SCHM_H_ID", null: false
-    t.bigint "WORKING_HOUR_SCHM_H_ID", null: false
-    t.boolean "IS_VIRTUAL_OFFICE", null: false
-    t.string "MR_OFFICE_TYPE_CODE", limit: 25
-    t.string "CNTCT_PERSON_MOBILE_PHN_NO_1", limit: 25, null: false
-    t.string "CNTCT_PERSON_MOBILE_PHN_NO_2", limit: 25
-    t.string "CITY", limit: 25, null: false
-    t.boolean "IS_NPWP", default: false, null: false
-    t.string "TAX_ID_NO", limit: 25
-    t.string "TAX_PAYER_NO", limit: 25
-    t.boolean "IS_HAVE_CASHIER", default: false, null: false
-    t.integer "HIERARCHY_LVL", default: 0, null: false
-    t.bigint "REF_TAX_OFFICE_ID"
-    t.string "MR_OFFICE_BUSINESS_UNIT_TYPE_CODE", limit: 25
+ 
+  create_table "ref_asset_doc", force: :cascade do |t|
+    t.bigint "ref_asset_doc_id", null: false
+    t.string "asset_doc_code", limit: 25, null: false
+    t.string "asset_doc_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_OFFICE_AREA", force: :cascade do |t|
-    t.bigint "REF_OFFICE_AREA_ID", null: false
-    t.string "AREA_CODE", limit: 25, null: false
-    t.string "AREA_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_attr", force: :cascade do |t|
+    t.bigint "ref_attr_id", null: false
+    t.string "attr_code", limit: 25, null: false
+    t.string "attr_name", limit: 50, null: false
+    t.integer "attr_length"
+    t.string "attr_type_code", limit: 25, null: false
+    t.string "attr_input_type", limit: 25, null: false
+    t.string "attr_value", limit: 500
+    t.string "attr_group", limit: 25
+    t.string "pattern_code", limit: 25
+    t.string "pattern_value", limit: 2000
+    t.boolean "is_system", null: false
+    t.boolean "is_active", null: false
+    t.string "rsv_field_1", limit: 250
+    t.string "rsv_field_2", limit: 250
+    t.string "rsv_field_3", limit: 250
+    t.string "rsv_field_4", limit: 250
+    t.string "rsv_field_5", limit: 250
+    t.string "default_value", limit: 25
+    t.boolean "is_mandatory", default: false, null: false
   end
-
-
-  create_table "REF_PAY_FREQ", force: :cascade do |t|
-    t.bigint "REF_PAY_FREQ_ID", null: false
-    t.string "PAY_FREQ_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 50, null: false
-    t.string "MR_PAY_FREQ_TYPE_CODE", limit: 25, null: false
-    t.boolean "IS_FLOATING_USED", null: false
-    t.integer "PAY_FREQ_VAL"
-    t.integer "TIME_OF_YEAR"
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_attr_type", force: :cascade do |t|
+    t.bigint "ref_attr_type_id", null: false
+    t.string "attr_type_code", limit: 25, null: false
+    t.string "attr_type_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_system", null: false
+    t.string "rsv_field_1_desc", limit: 250
+    t.string "rsv_field_2_desc", limit: 250
+    t.string "rsv_field_3_desc", limit: 250
+    t.string "rsv_field_4_desc", limit: 250
+    t.string "rsv_field_5_desc", limit: 250
   end
-
-
-  create_table "REF_PAYMENT_ALLOC", force: :cascade do |t|
-    t.bigint "REF_PAYMENT_ALLOC_ID", null: false
-    t.string "PAYMENT_ALLOC_CODE", limit: 25, null: false
-    t.string "PAYMENT_ALLOC_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_SYSTEM", null: false
-    t.boolean "IS_HEADER", null: false
-    t.string "GROUP_COA", limit: 25, null: false
-    t.string "MR_PAY_ALLOC_BASE_TYPE", limit: 25, null: false
-    t.string "SYSTEM_LIST", limit: 25, null: false
+ 
+  create_table "ref_bank", force: :cascade do |t|
+    t.bigint "ref_bank_id", null: false
+    t.string "bank_code", limit: 25, null: false
+    t.string "bank_name", limit: 50, null: false
+    t.string "reg_rpt_code", limit: 25
+    t.boolean "is_active", null: false
+    t.string "rtgs_code", limit: 25
+    t.string "bank_country_code", limit: 25
   end
-
-
-  create_table "REF_PAYMENT_ALLOC_ATTR", force: :cascade do |t|
-    t.bigint "REF_PAYMENT_ALLOC_ATTR_ID", null: false
-    t.bigint "REF_PAYMENT_ALLOC_ID", null: false
-    t.string "PAYMENT_ALLOC_ATTR_CODE", limit: 25, null: false
-    t.string "PAYMENT_ALLOC_ATTR_NAME", limit: 50, null: false
-    t.integer "ATTR_LENGTH"
-    t.string "ATTR_VALUE", limit: 25
-    t.string "PATTERN_CODE", limit: 25
-    t.string "PATTERN_VALUE", limit: 50
-    t.string "DEFAULT_VALUE", limit: 50
-    t.boolean "IS_MANDATORY", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "ATTR_INPUT_TYPE", limit: 25, null: false
+ 
+  create_table "ref_biz_unit", force: :cascade do |t|
+    t.bigint "ref_biz_unit_id", null: false
+    t.string "biz_unit_code", limit: 25, null: false
+    t.string "biz_unit_name", limit: 50, null: false
+    t.string "descr", limit: 2000
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_PAYMENT_ALLOC_GRP_D", force: :cascade do |t|
-    t.bigint "REF_PAYMENT_ALLOC_GRP_D_ID", null: false
-    t.bigint "REF_PAYMENT_ALLOC_GRP_H_ID", null: false
-    t.bigint "REF_PAYMENT_ALLOC_ID", null: false
+ 
+  create_table "ref_coa", force: :cascade do |t|
+    t.bigint "ref_coa_id", null: false
+    t.bigint "ref_acct_book_id", null: false
+    t.bigint "coa_schm_id"
+    t.string "mr_entity_type", limit: 25, null: false
+    t.string "mr_entity_code", limit: 25, null: false
+    t.string "payment_alloc_code", limit: 25, null: false
+    t.string "curr_code", limit: 25, null: false
+    t.string "coa", limit: 25, null: false
   end
-
-
-  create_table "REF_PAYMENT_ALLOC_GRP_H", force: :cascade do |t|
-    t.bigint "REF_PAYMENT_ALLOC_GRP_H_ID", null: false
-    t.string "PAY_ALLOC_GRP_CODE", limit: 25, null: false
-    t.string "PAY_ALLOC_GRP_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_SYSTEM", null: false
-    t.string "DESCR", limit: 500
-    t.string "MR_PAY_ALLOC_GRP_PURPOSE", limit: 25
+ 
+  create_table "ref_country", force: :cascade do |t|
+    t.bigint "ref_country_id", null: false
+    t.string "country_code", limit: 25, null: false
+    t.string "country_name", limit: 50, null: false
   end
-
-
-  create_table "REF_PROFESSION", force: :cascade do |t|
-    t.bigint "REF_PROFESSION_ID", null: false
-    t.string "PROFESSION_CODE", limit: 25, null: false
-    t.string "PROFESSION_NAME", limit: 50, null: false
-    t.string "MR_CUST_MODEL_CODE", limit: 25, null: false
-    t.string "REG_RPT_CODE", limit: 25
+ 
+  create_table "ref_coy", force: :cascade do |t|
+    t.bigint "ref_coy_id", null: false
+    t.string "coy_code", limit: 25, null: false
+    t.string "full_name", limit: 250, null: false
+    t.string "short_name", limit: 50
+    t.string "initial_name", limit: 25
+    t.string "tax_id_no", limit: 25
+    t.string "registration_no", limit: 25
+    t.string "license_no", limit: 25
+    t.string "reg_rpt_code", limit: 25
+    t.string "addr", limit: 500
+    t.string "zipcode", limit: 25
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "cntct_person_name", limit: 250
+    t.string "cntct_person_job_title", limit: 50
+    t.string "cntct_person_email", limit: 100
+    t.string "cntct_person_mobile_phn_no_1", limit: 25
+    t.string "cntct_person_mobile_phn_no_2", limit: 25
+    t.string "city", limit: 25
   end
-
-
-  create_table "REF_PROV_DISTRICT", force: :cascade do |t|
-    t.bigint "REF_PROV_DISTRICT_ID", null: false
-    t.string "PROV_DISTRICT_CODE", limit: 25, null: false
-    t.string "PROV_DISTRICT_NAME", limit: 50, null: false
-    t.string "DISTRICT_REG_RPT_CODE", limit: 25
-    t.string "TYPE", limit: 5, null: false
-    t.bigint "PARENT_ID"
-    t.boolean "IS_ACTIVE", null: false
-    t.string "PHN_AREA", limit: 10
+ 
+  create_table "ref_curr", force: :cascade do |t|
+    t.bigint "ref_curr_id", null: false
+    t.string "curr_code", limit: 25, null: false
+    t.string "curr_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.decimal "min_refund_amt", precision: 17, scale: 2, null: false
+    t.bigint "cof_id"
+    t.string "reg_rpt_code", limit: 25
+    t.integer "rounded_amt", default: 0, null: false
   end
-
-
-  create_table "REF_REASON", force: :cascade do |t|
-    t.bigint "REF_REASON_ID", null: false
-    t.string "REASON_CODE", limit: 25, null: false
-    t.string "REASON_DESCR", limit: 50, null: false
-    t.boolean "IS_SYSTEM", null: false
-    t.string "REF_REASON_TYPE_CODE", limit: 25, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_economic_sector", force: :cascade do |t|
+    t.bigint "ref_economic_sector_id", null: false
+    t.string "economic_sector_code", limit: 25, null: false
+    t.string "economic_sector_name", limit: 100, null: false
+    t.string "reg_rpt_code", limit: 25
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_REASON_TYPE", force: :cascade do |t|
-    t.string "REF_REASON_TYPE_CODE", limit: 25, null: false
-    t.string "REASON_TYPE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "MODULE_CODE", limit: 25, null: false
+ 
+  create_table "ref_emp", force: :cascade do |t|
+    t.bigint "ref_emp_id", null: false
+    t.string "emp_no", limit: 25, null: false
+    t.string "emp_name", limit: 50, null: false
+    t.datetime "join_dt", null: false
+    t.string "addr", limit: 500, null: false
+    t.string "zipcode", limit: 25
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 100
+    t.string "email_2", limit: 100
+    t.boolean "is_ext", null: false
+    t.string "tax_id_no", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.string "image_location", limit: 100
+    t.string "loginsoftphone", limit: 10
+    t.boolean "is_leave", null: false
+    t.boolean "is_active", null: false
+    t.string "city", limit: 25, null: false
+    t.string "mr_emp_grade_lvl_type_code", limit: 127
+    t.datetime "expected_end_dt"
   end
-
-
-  create_table "REF_ROLE", force: :cascade do |t|
-    t.bigint "REF_ROLE_ID", null: false
-    t.string "ROLE_CODE", limit: 25, null: false
-    t.string "ROLE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_emp_leave_mngmnt", force: :cascade do |t|
+    t.bigint "ref_emp_leave_mngmnt_id", null: false
+    t.bigint "ref_emp_id", null: false
+    t.datetime "start_dt", null: false
+    t.datetime "end_dt", null: false
+    t.boolean "is_passed", null: false
   end
-
-
-  create_table "REF_STATUS", force: :cascade do |t|
-    t.bigint "REF_STATUS_ID", null: false
-    t.string "REF_STATUS_CODE", limit: 25, null: false
-    t.string "DESCR", limit: 50, null: false
-    t.bigint "REF_TRX_TYPE_ID", null: false
-    t.string "MODULE_CODE", limit: 25, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.string "STATUS_GRP_CODE", limit: 25
+ 
+  create_table "ref_fin_info", force: :cascade do |t|
+    t.bigint "ref_fin_info_id", null: false
+    t.string "ref_fin_info_code", limit: 25
+    t.string "ref_fin_info_name", limit: 50
+    t.bigint "ref_fin_info_group_id", null: false
+    t.string "ref_fin_info_group_code", limit: 25
+    t.string "ref_fin_info_type", limit: 25
+    t.string "ref_cust_type", limit: 25
+    t.string "ref_cust_model", limit: 25
   end
-
-
-  create_table "REF_TAX_OFFICE", force: :cascade do |t|
-    t.bigint "REF_TAX_OFFICE_ID", null: false
-    t.string "TAX_OFFICE_CODE", limit: 25, null: false
-    t.string "TAX_OFFICE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BACK_ACC_NO", limit: 12, null: false
-    t.string "BACK_ACC_NAME", limit: 250, null: false
-    t.string "BANK_BRANCH_BI_CODE", limit: 5, null: false
+ 
+  create_table "ref_form", force: :cascade do |t|
+    t.bigint "ref_form_id", null: false
+    t.string "form_code", limit: 25, null: false
+    t.string "title", limit: 50, null: false
+    t.string "path", limit: 500, null: false
+    t.string "icon", limit: 50
+    t.string "class", limit: 50
+    t.string "badge_class", limit: 50
+    t.string "form_configuration", limit: 2000
+    t.bigint "parent_id"
+    t.integer "order_no", null: false
+    t.integer "hierarchy_no", null: false
+    t.boolean "is_hidden", null: false
+    t.boolean "is_external_link", null: false
+    t.bigint "ref_module_id", null: false
+    t.string "params", limit: 2000
+    t.boolean "is_mfe", default: false, null: false
   end
-
-
-  create_table "REF_TC", force: :cascade do |t|
-    t.bigint "REF_TC_ID", null: false
-    t.string "TC_CODE", limit: 25, null: false
-    t.string "TC_NAME", limit: 50, null: false
-    t.string "TC_DATA_TYPE", limit: 25, null: false
-    t.integer "TC_LENGTH"
-    t.string "TC_VALUE", limit: 500
-    t.boolean "IS_MANDATORY", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.integer "SEQ_NO", null: false
-    t.bigint "REF_TRX_TYPE_ID", null: false
-    t.string "TC_TYPE", limit: 25
+ 
+  create_table "ref_industry_type", force: :cascade do |t|
+    t.bigint "ref_industry_type_id", null: false
+    t.string "industry_type_code", limit: 25, null: false
+    t.string "industry_type_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.bigint "ref_industry_type_category_id"
   end
-
-
-  create_table "REF_TRX_TYPE", force: :cascade do |t|
-    t.bigint "REF_TRX_TYPE_ID", null: false
-    t.string "TRX_TYPE_CODE", limit: 25, null: false
-    t.string "TRX_TYPE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_industry_type_category", force: :cascade do |t|
+    t.bigint "ref_industry_type_category_id", null: false
+    t.string "ref_industry_type_category_code", limit: 50, null: false
+    t.string "ref_industry_type_category_name", limit: 100, null: false
+    t.bigint "ref_economic_sector_id", null: false
+    t.string "reg_rpt_code", limit: 50
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_USER", force: :cascade do |t|
-    t.bigint "REF_USER_ID", null: false
-    t.string "USERNAME", limit: 25, null: false
-    t.string "PASSWORD", limit: 50, null: false
-    t.bigint "REF_EMP_ID", null: false
-    t.integer "FAIL_PWD_COUNT", null: false
-    t.boolean "IS_LOCKED_OUT", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_LOGGED_IN", null: false
-    t.string "LAST_IP_ADDRESS", limit: 25
-    t.datetime "LAST_LOGGED_IN"
-    t.datetime "LAST_LOGGED_OUT"
-    t.string "LOGGED_IN_METHOD", limit: 100, null: false
-    t.datetime "EXPIRED_DT"
-    t.string "KEY", limit: 2000
-    t.string "TOKEN", limit: 500
-    t.string "LOCKED_OUT_REASON", limit: 25
-    t.datetime "LOCKED_UNTIL"
-    t.boolean "IS_NEED_UPDATE_PASSWORD", default: false, null: false
-    t.datetime "PASSWORD_EXPIRATION_DT"
-    t.string "RESET_CODE", null: false
+ 
+  create_table "ref_ins_claim_doc", force: :cascade do |t|
+    t.bigint "ref_ins_claim_doc_id", null: false
+    t.string "ref_ins_claim_doc_code", limit: 25, null: false
+    t.string "ref_ins_claim_doc_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "REF_USER_HIST", force: :cascade do |t|
-    t.bigint "REF_USER_HIST_ID", null: false
-    t.bigint "REF_USER_ID", null: false
-    t.string "PASSWORD", limit: 50, null: false
-    t.datetime "CHANGE_DT", null: false
-    t.integer "SEQ_NO", null: false
+ 
+  create_table "ref_job_title", force: :cascade do |t|
+    t.bigint "ref_job_title_id", null: false
+    t.string "job_title_code", limit: 25, null: false
+    t.string "job_title_name", limit: 50, null: false
+    t.string "descr", limit: 2000
+    t.boolean "is_active", default: true, null: false
   end
-
-
-  create_table "REF_USER_LOG", force: :cascade do |t|
-    t.bigint "REF_USER_LOG_ID", null: false
-    t.bigint "REF_USER_ID", null: false
-    t.string "LAST_IP_ADDRESS", limit: 25
-    t.datetime "LAST_LOGGED_IN"
-    t.datetime "LAST_LOGGED_OUT"
-    t.boolean "IS_ACTIVE", null: false
-    t.string "DEVICE", limit: 25
-    t.boolean "IS_VALID", default: false, null: false
-    t.string "LOCATION", limit: 100
-    t.string "SOFTWARE_NAME", limit: 25
-    t.string "USER_AGENT_FULL", limit: 100
+ 
+  create_table "ref_lob", force: :cascade do |t|
+    t.bigint "ref_lob_id", null: false
+    t.string "lob_code", limit: 25, null: false
+    t.string "lob_name", limit: 50, null: false
+    t.string "reg_rpt_code", limit: 25
+    t.string "biz_tmplt_code", limit: 25, null: false
+    t.string "mr_konven_syariah_code", limit: 25
   end
-
-
-  create_table "REF_USER_ROLE", force: :cascade do |t|
-    t.bigint "REF_USER_ROLE_ID", null: false
-    t.bigint "REF_BIZ_UNIT_ID", null: false
-    t.bigint "REF_JOB_TITLE_ID", null: false
-    t.bigint "REF_USER_ID", null: false
-    t.bigint "SPV_ID"
-    t.bigint "REF_ROLE_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.boolean "IS_ACTIVE", null: false
-    t.datetime "EFFECTIVE_END_DT"
-    t.datetime "EFFECTIVE_START_DT"
-    t.boolean "IS_DEFAULT", default: false, null: false
+ 
+  create_table "ref_master", force: :cascade do |t|
+    t.bigint "ref_master_id", null: false
+    t.string "master_code", limit: 25, null: false
+    t.string "descr", limit: 2000, null: false
+    t.string "ref_master_type_code", limit: 25, null: false
+    t.integer "seq_no", null: false
+    t.string "reserve_field_1", limit: 2000
+    t.string "reserve_field_2", limit: 2000
+    t.string "reserve_field_3", limit: 2000
+    t.string "reserve_field_4", limit: 2000
+    t.string "reserve_field_5", limit: 2000
+    t.boolean "is_deletable", null: false
+    t.boolean "is_system", null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_default_value", default: false, null: false
+    t.string "default_value", limit: 25
+    t.string "mapping_code", limit: 25
   end
-
-
-  create_table "REF_VERF_ANSWER_TYPE", force: :cascade do |t|
-    t.bigint "REF_VERF_ANSWER_TYPE_ID", null: false
-    t.string "VERF_ANSWER_TYPE_CODE", limit: 25, null: false
-    t.string "VERF_ANSWER_TYPE_DESCR", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_master_type", force: :cascade do |t|
+    t.string "ref_master_type_code", limit: 25, null: false
+    t.string "descr", limit: 50, null: false
+    t.string "module_code", limit: 25, null: false
+    t.string "role_code", limit: 250
+    t.boolean "is_active", null: false
+    t.boolean "is_system", null: false
   end
-
-
-  create_table "REF_ZIPCODE", force: :cascade do |t|
-    t.bigint "REF_ZIPCODE_ID", null: false
-    t.string "AREA_CODE_1", limit: 25, null: false
-    t.string "AREA_CODE_2", limit: 25, null: false
-    t.string "CITY", limit: 25, null: false
-    t.string "ZIPCODE", limit: 25, null: false
-    t.bigint "REF_PROV_DISTRICT_ID", null: false
-    t.string "SUB_ZIPCODE", limit: 25, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_module", force: :cascade do |t|
+    t.bigint "ref_module_id", null: false
+    t.string "module_code", limit: 25, null: false
+    t.string "module_name", limit: 50, null: false
   end
-
-
-  create_table "RFA_LOG", force: :cascade do |t|
-    t.bigint "RFA_LOG_ID", null: false
-    t.string "APV_CATEGORY", limit: 25, null: false
-    t.string "TRX_NO", limit: 50, null: false
-    t.string "REASON_CODE", limit: 50, null: false
-    t.string "NOTES", limit: 2000, null: false
-    t.bigint "RFA_NO"
-    t.string "APV_STAT", limit: 25, null: false
-    t.string "APV_SCHEME_CODE", limit: 25, null: false
-    t.decimal "APV_VALUE", precision: 17, scale: 2, null: false
-    t.string "REQUEST_BY", limit: 25, null: false
-    t.datetime "REQ_DT", null: false
-    t.string "FINAL_APPROVE_BY", limit: 25
-    t.datetime "FINAL_APV_DT"
+ 
+  create_table "ref_office", force: :cascade do |t|
+    t.bigint "ref_office_id", null: false
+    t.string "office_code", limit: 25, null: false
+    t.string "office_name", limit: 50, null: false
+    t.string "mr_konven_syariah_code", limit: 25
+    t.string "office_addr", limit: 100, null: false
+    t.string "zipcode", limit: 25, null: false
+    t.string "area_code_1", limit: 25, null: false
+    t.string "area_code_2", limit: 25, null: false
+    t.string "area_code_3", limit: 25, null: false
+    t.string "area_code_4", limit: 25, null: false
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.string "cntct_person_name", limit: 250, null: false
+    t.string "cntct_person_job_title", limit: 50, null: false
+    t.string "cntct_person_email_1", limit: 100, null: false
+    t.string "cntct_person_email_2", limit: 100
+    t.string "mr_office_class_code", limit: 25, null: false
+    t.bigint "ref_office_area_id"
+    t.boolean "is_active", null: false
+    t.bigint "parent_id"
+    t.boolean "is_office_close", null: false
+    t.datetime "office_opening_dt"
+    t.boolean "is_allow_app_created", null: false
+    t.bigint "holiday_schm_h_id", null: false
+    t.bigint "working_hour_schm_h_id", null: false
+    t.boolean "is_virtual_office", null: false
+    t.string "mr_office_type_code", limit: 25
+    t.string "cntct_person_mobile_phn_no_1", limit: 25, null: false
+    t.string "cntct_person_mobile_phn_no_2", limit: 25
+    t.string "city", limit: 25, null: false
+    t.boolean "is_npwp", default: false, null: false
+    t.string "tax_id_no", limit: 25
+    t.string "tax_payer_no", limit: 25
+    t.boolean "is_have_cashier", default: false, null: false
+    t.integer "hierarchy_lvl", default: 0, null: false
+    t.bigint "ref_tax_office_id"
+    t.string "mr_office_business_unit_type_code", limit: 25
   end
-
-
-  create_table "RPT_LIST", force: :cascade do |t|
-    t.string "RPT_TMPLT_CODE", limit: 25, null: false
-    t.string "RPT_TMPLT_NAME", limit: 50, null: false
-    t.string "RPT_TMPLT_PATH", limit: 100, null: false
-    t.string "SYNCHRONOUS_TYPE", limit: 1, null: false
-    t.string "MODULE_CODE", limit: 25
+ 
+  create_table "ref_office_area", force: :cascade do |t|
+    t.bigint "ref_office_area_id", null: false
+    t.string "area_code", limit: 25, null: false
+    t.string "area_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "SCORING_RESULT_D", force: :cascade do |t|
-    t.bigint "SCORING_RESULT_D_ID", null: false
-    t.bigint "SCORING_RESULT_H_ID", null: false
-    t.bigint "SEQ_NO", null: false
-    t.string "SCORING_QUESTION", limit: 2000, null: false
-    t.string "SCORING_ANSWER", limit: 2000, null: false
-    t.decimal "SCORING_VALUE", precision: 17, scale: 2, null: false
-    t.decimal "WEIGHT_PRCNT", precision: 9, scale: 6
-    t.string "MR_SCORING_STAT_CODE", limit: 25
+ 
+  create_table "ref_pay_freq", force: :cascade do |t|
+    t.bigint "ref_pay_freq_id", null: false
+    t.string "pay_freq_code", limit: 25, null: false
+    t.string "descr", limit: 50, null: false
+    t.string "mr_pay_freq_type_code", limit: 25, null: false
+    t.boolean "is_floating_used", null: false
+    t.integer "pay_freq_val"
+    t.integer "time_of_year"
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "SCORING_RESULT_H", force: :cascade do |t|
-    t.bigint "SCORING_RESULT_H_ID", null: false
-    t.string "SCORING_TRX_NO", limit: 50, null: false
-    t.string "TRX_SOURCE_NO", limit: 50, null: false
-    t.string "TRX_SOURCE_TYPE", limit: 50, null: false
-    t.string "MR_SCORING_METHOD_CODE", limit: 25, null: false
-    t.decimal "SCORING_VALUE", precision: 17, scale: 2, null: false
-    t.string "SCORING_ALIAS", limit: 25, null: false
-    t.string "OFFICE_CODE", limit: 25, null: false
-    t.datetime "REQ_DATE", null: false
-    t.string "REQ_BY", limit: 25, null: false
-    t.string "SCORING_CATEGORY", limit: 50
-    t.string "CUST_NO", limit: 25
+ 
+  create_table "ref_payment_alloc", force: :cascade do |t|
+    t.bigint "ref_payment_alloc_id", null: false
+    t.string "payment_alloc_code", limit: 25, null: false
+    t.string "payment_alloc_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_system", null: false
+    t.boolean "is_header", null: false
+    t.string "group_coa", limit: 25, null: false
+    t.string "mr_pay_alloc_base_type", limit: 25, null: false
+    t.string "system_list", limit: 25, null: false
   end
-
-
-  create_table "SYS_CTRL_COY", force: :cascade do |t|
-    t.bigint "SYS_CTRL_COY_ID", null: false
-    t.string "SYS_KEY", limit: 25, null: false
-    t.string "SYS_VALUE", limit: 50, null: false
+ 
+  create_table "ref_payment_alloc_attr", force: :cascade do |t|
+    t.bigint "ref_payment_alloc_attr_id", null: false
+    t.bigint "ref_payment_alloc_id", null: false
+    t.string "payment_alloc_attr_code", limit: 25, null: false
+    t.string "payment_alloc_attr_name", limit: 50, null: false
+    t.integer "attr_length"
+    t.string "attr_value", limit: 25
+    t.string "pattern_code", limit: 25
+    t.string "pattern_value", limit: 50
+    t.string "default_value", limit: 50
+    t.boolean "is_mandatory", null: false
+    t.boolean "is_active", null: false
+    t.string "attr_input_type", limit: 25, null: false
   end
-
-
-  create_table "TASK_UPD_CUST_DATA", force: :cascade do |t|
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.string "APPLICANT_NO", limit: 25
-    t.string "REF_NO", limit: 25
-    t.string "CUST_NO", limit: 25
-    t.string "CUST_TYPE", limit: 50
-    t.string "MR_CUST_DATA_TRX_TYPE", limit: 25
-    t.datetime "TASK_DT"
-    t.string "USER_ASSIGNED", limit: 25
-    t.datetime "SUBMIT_DT"
-    t.string "MR_SUBJECT_TYPE", limit: 25
-    t.string "PROD_OFFERING_CODE", limit: 25, null: false
-    t.string "PROD_OFFERING_NAME", limit: 50, null: false
-    t.string "PROD_OFFERING_VERSION", limit: 10, null: false
-    t.string "AGRMNT_NO", limit: 50
+ 
+  create_table "ref_payment_alloc_grp_d", force: :cascade do |t|
+    t.bigint "ref_payment_alloc_grp_d_id", null: false
+    t.bigint "ref_payment_alloc_grp_h_id", null: false
+    t.bigint "ref_payment_alloc_id", null: false
   end
-
-
-  create_table "THINGS_TO_DO_MAPPER", force: :cascade do |t|
-    t.bigint "THINGS_TO_DO_MAPPER_ID", null: false
-    t.string "THINGS_TO_DO_TYPE", limit: 50
-    t.string "ROLES", limit: 100
-    t.string "THINGS_TO_DO_QUERY", limit: 2000
-    t.string "THINGS_TO_DO_URL", limit: 2000
-    t.string "MODULE_CODE", limit: 50
-    t.string "THINGS_TO_DO_NAME", limit: 250
-    t.boolean "IS_EXTERNAL", default: false, null: false
+ 
+  create_table "ref_payment_alloc_grp_h", force: :cascade do |t|
+    t.bigint "ref_payment_alloc_grp_h_id", null: false
+    t.string "pay_alloc_grp_code", limit: 25, null: false
+    t.string "pay_alloc_grp_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_system", null: false
+    t.string "descr", limit: 500
+    t.string "mr_pay_alloc_grp_purpose", limit: 25
   end
-
-
-  create_table "TRX_TYPE_REF_PAYMENT_ALLOC", force: :cascade do |t|
-    t.bigint "TRX_TYPE_REF_PAYMENT_ALLOC_ID", null: false
-    t.bigint "REF_PAYMENT_ALLOC_ID", null: false
-    t.string "TRX_TYPE_CODE", limit: 25, null: false
-    t.string "TRX_PAYMENT_ALLOC_CODE", limit: 25, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "ref_profession", force: :cascade do |t|
+    t.bigint "ref_profession_id", null: false
+    t.string "profession_code", limit: 25, null: false
+    t.string "profession_name", limit: 50, null: false
+    t.string "mr_cust_model_code", limit: 25, null: false
+    t.string "reg_rpt_code", limit: 25
   end
-
-
-  create_table "UPDATE_CUST_ADDRESS", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_ADDRESS_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.string "MR_CUST_ADDR_TYPE_CODE", limit: 25, null: false
-    t.string "ADDR", limit: 500
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "CITY", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.string "MR_BUILDING_OWNERSHIP_CODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "PHN_AREA_3", limit: 10
-    t.string "PHN_3", limit: 25
-    t.string "PHN_EXT_3", limit: 5
-    t.string "FAX_AREA", limit: 10
-    t.string "FAX", limit: 25
-    t.decimal "STAY_LENGTH", precision: 17, scale: 2
+ 
+  create_table "ref_prov_district", force: :cascade do |t|
+    t.bigint "ref_prov_district_id", null: false
+    t.string "prov_district_code", limit: 25, null: false
+    t.string "prov_district_name", limit: 50, null: false
+    t.string "district_reg_rpt_code", limit: 25
+    t.string "type", limit: 5, null: false
+    t.bigint "parent_id"
+    t.boolean "is_active", null: false
+    t.string "phn_area", limit: 10
   end
-
-
-  create_table "UPDATE_CUST_BANK_ACC", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_BANK_ACC_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BANK_BRANCH", limit: 25, null: false
-    t.string "BANK_ACC_NO", limit: 250, null: false
-    t.string "BANK_ACC_NAME", limit: 250, null: false
-    t.boolean "IS_DEFAULT", null: false
+ 
+  create_table "ref_reason", force: :cascade do |t|
+    t.bigint "ref_reason_id", null: false
+    t.string "reason_code", limit: 25, null: false
+    t.string "reason_descr", limit: 50, null: false
+    t.boolean "is_system", null: false
+    t.string "ref_reason_type_code", limit: 25, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "UPDATE_CUST_BANK_STATEMENT", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_BANK_STATEMENT_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID"
-    t.bigint "UPDATE_CUST_BANK_ACC_ID"
-    t.string "MONTH", limit: 25, null: false
-    t.string "YEAR", limit: 25, null: false
-    t.decimal "DEBIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "CREDIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "BALANCE_AMT", precision: 17, scale: 2, null: false
+ 
+  create_table "ref_reason_type", force: :cascade do |t|
+    t.string "ref_reason_type_code", limit: 25, null: false
+    t.string "reason_type_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.string "module_code", limit: 25, null: false
   end
-
-
-  create_table "UPDATE_CUST_COMPANY_CONTACT_PERSON", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_COMPANY_CONTACT_PERSON_ID", null: false
-    t.bigint "UPDATE_CUST_COMPANY_DATA_ID", null: false
-    t.string "CONTACT_PERSON_NAME", limit: 250
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.string "JOB_TITLE_NAME", limit: 50
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MR_CUST_RELATIONSHIP_CODE", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "BIRTH_PLACE", limit: 100
-    t.datetime "BIRTH_DT"
+ 
+  create_table "ref_role", force: :cascade do |t|
+    t.bigint "ref_role_id", null: false
+    t.string "role_code", limit: 25, null: false
+    t.string "role_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "UPDATE_CUST_COMPANY_DATA", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_COMPANY_DATA_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.bigint "REF_INDUSTRY_TYPE_ID"
-    t.integer "NUM_OF_EMP", null: false
-    t.datetime "ESTABLISHMENT_DT"
+ 
+  create_table "ref_status", force: :cascade do |t|
+    t.bigint "ref_status_id", null: false
+    t.string "ref_status_code", limit: 25, null: false
+    t.string "descr", limit: 50, null: false
+    t.bigint "ref_trx_type_id", null: false
+    t.string "module_code", limit: 25, null: false
+    t.boolean "is_active", null: false
+    t.string "status_grp_code", limit: 25
   end
-
-
-  create_table "UPDATE_CUST_COMPANY_FIN_DATA", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_COMPANY_FIN_DATA_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.decimal "GROSS_MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.decimal "GROSS_PROFIT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "RETURN_OF_INVESTMENT_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "RETURN_OF_EQUITY_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "RETURN_OF_ASSET_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "PROFIT_MARGIN_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "CURRENT_RATIO_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "DEBT_EQUITY_RATIO_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "INV_TURN_OVER_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "AR_TURN_OVER_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "GROWTH_PRCNT", precision: 9, scale: 6, null: false
-    t.decimal "WORKING_CAPITAL_AMT", precision: 17, scale: 2, null: false
-    t.decimal "OTH_MONTHLY_INST_AMT", precision: 17, scale: 2, null: false
-    t.datetime "DATE_AS_OF"
-    t.decimal "REVENUE", precision: 17, scale: 2, null: false
-    t.decimal "OPR_COST", precision: 17, scale: 2, null: false
-    t.decimal "PROFIT_BEFORE_TAX", precision: 17, scale: 2, null: false
-    t.decimal "CURR_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "NET_FIXED_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "TOTAL_ASSET", precision: 17, scale: 2, null: false
-    t.decimal "CURR_LIABLTS", precision: 17, scale: 2, null: false
-    t.decimal "LONG_TEMR_LIABLTS", precision: 17, scale: 2, null: false
-    t.decimal "SHAREHOLDER_EQUITY", precision: 17, scale: 2, null: false
-    t.decimal "CURR_RATIO", precision: 17, scale: 2, null: false
+ 
+  create_table "ref_tax_office", force: :cascade do |t|
+    t.bigint "ref_tax_office_id", null: false
+    t.string "tax_office_code", limit: 25, null: false
+    t.string "tax_office_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+    t.bigint "ref_bank_id", null: false
+    t.string "back_acc_no", limit: 12, null: false
+    t.string "back_acc_name", limit: 250, null: false
+    t.string "bank_branch_bi_code", limit: 5, null: false
   end
-
-
-  create_table "UPDATE_CUST_COMPANY_LEGAL_DOC", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_COMPANY_LEGAL_DOC_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.string "MR_LEGAL_DOC_TYPE_CODE", limit: 25
-    t.string "DOC_NO", limit: 25
-    t.datetime "DOC_DT"
-    t.datetime "DOC_EXPIRED_DT"
-    t.string "DOC_NOTES", limit: 2000
-    t.string "NOTARY_NAME", limit: 250
-    t.string "NOTARY_LOCATION", limit: 2000
-    t.string "DOC_NAME", limit: 100
-    t.boolean "NEED_LEGAL_OPINION", default: false, null: false
+ 
+  create_table "ref_tc", force: :cascade do |t|
+    t.bigint "ref_tc_id", null: false
+    t.string "tc_code", limit: 25, null: false
+    t.string "tc_name", limit: 50, null: false
+    t.string "tc_data_type", limit: 25, null: false
+    t.integer "tc_length"
+    t.string "tc_value", limit: 500
+    t.boolean "is_mandatory", null: false
+    t.boolean "is_active", null: false
+    t.integer "seq_no", null: false
+    t.bigint "ref_trx_type_id", null: false
+    t.string "tc_type", limit: 25
   end
-
-
-  create_table "UPDATE_CUST_COMPANY_MGMNT_SHAREHOLDER", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_COMPANY_MGMNT_SHAREHOLDER_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.decimal "SHARE_PRCNT", precision: 9, scale: 6
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_OWNER", null: false
-    t.boolean "IS_SIGNER", null: false
-    t.datetime "ESTABLISHMENT_DT"
-    t.string "SHAREHOLDER_CUST_NO", limit: 25
-    t.datetime "BUSINESS_START_DT"
+ 
+  create_table "ref_trx_type", force: :cascade do |t|
+    t.bigint "ref_trx_type_id", null: false
+    t.string "trx_type_code", limit: 25, null: false
+    t.string "trx_type_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "UPDATE_CUST_EMERGENCY", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_EMERGENCY_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.string "MR_CUST_RELATIONSHIP", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.string "BIRTH_PLACE", limit: 100
-    t.datetime "BIRTH_DT"
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MR_JOB_PROFESSION_CODE", limit: 25
-    t.string "EMAIL", limit: 50
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "ADDR", limit: 500
-    t.string "AREA_CODE_1", limit: 25
-    t.string "AREA_CODE_2", limit: 25
-    t.string "AREA_CODE_3", limit: 25
-    t.string "AREA_CODE_4", limit: 25
-    t.string "CITY", limit: 25
-    t.string "ZIPCODE", limit: 25
-    t.datetime "ID_EXPIRED_DT"
+ 
+  create_table "ref_user", force: :cascade do |t|
+    t.bigint "ref_user_id", null: false
+    t.string "username", limit: 25, null: false
+    t.string "password", limit: 50, null: false
+    t.bigint "ref_emp_id", null: false
+    t.integer "fail_pwd_count", null: false
+    t.boolean "is_locked_out", null: false
+    t.boolean "is_active", null: false
+    t.boolean "is_logged_in", null: false
+    t.string "last_ip_address", limit: 25
+    t.datetime "last_logged_in"
+    t.datetime "last_logged_out"
+    t.string "logged_in_method", limit: 100, null: false
+    t.datetime "expired_dt"
+    t.string "key", limit: 2000
+    t.string "token", limit: 500
+    t.string "locked_out_reason", limit: 25
+    t.datetime "locked_until"
+    t.boolean "is_need_update_password", default: false, null: false
+    t.datetime "password_expiration_dt"
+    t.string "reset_code", null: false
   end
-
-
-  create_table "UPDATE_CUST_FAMILY", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_FAMILY_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.string "FAMILY_CUST_NO", limit: 25
-    t.string "MR_CUST_RELATIONSHIP", limit: 25
+ 
+  create_table "ref_user_hist", force: :cascade do |t|
+    t.bigint "ref_user_hist_id", null: false
+    t.bigint "ref_user_id", null: false
+    t.string "password", limit: 50, null: false
+    t.datetime "change_dt", null: false
+    t.integer "seq_no", null: false
   end
-
-
-  create_table "UPDATE_CUST_JOB_DATA", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_JOB_DATA_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.string "MR_CUST_MODEL_CODE", limit: 25
-    t.bigint "REF_PROFESSION_ID"
-    t.boolean "IS_MF_EMP", null: false
-    t.string "MR_JOB_POSITION_CODE", limit: 25
-    t.string "JOB_TITLE_NAME", limit: 50
-    t.string "MR_JOB_STAT_CODE", limit: 25
-    t.datetime "EMPLOYMENT_ESTABLISHMENT_DT"
-    t.string "COY_NAME", limit: 250
-    t.bigint "REF_INDUSTRY_TYPE_ID"
-    t.string "MR_COY_SCALE_CODE", limit: 25
-    t.integer "NO_OF_EMPLOY"
+ 
+  create_table "ref_user_log", force: :cascade do |t|
+    t.bigint "ref_user_log_id", null: false
+    t.bigint "ref_user_id", null: false
+    t.string "last_ip_address", limit: 25
+    t.datetime "last_logged_in"
+    t.datetime "last_logged_out"
+    t.boolean "is_active", null: false
+    t.string "device", limit: 25
+    t.boolean "is_valid", default: false, null: false
+    t.string "location", limit: 100
+    t.string "software_name", limit: 25
+    t.string "user_agent_full", limit: 100
   end
-
-
-  create_table "UPDATE_CUST_PERSONAL_DATA", force: :cascade do |t|
-    t.bigint "CUST_PERSONAL_DATA_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.bigint "CUSTOMER_GROUP"
-    t.string "CUST_FULL_NAME", limit: 500
-    t.string "MARITAL_STAT", limit: 50
-    t.string "MR_NATIONALITY_CODE", limit: 50
-    t.string "MR_COUNTRY_CODE", limit: 50
-    t.string "MR_EDUCATION_CODE", limit: 50
-    t.string "MR_RELIGION_CODE", limit: 50
-    t.string "FAMILY_CARD_NO", limit: 50
-    t.integer "NO_OF_RESIDENCE", null: false
-    t.integer "NO_OF_DEPENDENCE", null: false
-    t.boolean "AFFILIATE_WITH_MF", null: false
-    t.boolean "VIP", null: false
-    t.string "VIP_NOTES", limit: 2000
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL_1", limit: 25
-    t.string "EMAIL_2", limit: 25
+ 
+  create_table "ref_user_role", force: :cascade do |t|
+    t.bigint "ref_user_role_id", null: false
+    t.bigint "ref_biz_unit_id", null: false
+    t.bigint "ref_job_title_id", null: false
+    t.bigint "ref_user_id", null: false
+    t.bigint "spv_id"
+    t.bigint "ref_role_id", null: false
+    t.bigint "ref_office_id", null: false
+    t.boolean "is_active", null: false
+    t.datetime "effective_end_dt"
+    t.datetime "effective_start_dt"
+    t.boolean "is_default", default: false, null: false
   end
-
-
-  create_table "UPDATE_CUST_PERSONAL_FIN_DATA", force: :cascade do |t|
-    t.bigint "UPDATE_CUST_PERSONAL_FIN_DATA_ID", null: false
-    t.bigint "CUST_DATA_TRX_ID", null: false
-    t.decimal "MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.string "MR_SOURCE_OF_INCOME_CODE", limit: 25
-    t.boolean "IS_JOIN_INCOME", null: false
-    t.decimal "SPOUSE_MONTHLY_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.decimal "TOTAL_INCOME_AMT", precision: 17, scale: 2, null: false
-    t.decimal "MONTHLY_EXPENSE_AMT", precision: 17, scale: 2, null: false
-    t.decimal "MONTHLY_INSTALLMENT_AMT", precision: 17, scale: 2, null: false
-    t.decimal "NETT_INCOME_AMT", precision: 17, scale: 2, null: false
+ 
+  create_table "ref_verf_answer_type", force: :cascade do |t|
+    t.bigint "ref_verf_answer_type_id", null: false
+    t.string "verf_answer_type_code", limit: 25, null: false
+    t.string "verf_answer_type_descr", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "UPLOAD_ASSET_MASTER", force: :cascade do |t|
-    t.bigint "UPLOAD_ASSET_MASTER_ID", null: false
-    t.string "UPLOAD_MONITORING_NO", limit: 50, null: false
-    t.string "ASSET_TYPE_CODE", limit: 25
-    t.string "ASSET_CATEGORY_CODE", limit: 25
-    t.string "ASSET_CODE", limit: 25
-    t.string "ASSET_NAME", limit: 50
-    t.boolean "IS_ACTIVE", null: false
-    t.bigint "PARENT_ASSET_MASTER_ID"
-    t.bigint "ASSET_CATEGORY_ID"
-    t.bigint "ASSET_MASTER_ID"
-    t.string "ERROR_MESSAGE", limit: 2000
-    t.bigint "ASSET_TYPE_ID"
-    t.string "PARENT_FULL_ASSET_CODE", limit: 250
-    t.string "UPLOAD_STATUS", limit: 25
+ 
+  create_table "ref_zipcode", force: :cascade do |t|
+    t.bigint "ref_zipcode_id", null: false
+    t.string "area_code_1", limit: 25, null: false
+    t.string "area_code_2", limit: 25, null: false
+    t.string "city", limit: 25, null: false
+    t.string "zipcode", limit: 25, null: false
+    t.bigint "ref_prov_district_id", null: false
+    t.string "sub_zipcode", limit: 25, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "UPLOAD_ASSET_NEGATIVE", force: :cascade do |t|
-    t.bigint "UPLOAD_ASSET_NEGATIVE_ID", null: false
-    t.string "UPLOAD_MONITORING_NO", limit: 50, null: false
-    t.string "FULL_ASSET_CODE", limit: 250
-    t.string "SERIAL_NO_1", limit: 25
-    t.string "SERIAL_NO_2", limit: 25
-    t.string "SERIAL_NO_3", limit: 25
-    t.string "SERIAL_NO_4", limit: 25
-    t.string "SERIAL_NO_5", limit: 25
-    t.string "NOTES", limit: 2000
-    t.bigint "ASSET_MASTER_ID"
-    t.bigint "ASSET_NEGATIVE_ID"
-    t.string "ERROR_MESSAGE", limit: 2000
-    t.string "UPLOAD_STATUS", limit: 25, null: false
-    t.string "MR_NEG_ASSET_SOURCE_CODE", limit: 25, null: false
+ 
+  create_table "rfa_log", force: :cascade do |t|
+    t.bigint "rfa_log_id", null: false
+    t.string "apv_category", limit: 25, null: false
+    t.string "trx_no", limit: 50, null: false
+    t.string "reason_code", limit: 50, null: false
+    t.string "notes", limit: 2000, null: false
+    t.bigint "rfa_no"
+    t.string "apv_stat", limit: 25, null: false
+    t.string "apv_scheme_code", limit: 25, null: false
+    t.decimal "apv_value", precision: 17, scale: 2, null: false
+    t.string "request_by", limit: 25, null: false
+    t.datetime "req_dt", null: false
+    t.string "final_approve_by", limit: 25
+    t.datetime "final_apv_dt"
   end
-
-
-  create_table "UPLOAD_MONITORING_H", force: :cascade do |t|
-    t.bigint "UPLOAD_MONITORING_H_ID", null: false
-    t.string "UPLOAD_MONITORING_NO", limit: 50, null: false
-    t.string "OFFICE_CODE", limit: 25, null: false
-    t.datetime "UPLOAD_DT", null: false
-    t.bigint "UPLOAD_TYPE_ID", null: false
-    t.string "FILE_NAME", limit: 250, null: false
-    t.bigint "TOTAL_RECORD", null: false
-    t.bigint "TOTAL_RECORD_PROCESSED", null: false
-    t.bigint "TOTAL_RECORD_ERROR", null: false
-    t.boolean "IS_EXECUTED", null: false
-    t.string "ERROR_MESSAGE", limit: 2000, null: false
-    t.string "UPLOAD_BY_EMP_NO", limit: 25, null: false
-    t.string "UPLOAD_STATUS", limit: 25, null: false
+ 
+  create_table "rpt_list", force: :cascade do |t|
+    t.string "rpt_tmplt_code", limit: 25, null: false
+    t.string "rpt_tmplt_name", limit: 50, null: false
+    t.string "rpt_tmplt_path", limit: 100, null: false
+    t.string "synchronous_type", limit: 1, null: false
+    t.string "module_code", limit: 25
   end
-
-
-  create_table "UPLOAD_NEGATIVE_CUST", force: :cascade do |t|
-    t.bigint "UPLOAD_NEGATIVE_CUST_ID", null: false
-    t.string "UPLOAD_MONITORING_NO", limit: 50, null: false
-    t.string "MR_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "CUST_NO", limit: 50
-    t.string "CUST_NAME", limit: 250, null: false
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.datetime "ID_EXPIRED_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.string "BIRTH_PLACE", limit: 50
-    t.datetime "BIRTH_DT"
-    t.string "MR_GENDER_CODE", limit: 25
-    t.string "MOTHER_MAIDEN_NAME", limit: 250
-    t.string "LEGAL_ADDR", limit: 100
-    t.string "MOBILE_PHN", limit: 25
-    t.string "MR_NEG_CUST_TYPE_CODE", limit: 25, null: false
-    t.string "MR_NEG_CUST_SOURCE_CODE", limit: 25, null: false
-    t.string "NEG_CUST_CAUSE", limit: 100
-    t.string "NOTES", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-    t.string "ERROR_MESSAGE", limit: 2000
-    t.bigint "NEGATIVE_CUST_ID"
-    t.string "UPLOAD_STATUS", limit: 25
-    t.bigint "CUST_ID"
-    t.boolean "IS_WA_MOBILE_PHN_NO_1", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_2", default: false, null: false
-    t.boolean "IS_WA_MOBILE_PHN_NO_3", default: false, null: false
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "MOBILE_PHN_NO_3", limit: 25
+ 
+  create_table "scoring_result_d", force: :cascade do |t|
+    t.bigint "scoring_result_d_id", null: false
+    t.bigint "scoring_result_h_id", null: false
+    t.bigint "seq_no", null: false
+    t.string "scoring_question", limit: 2000, null: false
+    t.string "scoring_answer", limit: 2000, null: false
+    t.decimal "scoring_value", precision: 17, scale: 2, null: false
+    t.decimal "weight_prcnt", precision: 9, scale: 6
+    t.string "mr_scoring_stat_code", limit: 25
   end
-
-
-  create_table "UPLOAD_SETTING_D", force: :cascade do |t|
-    t.bigint "UPLOAD_SETTING_D_ID", null: false
-    t.bigint "UPLOAD_SETTING_H_ID", null: false
-    t.bigint "REF_ROLE_ID", null: false
+ 
+  create_table "scoring_result_h", force: :cascade do |t|
+    t.bigint "scoring_result_h_id", null: false
+    t.string "scoring_trx_no", limit: 50, null: false
+    t.string "trx_source_no", limit: 50, null: false
+    t.string "trx_source_type", limit: 50, null: false
+    t.string "mr_scoring_method_code", limit: 25, null: false
+    t.decimal "scoring_value", precision: 17, scale: 2, null: false
+    t.string "scoring_alias", limit: 25, null: false
+    t.string "office_code", limit: 25, null: false
+    t.datetime "req_date", null: false
+    t.string "req_by", limit: 25, null: false
+    t.string "scoring_category", limit: 50
+    t.string "cust_no", limit: 25
   end
-
-
-  create_table "UPLOAD_SETTING_H", force: :cascade do |t|
-    t.bigint "UPLOAD_SETTING_H_ID", null: false
-    t.bigint "UPLOAD_TYPE_ID", null: false
-    t.string "TRX_CODE_WF", limit: 25
-    t.string "DELIMITER", limit: 0
+ 
+  create_table "sys_ctrl_coy", force: :cascade do |t|
+    t.bigint "sys_ctrl_coy_id", null: false
+    t.string "sys_key", limit: 25, null: false
+    t.string "sys_value", limit: 50, null: false
   end
-
-
-  create_table "UPLOAD_TYPE", force: :cascade do |t|
-    t.bigint "UPLOAD_TYPE_ID", null: false
-    t.string "UPLOAD_TYPE_CODE", limit: 25, null: false
-    t.string "UPLOAD_TYPE_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "task_upd_cust_data", force: :cascade do |t|
+    t.bigint "cust_data_trx_id", null: false
+    t.bigint "ref_office_id", null: false
+    t.string "applicant_no", limit: 25
+    t.string "ref_no", limit: 25
+    t.string "cust_no", limit: 25
+    t.string "cust_type", limit: 50
+    t.string "mr_cust_data_trx_type", limit: 25
+    t.datetime "task_dt"
+    t.string "user_assigned", limit: 25
+    t.datetime "submit_dt"
+    t.string "mr_subject_type", limit: 25
+    t.string "prod_offering_code", limit: 25, null: false
+    t.string "prod_offering_name", limit: 50, null: false
+    t.string "prod_offering_version", limit: 10, null: false
+    t.string "agrmnt_no", limit: 50
   end
-
-
-  create_table "USER_SESSION_LOG", force: :cascade do |t|
-    t.bigint "USER_SESSION_LOG_ID", null: false
-    t.string "USERNAME", limit: 25
-    t.string "OFFICE_CODE", limit: 25
-    t.string "OFFICE_NAME", limit: 50
-    t.string "ROLE_CODE", limit: 25
-    t.string "ROLE_NAME", limit: 50
-    t.string "JOB_TITLE_CODE", limit: 25
-    t.string "JOB_TITLE_NAME", limit: 50
-    t.datetime "LOGIN_DATETIME"
-    t.datetime "EXPIRATION_DATETIME"
-    t.datetime "LOGOUT_DATETIME"
-    t.string "IP_ADDRESS", limit: 25
+ 
+  create_table "things_to_do_mapper", force: :cascade do |t|
+    t.bigint "things_to_do_mapper_id", null: false
+    t.string "things_to_do_type", limit: 50
+    t.string "roles", limit: 100
+    t.string "things_to_do_query", limit: 2000
+    t.string "things_to_do_url", limit: 2000
+    t.string "module_code", limit: 50
+    t.string "things_to_do_name", limit: 250
+    t.boolean "is_external", default: false, null: false
   end
-
-
-  create_table "VENDOR", force: :cascade do |t|
-    t.bigint "VENDOR_ID", null: false
-    t.bigint "VENDOR_PARENT_ID"
-    t.string "VENDOR_CODE", limit: 500
-    t.string "VENDOR_NAME", limit: 500
-    t.string "MR_VENDOR_CATEGORY_CODE", limit: 25, null: false
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL", limit: 50
-    t.decimal "VENDOR_RATING", precision: 17, scale: 2
-    t.string "MR_VENDOR_TYPE_CODE", limit: 25
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.boolean "IS_ACTIVE", null: false
-    t.string "TAX_ID_NO", limit: 25
-    t.datetime "PARTNERSHIP_DT"
-    t.datetime "ESTABLISHMENT_DT"
-    t.string "TAXPAYER_NAME", limit: 250
-    t.string "TAXPAYER_NO", limit: 50
-    t.string "MR_TAX_CALC_METHOD_CODE", limit: 25
-    t.boolean "IS_VAT", null: false
-    t.string "LICENSE_NO", limit: 25
-    t.string "REGISTRATION_NO", limit: 25
-    t.string "VENDOR_RATING_ALIAS", limit: 50
-    t.string "RESERVED_FIELD_1", limit: 2000
-    t.string "RESERVED_FIELD_2", limit: 2000
-    t.string "RESERVED_FIELD_3", limit: 2000
-    t.string "RESERVED_FIELD_4", limit: 2000
-    t.string "RESERVED_FIELD_5", limit: 2000
-    t.string "RESERVED_FIELD_6", limit: 2000
-    t.string "RESERVED_FIELD_7", limit: 2000
-    t.string "RESERVED_FIELD_8", limit: 2000
-    t.string "RESERVED_FIELD_9", limit: 2000
-    t.string "RESERVED_FIELD_10", limit: 2000
-    t.datetime "ACTIVE_DT"
-    t.string "MR_DUPLICATE_STATUS_CODE", limit: 25
-    t.string "MR_NATIONALTIY_CODE", limit: 25
-    t.boolean "IS_NPWP_EXIST", null: false
-    t.string "MR_TAX_PGRSV_SCHEME_CODE", limit: 25
-    t.string "MR_TAX_PGRSV_SCHEME_NAME", limit: 250
-    t.string "MR_VENDOR_CLASS", limit: 25
-    t.string "VENDOR_ATPM_CODE", limit: 25
-    t.boolean "IS_ONE_AFFILIATE", null: false
-    t.string "TAX_SCHM_CODE", limit: 50
+ 
+  create_table "trx_type_ref_payment_alloc", force: :cascade do |t|
+    t.bigint "trx_type_ref_payment_alloc_id", null: false
+    t.bigint "ref_payment_alloc_id", null: false
+    t.string "trx_type_code", limit: 25, null: false
+    t.string "trx_payment_alloc_code", limit: 25, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "update_cust_address", force: :cascade do |t|
+    t.bigint "update_cust_address_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.string "mr_cust_addr_type_code", limit: 25, null: false
+    t.string "addr", limit: 500
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "city", limit: 25
+    t.string "zipcode", limit: 25
+    t.string "mr_building_ownership_code", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "phn_area_3", limit: 10
+    t.string "phn_3", limit: 25
+    t.string "phn_ext_3", limit: 5
+    t.string "fax_area", limit: 10
+    t.string "fax", limit: 25
+    t.decimal "stay_length", precision: 17, scale: 2
+  end
+ 
+  create_table "update_cust_bank_acc", force: :cascade do |t|
+    t.bigint "update_cust_bank_acc_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.bigint "ref_bank_id", null: false
+    t.string "bank_branch", limit: 25, null: false
+    t.string "bank_acc_no", limit: 250, null: false
+    t.string "bank_acc_name", limit: 250, null: false
+    t.boolean "is_default", null: false
+  end
+ 
+  create_table "update_cust_bank_statement", force: :cascade do |t|
+    t.bigint "update_cust_bank_statement_id", null: false
+    t.bigint "cust_data_trx_id"
+    t.bigint "update_cust_bank_acc_id"
+    t.string "month", limit: 25, null: false
+    t.string "year", limit: 25, null: false
+    t.decimal "debit_amt", precision: 17, scale: 2, null: false
+    t.decimal "credit_amt", precision: 17, scale: 2, null: false
+    t.decimal "balance_amt", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "update_cust_company_contact_person", force: :cascade do |t|
+    t.bigint "update_cust_company_contact_person_id", null: false
+    t.bigint "update_cust_company_data_id", null: false
+    t.string "contact_person_name", limit: 250
+    t.string "mr_job_position_code", limit: 25
+    t.string "job_title_name", limit: 50
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "mr_gender_code", limit: 25
+    t.string "mr_cust_relationship_code", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "birth_place", limit: 100
+    t.datetime "birth_dt"
+  end
+ 
+  create_table "update_cust_company_data", force: :cascade do |t|
+    t.bigint "update_cust_company_data_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.bigint "ref_industry_type_id"
+    t.integer "num_of_emp", null: false
+    t.datetime "establishment_dt"
+  end
+ 
+  create_table "update_cust_company_fin_data", force: :cascade do |t|
+    t.bigint "update_cust_company_fin_data_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.decimal "gross_monthly_income_amt", precision: 17, scale: 2, null: false
+    t.decimal "gross_profit_amt", precision: 17, scale: 2, null: false
+    t.decimal "return_of_investment_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "return_of_equity_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "return_of_asset_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "profit_margin_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "current_ratio_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "debt_equity_ratio_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "inv_turn_over_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "ar_turn_over_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "growth_prcnt", precision: 9, scale: 6, null: false
+    t.decimal "working_capital_amt", precision: 17, scale: 2, null: false
+    t.decimal "oth_monthly_inst_amt", precision: 17, scale: 2, null: false
+    t.datetime "date_as_of"
+    t.decimal "revenue", precision: 17, scale: 2, null: false
+    t.decimal "opr_cost", precision: 17, scale: 2, null: false
+    t.decimal "profit_before_tax", precision: 17, scale: 2, null: false
+    t.decimal "curr_asset", precision: 17, scale: 2, null: false
+    t.decimal "net_fixed_asset", precision: 17, scale: 2, null: false
+    t.decimal "total_asset", precision: 17, scale: 2, null: false
+    t.decimal "curr_liablts", precision: 17, scale: 2, null: false
+    t.decimal "long_temr_liablts", precision: 17, scale: 2, null: false
+    t.decimal "shareholder_equity", precision: 17, scale: 2, null: false
+    t.decimal "curr_ratio", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "update_cust_company_legal_doc", force: :cascade do |t|
+    t.bigint "update_cust_company_legal_doc_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.string "mr_legal_doc_type_code", limit: 25
+    t.string "doc_no", limit: 25
+    t.datetime "doc_dt"
+    t.datetime "doc_expired_dt"
+    t.string "doc_notes", limit: 2000
+    t.string "notary_name", limit: 250
+    t.string "notary_location", limit: 2000
+    t.string "doc_name", limit: 100
+    t.boolean "need_legal_opinion", default: false, null: false
+  end
+ 
+  create_table "update_cust_company_mgmnt_shareholder", force: :cascade do |t|
+    t.bigint "update_cust_company_mgmnt_shareholder_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.decimal "share_prcnt", precision: 9, scale: 6
+    t.string "mr_job_position_code", limit: 25
+    t.boolean "is_active", null: false
+    t.boolean "is_owner", null: false
+    t.boolean "is_signer", null: false
+    t.datetime "establishment_dt"
+    t.string "shareholder_cust_no", limit: 25
+    t.datetime "business_start_dt"
+  end
+ 
+  create_table "update_cust_emergency", force: :cascade do |t|
+    t.bigint "update_cust_emergency_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.string "mr_cust_relationship", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.string "birth_place", limit: 100
+    t.datetime "birth_dt"
+    t.string "mr_gender_code", limit: 25
+    t.string "mr_job_profession_code", limit: 25
+    t.string "email", limit: 50
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "addr", limit: 500
+    t.string "area_code_1", limit: 25
+    t.string "area_code_2", limit: 25
+    t.string "area_code_3", limit: 25
+    t.string "area_code_4", limit: 25
+    t.string "city", limit: 25
+    t.string "zipcode", limit: 25
+    t.datetime "id_expired_dt"
+  end
+ 
+  create_table "update_cust_family", force: :cascade do |t|
+    t.bigint "update_cust_family_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.string "family_cust_no", limit: 25
+    t.string "mr_cust_relationship", limit: 25
+  end
+ 
+  create_table "update_cust_job_data", force: :cascade do |t|
+    t.bigint "update_cust_job_data_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.string "mr_cust_model_code", limit: 25
+    t.bigint "ref_profession_id"
+    t.boolean "is_mf_emp", null: false
+    t.string "mr_job_position_code", limit: 25
+    t.string "job_title_name", limit: 50
+    t.string "mr_job_stat_code", limit: 25
+    t.datetime "employment_establishment_dt"
+    t.string "coy_name", limit: 250
+    t.bigint "ref_industry_type_id"
+    t.string "mr_coy_scale_code", limit: 25
+    t.integer "no_of_employ"
+  end
+ 
+  create_table "update_cust_personal_data", force: :cascade do |t|
+    t.bigint "cust_personal_data_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.bigint "customer_group"
+    t.string "cust_full_name", limit: 500
+    t.string "marital_stat", limit: 50
+    t.string "mr_nationality_code", limit: 50
+    t.string "mr_country_code", limit: 50
+    t.string "mr_education_code", limit: 50
+    t.string "mr_religion_code", limit: 50
+    t.string "family_card_no", limit: 50
+    t.integer "no_of_residence", null: false
+    t.integer "no_of_dependence", null: false
+    t.boolean "affiliate_with_mf", null: false
+    t.boolean "vip", null: false
+    t.string "vip_notes", limit: 2000
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email_1", limit: 25
+    t.string "email_2", limit: 25
+  end
+ 
+  create_table "update_cust_personal_fin_data", force: :cascade do |t|
+    t.bigint "update_cust_personal_fin_data_id", null: false
+    t.bigint "cust_data_trx_id", null: false
+    t.decimal "monthly_income_amt", precision: 17, scale: 2, null: false
+    t.string "mr_source_of_income_code", limit: 25
+    t.boolean "is_join_income", null: false
+    t.decimal "spouse_monthly_income_amt", precision: 17, scale: 2, null: false
+    t.decimal "total_income_amt", precision: 17, scale: 2, null: false
+    t.decimal "monthly_expense_amt", precision: 17, scale: 2, null: false
+    t.decimal "monthly_installment_amt", precision: 17, scale: 2, null: false
+    t.decimal "nett_income_amt", precision: 17, scale: 2, null: false
+  end
+ 
+  create_table "upload_asset_master", force: :cascade do |t|
+    t.bigint "upload_asset_master_id", null: false
+    t.string "upload_monitoring_no", limit: 50, null: false
+    t.string "asset_type_code", limit: 25
+    t.string "asset_category_code", limit: 25
+    t.string "asset_code", limit: 25
+    t.string "asset_name", limit: 50
+    t.boolean "is_active", null: false
+    t.bigint "parent_asset_master_id"
+    t.bigint "asset_category_id"
+    t.bigint "asset_master_id"
+    t.string "error_message", limit: 2000
+    t.bigint "asset_type_id"
+    t.string "parent_full_asset_code", limit: 250
+    t.string "upload_status", limit: 25
+  end
+ 
+  create_table "upload_asset_negative", force: :cascade do |t|
+    t.bigint "upload_asset_negative_id", null: false
+    t.string "upload_monitoring_no", limit: 50, null: false
+    t.string "full_asset_code", limit: 250
+    t.string "serial_no_1", limit: 25
+    t.string "serial_no_2", limit: 25
+    t.string "serial_no_3", limit: 25
+    t.string "serial_no_4", limit: 25
+    t.string "serial_no_5", limit: 25
+    t.string "notes", limit: 2000
+    t.bigint "asset_master_id"
+    t.bigint "asset_negative_id"
+    t.string "error_message", limit: 2000
+    t.string "upload_status", limit: 25, null: false
+    t.string "mr_neg_asset_source_code", limit: 25, null: false
+  end
+ 
+  create_table "upload_monitoring_h", force: :cascade do |t|
+    t.bigint "upload_monitoring_h_id", null: false
+    t.string "upload_monitoring_no", limit: 50, null: false
+    t.string "office_code", limit: 25, null: false
+    t.datetime "upload_dt", null: false
+    t.bigint "upload_type_id", null: false
+    t.string "file_name", limit: 250, null: false
+    t.bigint "total_record", null: false
+    t.bigint "total_record_processed", null: false
+    t.bigint "total_record_error", null: false
+    t.boolean "is_executed", null: false
+    t.string "error_message", limit: 2000, null: false
+    t.string "upload_by_emp_no", limit: 25, null: false
+    t.string "upload_status", limit: 25, null: false
+  end
+ 
+  create_table "upload_negative_cust", force: :cascade do |t|
+    t.bigint "upload_negative_cust_id", null: false
+    t.string "upload_monitoring_no", limit: 50, null: false
+    t.string "mr_cust_type_code", limit: 25, null: false
+    t.string "cust_no", limit: 50
+    t.string "cust_name", limit: 250, null: false
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.datetime "id_expired_dt"
+    t.string "tax_id_no", limit: 25
+    t.string "birth_place", limit: 50
+    t.datetime "birth_dt"
+    t.string "mr_gender_code", limit: 25
+    t.string "mother_maiden_name", limit: 250
+    t.string "legal_addr", limit: 100
+    t.string "mobile_phn", limit: 25
+    t.string "mr_neg_cust_type_code", limit: 25, null: false
+    t.string "mr_neg_cust_source_code", limit: 25, null: false
+    t.string "neg_cust_cause", limit: 100
+    t.string "notes", limit: 2000
+    t.boolean "is_active", null: false
+    t.string "error_message", limit: 2000
+    t.bigint "negative_cust_id"
+    t.string "upload_status", limit: 25
+    t.bigint "cust_id"
+    t.boolean "is_wa_mobile_phn_no_1", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_2", default: false, null: false
+    t.boolean "is_wa_mobile_phn_no_3", default: false, null: false
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "mobile_phn_no_3", limit: 25
+  end
+ 
+  create_table "upload_setting_d", force: :cascade do |t|
+    t.bigint "upload_setting_d_id", null: false
+    t.bigint "upload_setting_h_id", null: false
+    t.bigint "ref_role_id", null: false
+  end
+ 
+  create_table "upload_setting_h", force: :cascade do |t|
+    t.bigint "upload_setting_h_id", null: false
+    t.bigint "upload_type_id", null: false
+    t.string "trx_code_wf", limit: 25
+    t.string "delimiter", limit: 0
+  end
+ 
+  create_table "upload_type", force: :cascade do |t|
+    t.bigint "upload_type_id", null: false
+    t.string "upload_type_code", limit: 25, null: false
+    t.string "upload_type_name", limit: 50, null: false
+    t.boolean "is_active", null: false
+  end
+ 
+  create_table "user_session_log", force: :cascade do |t|
+    t.bigint "user_session_log_id", null: false
+    t.string "username", limit: 25
+    t.string "office_code", limit: 25
+    t.string "office_name", limit: 50
+    t.string "role_code", limit: 25
+    t.string "role_name", limit: 50
+    t.string "job_title_code", limit: 25
+    t.string "job_title_name", limit: 50
+    t.datetime "login_datetime"
+    t.datetime "expiration_datetime"
+    t.datetime "logout_datetime"
+    t.string "ip_address", limit: 25
+  end
+ 
+  create_table "vendor", force: :cascade do |t|
+    t.bigint "vendor_id", null: false
+    t.bigint "vendor_parent_id"
+    t.string "vendor_code", limit: 500
+    t.string "vendor_name", limit: 500
+    t.string "mr_vendor_category_code", limit: 25, null: false
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email", limit: 50
+    t.decimal "vendor_rating", precision: 17, scale: 2
+    t.string "mr_vendor_type_code", limit: 25
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.boolean "is_active", null: false
+    t.string "tax_id_no", limit: 25
+    t.datetime "partnership_dt"
+    t.datetime "establishment_dt"
+    t.string "taxpayer_name", limit: 250
+    t.string "taxpayer_no", limit: 50
+    t.string "mr_tax_calc_method_code", limit: 25
+    t.boolean "is_vat", null: false
+    t.string "license_no", limit: 25
+    t.string "registration_no", limit: 25
+    t.string "vendor_rating_alias", limit: 50
+    t.string "reserved_field_1", limit: 2000
+    t.string "reserved_field_2", limit: 2000
+    t.string "reserved_field_3", limit: 2000
+    t.string "reserved_field_4", limit: 2000
+    t.string "reserved_field_5", limit: 2000
+    t.string "reserved_field_6", limit: 2000
+    t.string "reserved_field_7", limit: 2000
+    t.string "reserved_field_8", limit: 2000
+    t.string "reserved_field_9", limit: 2000
+    t.string "reserved_field_10", limit: 2000
+    t.datetime "active_dt"
+    t.string "mr_duplicate_status_code", limit: 25
+    t.string "mr_nationaltiy_code", limit: 25
+    t.boolean "is_npwp_exist", null: false
+    t.string "mr_tax_pgrsv_scheme_code", limit: 25
+    t.string "mr_tax_pgrsv_scheme_name", limit: 250
+    t.string "mr_vendor_class", limit: 25
+    t.string "vendor_atpm_code", limit: 25
+    t.boolean "is_one_affiliate", null: false
+    t.string "tax_schm_code", limit: 50
     t.string "mr_konven_syariah_code", limit: 25
     t.string "cmo_emp_no", limit: 25
   end
-
-
-  create_table "VENDOR_ADDR", force: :cascade do |t|
-    t.bigint "VENDOR_ADDR_ID", null: false
-    t.bigint "VENDOR_ID"
-    t.bigint "VENDOR_EMP_ID"
-    t.bigint "VENDOR_GRP_ID"
-    t.string "MR_ADDR_TYPE_CODE", limit: 25, null: false
-    t.string "ADDR", limit: 500
-    t.string "ZIPCODE", limit: 25
-    t.string "SUB_ZIPCODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "AREA_CODE_1", limit: 50
-    t.string "AREA_CODE_2", limit: 50
-    t.string "AREA_CODE_3", limit: 50
-    t.string "AREA_CODE_4", limit: 50
-    t.string "CITY", limit: 50
-    t.string "PROVINCE", limit: 50
-    t.string "LATITUDE", limit: 250
-    t.string "LONGITUDE", limit: 250
+ 
+  create_table "vendor_addr", force: :cascade do |t|
+    t.bigint "vendor_addr_id", null: false
+    t.bigint "vendor_id"
+    t.bigint "vendor_emp_id"
+    t.bigint "vendor_grp_id"
+    t.string "mr_addr_type_code", limit: 25, null: false
+    t.string "addr", limit: 500
+    t.string "zipcode", limit: 25
+    t.string "sub_zipcode", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "area_code_1", limit: 50
+    t.string "area_code_2", limit: 50
+    t.string "area_code_3", limit: 50
+    t.string "area_code_4", limit: 50
+    t.string "city", limit: 50
+    t.string "province", limit: 50
+    t.string "latitude", limit: 250
+    t.string "longitude", limit: 250
   end
-
-
-  create_table "VENDOR_ADDR_HIST", force: :cascade do |t|
-    t.bigint "VENDOR_ADDR_HIST_ID", null: false
-    t.bigint "VENDOR_ADDR_ID", null: false
-    t.bigint "VENDOR_ID"
-    t.bigint "VENDOR_EMP_ID"
-    t.bigint "VENDOR_GRP_ID"
-    t.string "MR_ADDR_TYPE_CODE", limit: 25, null: false
-    t.string "ADDR", limit: 500, null: false
-    t.string "ZIPCODE", limit: 25, null: false
-    t.string "SUB_ZIPCODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10, null: false
-    t.string "PHN_1", limit: 25, null: false
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "AREA_CODE_1", limit: 50
-    t.string "AREA_CODE_2", limit: 50
-    t.string "AREA_CODE_3", limit: 50
-    t.string "AREA_CODE_4", limit: 50
-    t.string "CITY", limit: 50, null: false
-    t.string "PROVINCE", limit: 50, null: false
-    t.string "LATITUDE", limit: 250
-    t.string "LONGITUDE", limit: 250
+ 
+  create_table "vendor_addr_hist", force: :cascade do |t|
+    t.bigint "vendor_addr_hist_id", null: false
+    t.bigint "vendor_addr_id", null: false
+    t.bigint "vendor_id"
+    t.bigint "vendor_emp_id"
+    t.bigint "vendor_grp_id"
+    t.string "mr_addr_type_code", limit: 25, null: false
+    t.string "addr", limit: 500, null: false
+    t.string "zipcode", limit: 25, null: false
+    t.string "sub_zipcode", limit: 25
+    t.string "phn_area_1", limit: 10, null: false
+    t.string "phn_1", limit: 25, null: false
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "area_code_1", limit: 50
+    t.string "area_code_2", limit: 50
+    t.string "area_code_3", limit: 50
+    t.string "area_code_4", limit: 50
+    t.string "city", limit: 50, null: false
+    t.string "province", limit: 50, null: false
+    t.string "latitude", limit: 250
+    t.string "longitude", limit: 250
   end
-
-
-  create_table "VENDOR_AREA", force: :cascade do |t|
-    t.bigint "VENDOR_AREA_ID", null: false
-    t.string "VENDOR_AREA_NAME", limit: 25, null: false
-    t.string "DESCR", limit: 250
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_area", force: :cascade do |t|
+    t.bigint "vendor_area_id", null: false
+    t.string "vendor_area_name", limit: 25, null: false
+    t.string "descr", limit: 250
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VENDOR_AREA_MBR", force: :cascade do |t|
-    t.bigint "VENDOR_AREA_MBR_ID", null: false
-    t.bigint "VENDOR_AREA_ID", null: false
-    t.bigint "VENDOR_ID", null: false
+ 
+  create_table "vendor_area_mbr", force: :cascade do |t|
+    t.bigint "vendor_area_mbr_id", null: false
+    t.bigint "vendor_area_id", null: false
+    t.bigint "vendor_id", null: false
   end
-
-
-  create_table "VENDOR_ATPM_MAPPING", force: :cascade do |t|
-    t.bigint "VENDOR_ATPM_MAPPING_ID", null: false
-    t.bigint "VENDOR_ID", null: false
+ 
+  create_table "vendor_atpm_mapping", force: :cascade do |t|
+    t.bigint "vendor_atpm_mapping_id", null: false
+    t.bigint "vendor_id", null: false
   end
-
-
-  create_table "VENDOR_ATTR", force: :cascade do |t|
-    t.bigint "VENDOR_ATTR_ID", null: false
-    t.string "MR_VENDOR_CATEGORY_CODE", limit: 25
-    t.string "VENDOR_ATTR_CODE", limit: 25
-    t.string "VENDOR_ATTR_NAME", limit: 500
-    t.string "VENDOR_ATTR_TYPE", limit: 50
-    t.string "VENDOR_ATTR_PATTERN", limit: 500
-    t.string "VENDOR_ATTR_TYPE_VALUE", limit: 2000
-    t.boolean "IS_ACTIVE", null: false
-    t.integer "SEQ_NO", null: false
+ 
+  create_table "vendor_attr", force: :cascade do |t|
+    t.bigint "vendor_attr_id", null: false
+    t.string "mr_vendor_category_code", limit: 25
+    t.string "vendor_attr_code", limit: 25
+    t.string "vendor_attr_name", limit: 500
+    t.string "vendor_attr_type", limit: 50
+    t.string "vendor_attr_pattern", limit: 500
+    t.string "vendor_attr_type_value", limit: 2000
+    t.boolean "is_active", null: false
+    t.integer "seq_no", null: false
   end
-
-
-  create_table "VENDOR_ATTR_CONTENT", force: :cascade do |t|
-    t.bigint "VENDOR_ATTR_CONTENT_ID", null: false
-    t.bigint "VENDOR_ID", null: false
-    t.string "ATTR_CONTENT", limit: 500
-    t.string "ATTR_CODE", limit: 50
+ 
+  create_table "vendor_attr_content", force: :cascade do |t|
+    t.bigint "vendor_attr_content_id", null: false
+    t.bigint "vendor_id", null: false
+    t.string "attr_content", limit: 500
+    t.string "attr_code", limit: 50
   end
-
-
-  create_table "VENDOR_BANK_ACC", force: :cascade do |t|
-    t.bigint "VENDOR_BANK_ACC_ID", null: false
-    t.bigint "VENDOR_ID"
-    t.bigint "VENDOR_EMP_ID"
-    t.bigint "REF_BANK_ID", null: false
-    t.string "BANK_ACCOUNT_NO", limit: 250, null: false
-    t.string "BANK_ACCOUNT_NAME", limit: 250, null: false
-    t.boolean "IS_DEFAULT", null: false
-    t.string "BANK_BRANCH", limit: 250
-    t.string "NOTES", limit: 250
-    t.boolean "IS_ACTIVE", default: false, null: false
+ 
+  create_table "vendor_bank_acc", force: :cascade do |t|
+    t.bigint "vendor_bank_acc_id", null: false
+    t.bigint "vendor_id"
+    t.bigint "vendor_emp_id"
+    t.bigint "ref_bank_id", null: false
+    t.string "bank_account_no", limit: 250, null: false
+    t.string "bank_account_name", limit: 250, null: false
+    t.boolean "is_default", null: false
+    t.string "bank_branch", limit: 250
+    t.string "notes", limit: 250
+    t.boolean "is_active", default: false, null: false
   end
-
-
-  create_table "VENDOR_CONTACT_PERSON", force: :cascade do |t|
-    t.bigint "VENDOR_CONTACT_PERSON_ID", null: false
-    t.bigint "VENDOR_ID"
-    t.string "NAME", limit: 250, null: false
-    t.string "MR_EMPLOYEE_POSITION", limit: 25, null: false
-    t.string "PHONE_1", limit: 25, null: false
-    t.string "PHONE_2", limit: 25
-    t.string "EMAIL", limit: 50, null: false
-    t.datetime "JOIN_DATE", null: false
-    t.boolean "IS_OWNER", null: false
-    t.string "ADDR", limit: 500
-    t.string "ZIPCODE", limit: 25
-    t.string "SUB_ZIPCODE", limit: 25
-    t.string "PHN_AREA_1", limit: 10
-    t.string "PHN_1", limit: 25
-    t.string "PHN_EXT_1", limit: 5
-    t.string "PHN_AREA_2", limit: 10
-    t.string "PHN_2", limit: 25
-    t.string "PHN_EXT_2", limit: 5
-    t.string "AREA_CODE_1", limit: 50
-    t.string "AREA_CODE_2", limit: 50
-    t.string "AREA_CODE_3", limit: 50
-    t.string "AREA_CODE_4", limit: 50
-    t.string "CITY", limit: 50
-    t.string "PROVINCE", limit: 50
+ 
+  create_table "vendor_contact_person", force: :cascade do |t|
+    t.bigint "vendor_contact_person_id", null: false
+    t.bigint "vendor_id"
+    t.string "name", limit: 250, null: false
+    t.string "mr_employee_position", limit: 25, null: false
+    t.string "phone_1", limit: 25, null: false
+    t.string "phone_2", limit: 25
+    t.string "email", limit: 50, null: false
+    t.datetime "join_date", null: false
+    t.boolean "is_owner", null: false
+    t.string "addr", limit: 500
+    t.string "zipcode", limit: 25
+    t.string "sub_zipcode", limit: 25
+    t.string "phn_area_1", limit: 10
+    t.string "phn_1", limit: 25
+    t.string "phn_ext_1", limit: 5
+    t.string "phn_area_2", limit: 10
+    t.string "phn_2", limit: 25
+    t.string "phn_ext_2", limit: 5
+    t.string "area_code_1", limit: 50
+    t.string "area_code_2", limit: 50
+    t.string "area_code_3", limit: 50
+    t.string "area_code_4", limit: 50
+    t.string "city", limit: 50
+    t.string "province", limit: 50
   end
-
-
-  create_table "VENDOR_EMP", force: :cascade do |t|
-    t.bigint "VENDOR_EMP_ID", null: false
-    t.string "VENDOR_EMP_NO", limit: 25
-    t.string "VENDOR_EMP_NAME", limit: 250
-    t.bigint "VENDOR_ID", null: false
-    t.bigint "SUPERVISOR_ID"
-    t.string "MOBILE_PHN_NO_1", limit: 25
-    t.string "MOBILE_PHN_NO_2", limit: 25
-    t.string "EMAIL", limit: 50
-    t.string "MR_ID_TYPE_CODE", limit: 25
-    t.string "ID_NO", limit: 25
-    t.string "BIRTH_PLACE", limit: 50
-    t.datetime "BIRTH_DATE"
-    t.boolean "IS_ACTIVE", null: false
-    t.datetime "JOIN_DT"
-    t.string "TAX_ID_NO", limit: 25
-    t.string "TAXPAYER_NO", limit: 50
-    t.string "MR_VENDOR_EMP_POSITION_CODE", limit: 25
-    t.boolean "IS_CONTACT_PERSON", null: false
-    t.decimal "VENDOR_EMP_RATING", precision: 17, scale: 2
-    t.boolean "IS_OWNER", null: false
-    t.string "TAX_PAYER_NAME", limit: 250
-    t.string "MR_TAX_CALC_METHOD_CODE", limit: 25
-    t.string "MR_TAX_PGRSV_SCHENME_CODE", limit: 25
-    t.string "MR_TAX_PGRSV_SCHEME_NAME", limit: 250
-    t.boolean "IS_NPWP_EXIST", default: false, null: false
-    t.boolean "IS_INTERNAL_EMPLOYEE"
+ 
+  create_table "vendor_emp", force: :cascade do |t|
+    t.bigint "vendor_emp_id", null: false
+    t.string "vendor_emp_no", limit: 25
+    t.string "vendor_emp_name", limit: 250
+    t.bigint "vendor_id", null: false
+    t.bigint "supervisor_id"
+    t.string "mobile_phn_no_1", limit: 25
+    t.string "mobile_phn_no_2", limit: 25
+    t.string "email", limit: 50
+    t.string "mr_id_type_code", limit: 25
+    t.string "id_no", limit: 25
+    t.string "birth_place", limit: 50
+    t.datetime "birth_date"
+    t.boolean "is_active", null: false
+    t.datetime "join_dt"
+    t.string "tax_id_no", limit: 25
+    t.string "taxpayer_no", limit: 50
+    t.string "mr_vendor_emp_position_code", limit: 25
+    t.boolean "is_contact_person", null: false
+    t.decimal "vendor_emp_rating", precision: 17, scale: 2
+    t.boolean "is_owner", null: false
+    t.string "tax_payer_name", limit: 250
+    t.string "mr_tax_calc_method_code", limit: 25
+    t.string "mr_tax_pgrsv_schenme_code", limit: 25
+    t.string "mr_tax_pgrsv_scheme_name", limit: 250
+    t.boolean "is_npwp_exist", default: false, null: false
+    t.boolean "is_internal_employee"
   end
-
-
-  create_table "VENDOR_GRADING_HIST", force: :cascade do |t|
-    t.bigint "VENDOR_GRADING_HIST_ID", null: false
-    t.string "VENDOR_GRADING_HIST_NO", limit: 50, null: false
-    t.string "VENDOR_CODE", limit: 25, null: false
-    t.bigint "VENDOR_ID", null: false
-    t.bigint "VENDOR_PARENT_ID"
-    t.decimal "PREV_RATING", precision: 17, scale: 2, null: false
-    t.decimal "NEW_RATING", precision: 17, scale: 2, null: false
-    t.string "PREV_GRADE", limit: 127
-    t.string "NEW_GRADE", limit: 127, null: false
-    t.datetime "REQ_DT", null: false
-    t.string "REQ_BY_REF_USER_ID", limit: 50
-    t.bigint "REF_REASON_ID"
-    t.datetime "EXE_DT"
-    t.datetime "APV_DT"
-    t.string "STATUS", limit: 50, null: false
-    t.string "NOTES", limit: 2000
-    t.bigint "RFA_NO"
+ 
+  create_table "vendor_grading_hist", force: :cascade do |t|
+    t.bigint "vendor_grading_hist_id", null: false
+    t.string "vendor_grading_hist_no", limit: 50, null: false
+    t.string "vendor_code", limit: 25, null: false
+    t.bigint "vendor_id", null: false
+    t.bigint "vendor_parent_id"
+    t.decimal "prev_rating", precision: 17, scale: 2, null: false
+    t.decimal "new_rating", precision: 17, scale: 2, null: false
+    t.string "prev_grade", limit: 127
+    t.string "new_grade", limit: 127, null: false
+    t.datetime "req_dt", null: false
+    t.string "req_by_ref_user_id", limit: 50
+    t.bigint "ref_reason_id"
+    t.datetime "exe_dt"
+    t.datetime "apv_dt"
+    t.string "status", limit: 50, null: false
+    t.string "notes", limit: 2000
+    t.bigint "rfa_no"
   end
-
-
-  create_table "VENDOR_GRP", force: :cascade do |t|
-    t.bigint "VENDOR_GRP_ID", null: false
-    t.string "VENDOR_GRP_CODE", limit: 25
-    t.string "VENDOR_GRP_NAME", limit: 250
-    t.string "VENDOR_GRP_DESC", limit: 500
-    t.string "MR_VENDOR_CATEGORY_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_grp", force: :cascade do |t|
+    t.bigint "vendor_grp_id", null: false
+    t.string "vendor_grp_code", limit: 25
+    t.string "vendor_grp_name", limit: 250
+    t.string "vendor_grp_desc", limit: 500
+    t.string "mr_vendor_category_code", limit: 25
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VENDOR_GRP_MBR", force: :cascade do |t|
-    t.bigint "VENDOR_GRP_MBR_ID", null: false
-    t.bigint "VENDOR_GRP_ID", null: false
-    t.bigint "VENDOR_ID", null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_grp_mbr", force: :cascade do |t|
+    t.bigint "vendor_grp_mbr_id", null: false
+    t.bigint "vendor_grp_id", null: false
+    t.bigint "vendor_id", null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VENDOR_OFFICE_MBR", force: :cascade do |t|
-    t.bigint "VENDOR_OFFICE_MBR_ID", null: false
-    t.bigint "VENDOR_ID", null: false
-    t.bigint "REF_OFFICE_ID", null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_office_mbr", force: :cascade do |t|
+    t.bigint "vendor_office_mbr_id", null: false
+    t.bigint "vendor_id", null: false
+    t.bigint "ref_office_id", null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VENDOR_SCHM", force: :cascade do |t|
-    t.bigint "VENDOR_SCHM_ID", null: false
-    t.string "VENDOR_SCHM_CODE", limit: 25
-    t.string "VENDOR_SCHM_NAME", limit: 250
-    t.string "VENDOR_SCHM_DESC", limit: 500
-    t.string "MR_VENDOR_CATEGORY_CODE", limit: 25
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_schm", force: :cascade do |t|
+    t.bigint "vendor_schm_id", null: false
+    t.string "vendor_schm_code", limit: 25
+    t.string "vendor_schm_name", limit: 250
+    t.string "vendor_schm_desc", limit: 500
+    t.string "mr_vendor_category_code", limit: 25
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VENDOR_SCHM_MBR", force: :cascade do |t|
-    t.bigint "VENDOR_SCHM_MBR_ID", null: false
-    t.bigint "VENDOR_SCHM_ID", null: false
-    t.bigint "VENDOR_ID", null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "vendor_schm_mbr", force: :cascade do |t|
+    t.bigint "vendor_schm_mbr_id", null: false
+    t.bigint "vendor_schm_id", null: false
+    t.bigint "vendor_id", null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VERF_QUESTION_ANSWER", force: :cascade do |t|
-    t.bigint "VERF_QUESTION_ANSWER_ID", null: false
-    t.bigint "REF_VERF_ANSWER_TYPE_ID", null: false
-    t.string "VERF_QUESTION_CODE", limit: 25, null: false
-    t.string "VERF_QUESTION_TEXT", limit: 500, null: false
-    t.string "VERF_ANSWER", limit: 1000
-    t.boolean "IS_ACTIVE", null: false
-    t.boolean "IS_MANDATORY", default: false, null: false
+ 
+  create_table "verf_question_answer", force: :cascade do |t|
+    t.bigint "verf_question_answer_id", null: false
+    t.bigint "ref_verf_answer_type_id", null: false
+    t.string "verf_question_code", limit: 25, null: false
+    t.string "verf_question_text", limit: 500, null: false
+    t.string "verf_answer", limit: 1000
+    t.boolean "is_active", null: false
+    t.boolean "is_mandatory", default: false, null: false
   end
-
-
-  create_table "VERF_QUESTION_GRP_D", force: :cascade do |t|
-    t.bigint "VERF_QUESTION_GRP_D_ID", null: false
-    t.bigint "VERF_QUESTION_GRP_H_ID", null: false
-    t.bigint "VERF_QUESTION_ANSWER_ID", null: false
-    t.integer "SEQ_NO", null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "verf_question_grp_d", force: :cascade do |t|
+    t.bigint "verf_question_grp_d_id", null: false
+    t.bigint "verf_question_grp_h_id", null: false
+    t.bigint "verf_question_answer_id", null: false
+    t.integer "seq_no", null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VERF_QUESTION_GRP_H", force: :cascade do |t|
-    t.bigint "VERF_QUESTION_GRP_H_ID", null: false
-    t.string "VERF_QUESTION_GRP_CODE", limit: 25, null: false
-    t.string "VERF_QUESTION_GRP_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "verf_question_grp_h", force: :cascade do |t|
+    t.bigint "verf_question_grp_h_id", null: false
+    t.string "verf_question_grp_code", limit: 25, null: false
+    t.string "verf_question_grp_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "VERF_RESULT", force: :cascade do |t|
-    t.bigint "VERF_RESULT_ID", null: false
-    t.string "VERF_RESULT_NO", limit: 50, null: false
-    t.string "TRX_REF_NO", limit: 50, null: false
-    t.datetime "VERF_DT"
-    t.string "EMP_NO", limit: 25, null: false
-    t.string "MR_VERF_RESULT_STAT_CODE", limit: 25, null: false
-    t.string "MR_VERF_TRX_TYPE_CODE", limit: 25, null: false
-    t.string "LOB_CODE", limit: 25
-    t.string "LOB_NAME", limit: 50
-    t.string "NOTES", limit: 2000, null: false
+ 
+  create_table "verf_result", force: :cascade do |t|
+    t.bigint "verf_result_id", null: false
+    t.string "verf_result_no", limit: 50, null: false
+    t.string "trx_ref_no", limit: 50, null: false
+    t.datetime "verf_dt"
+    t.string "emp_no", limit: 25, null: false
+    t.string "mr_verf_result_stat_code", limit: 25, null: false
+    t.string "mr_verf_trx_type_code", limit: 25, null: false
+    t.string "lob_code", limit: 25
+    t.string "lob_name", limit: 50
+    t.string "notes", limit: 2000, null: false
   end
-
-
-  create_table "VERF_RESULT_D", force: :cascade do |t|
-    t.bigint "VERF_RESULT_D_ID", null: false
-    t.bigint "VERF_RESULT_H_ID", null: false
-    t.bigint "VERF_QUESTION_ANSWER_ID", null: false
-    t.string "VERF_QUESTION_TEXT", limit: 500, null: false
-    t.string "ANSWER", limit: 500, null: false
-    t.string "NOTES", limit: 2000
-    t.integer "SEQ_NO", null: false
-    t.integer "SCORE", default: 0, null: false
-    t.string "VERF_QUESTION_GROUP_CODE", limit: 500
+ 
+  create_table "verf_result_d", force: :cascade do |t|
+    t.bigint "verf_result_d_id", null: false
+    t.bigint "verf_result_h_id", null: false
+    t.bigint "verf_question_answer_id", null: false
+    t.string "verf_question_text", limit: 500, null: false
+    t.string "answer", limit: 500, null: false
+    t.string "notes", limit: 2000
+    t.integer "seq_no", null: false
+    t.integer "score", default: 0, null: false
+    t.string "verf_question_group_code", limit: 500
   end
-
-
-  create_table "VERF_RESULT_H", force: :cascade do |t|
-    t.bigint "VERF_RESULT_H_ID", null: false
-    t.bigint "VERF_RESULT_ID", null: false
-    t.bigint "VERF_SCHEME_H_ID", null: false
-    t.string "MR_VERF_OBJECT_CODE", limit: 25, null: false
-    t.string "MR_VERF_SUBJECT_RELATION_CODE", limit: 25, null: false
-    t.datetime "VERF_DT"
-    t.string "MR_VERF_RESULT_H_STAT_CODE", limit: 25, null: false
-    t.string "PHN", limit: 25, null: false
-    t.string "PHN_TYPE", limit: 50, null: false
-    t.string "NOTES", limit: 2000
-    t.integer "VERSION", default: 0, null: false
-    t.integer "SCORE", default: 0, null: false
-    t.string "ADDR", limit: 500
-    t.string "MR_ADDR_TYPE_CODE", limit: 25
-    t.string "TRX_REF_NO", limit: 50
+ 
+  create_table "verf_result_h", force: :cascade do |t|
+    t.bigint "verf_result_h_id", null: false
+    t.bigint "verf_result_id", null: false
+    t.bigint "verf_scheme_h_id", null: false
+    t.string "mr_verf_object_code", limit: 25, null: false
+    t.string "mr_verf_subject_relation_code", limit: 25, null: false
+    t.datetime "verf_dt"
+    t.string "mr_verf_result_h_stat_code", limit: 25, null: false
+    t.string "phn", limit: 25, null: false
+    t.string "phn_type", limit: 50, null: false
+    t.string "notes", limit: 2000
+    t.integer "version", default: 0, null: false
+    t.integer "score", default: 0, null: false
+    t.string "addr", limit: 500
+    t.string "mr_addr_type_code", limit: 25
+    t.string "trx_ref_no", limit: 50
   end
-
-
-  create_table "VERF_SCHEME_D", force: :cascade do |t|
-    t.bigint "VERF_SCHEME_D_ID", null: false
-    t.bigint "VERF_SCHEME_H_ID", null: false
-    t.bigint "VERF_QUESTION_GRP_H_ID", null: false
-    t.integer "SEQ_NO", null: false
+ 
+  create_table "verf_scheme_d", force: :cascade do |t|
+    t.bigint "verf_scheme_d_id", null: false
+    t.bigint "verf_scheme_h_id", null: false
+    t.bigint "verf_question_grp_h_id", null: false
+    t.integer "seq_no", null: false
   end
-
-
-  create_table "VERF_SCHEME_H", force: :cascade do |t|
-    t.bigint "VERF_SCHEME_H_ID", null: false
-    t.string "VERF_SCHEME_CODE", limit: 25, null: false
-    t.string "VERF_SCHEME_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "verf_scheme_h", force: :cascade do |t|
+    t.bigint "verf_scheme_h_id", null: false
+    t.string "verf_scheme_code", limit: 25, null: false
+    t.string "verf_scheme_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  create_table "WORKING_HOUR_SCHM_D", force: :cascade do |t|
-    t.bigint "WORKING_HOUR_SCHM_D_ID", null: false
-    t.bigint "WORKING_HOUR_SCHM_H_ID", null: false
-    t.string "WORKING_HOUR_SCHM_DAY", limit: 10, null: false
-    t.string "WORKING_HOUR_FROM_1", limit: 10
-    t.string "WORKING_HOUR_TO_1", limit: 10
-    t.string "WORKING_HOUR_FROM_2", limit: 10
-    t.string "WORKING_HOUR_TO_2", limit: 10
+ 
+  create_table "working_hour_schm_d", force: :cascade do |t|
+    t.bigint "working_hour_schm_d_id", null: false
+    t.bigint "working_hour_schm_h_id", null: false
+    t.string "working_hour_schm_day", limit: 10, null: false
+    t.string "working_hour_from_1", limit: 10
+    t.string "working_hour_to_1", limit: 10
+    t.string "working_hour_from_2", limit: 10
+    t.string "working_hour_to_2", limit: 10
   end
-
-
-  create_table "WORKING_HOUR_SCHM_H", force: :cascade do |t|
-    t.bigint "WORKING_HOUR_SCHM_H_ID", null: false
-    t.string "WORKING_HOUR_SCHM_CODE", limit: 25, null: false
-    t.string "WORKING_HOUR_SCHM_NAME", limit: 50, null: false
-    t.boolean "IS_ACTIVE", null: false
+ 
+  create_table "working_hour_schm_h", force: :cascade do |t|
+    t.bigint "working_hour_schm_h_id", null: false
+    t.string "working_hour_schm_code", limit: 25, null: false
+    t.string "working_hour_schm_name", limit: 50, null: false
+    t.boolean "is_active", null: false
   end
-
-
-  add_foreign_key "ASSET_ACCESSORY", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_ACCESSORY_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "ASSET_ATTR", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_ATTR_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "ASSET_ATTR", "REF_ATTR", column: "REF_ATTR_ID", name: "FK_ASSET_ATTR_REF_ATTR_ID_REF_ATTR"
-  add_foreign_key "ASSET_CATEGORY", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_CATEGORY_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "ASSET_DOC_LIST", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_DOC_LIST_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "ASSET_DOC_LIST", "REF_ASSET_DOC", column: "REF_ASSET_DOC_ID", name: "FK_ASSET_DOC_LIST_REF_ASSET_DOC_ID_REF_ASSET_DOC"
-  add_foreign_key "ASSET_MASTER", "ASSET_CATEGORY", column: "ASSET_CATEGORY_ID", name: "FK_ASSET_MASTER_ASSET_CATEGORY_ID_ASSET_CATEGORY"
-  add_foreign_key "ASSET_MASTER", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_MASTER_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "ASSET_MASTER", "ASSET_MASTER", column: "PARENT_ID", name: "FK_ASSET_MASTER_PARENT_ID_ASSET_MASTER"
-  add_foreign_key "ASSET_MASTER_ATTR_CONTENT", "ASSET_ATTR", column: "ASSET_ATTR_ID", name: "FK_ASSET_MASTER_ATTR_CONTENT_ASSET_ATTR_ID_ASSET_ATTR"
-  add_foreign_key "ASSET_MASTER_ATTR_CONTENT", "ASSET_MASTER", column: "ASSET_MASTER_ID", name: "FK_ASSET_MASTER_ATTR_CONTENT_ASSET_MASTER_ID_ASSET_MASTER"
-  add_foreign_key "ASSET_NEGATIVE", "ASSET_MASTER", column: "ASSET_MASTER_ID", name: "FK_ASSET_NEGATIVE_ASSET_MASTER_ID_ASSET_MASTER"
-  add_foreign_key "ASSET_NEGATIVE_HIST", "ASSET_NEGATIVE", column: "ASSET_NEGATIVE_ID", name: "FK_ASSET_NEGATIVE_HIST_ASSET_NEGATIVE_ID_ASSET_NEGATIVE"
-  add_foreign_key "ASSET_SCHM_D", "ASSET_MASTER", column: "ASSET_MASTER_ID", name: "FK_ASSET_SCHM_D_ASSET_MASTER_ID_ASSET_MASTER"
-  add_foreign_key "ASSET_SCHM_D", "ASSET_SCHM_H", column: "ASSET_SCHM_H_ID", name: "FK_ASSET_SCHM_D_ASSET_SCHM_H_ID_ASSET_SCHM_H"
-  add_foreign_key "ASSET_SCHM_H", "ASSET_TYPE", column: "ASSET_TYPE_ID", name: "FK_ASSET_SCHM_H_ASSET_TYPE_ID_ASSET_TYPE"
-  add_foreign_key "AUTH_API", "REF_API", column: "REF_API_ID", name: "FK_AUTH_API_REF_API_ID_REF_API"
-  add_foreign_key "AUTH_API", "REF_FORM", column: "REF_FORM_ID", name: "FK_AUTH_API_REF_FORM_ID_REF_FORM"
-  add_foreign_key "AUTH_FORM", "REF_FORM", column: "REF_FORM_ID", name: "FK_AUTH_FORM_REF_FORM_ID_REF_FORM"
-  add_foreign_key "AUTH_FORM", "REF_ROLE", column: "REF_ROLE_ID", name: "FK_AUTH_FORM_REF_ROLE_ID_REF_ROLE"
-  add_foreign_key "CENTER_GRP_OFFICE_MBR", "CENTER_GRP", column: "CENTER_GRP_ID", name: "FK_CENTER_GRP_OFFICE_MBR_CENTER_GRP_ID_CENTER_GRP"
-  add_foreign_key "CENTER_GRP_OFFICE_MBR", "REF_OFFICE", column: "REF_OFFICE_ID", name: "FK_CENTER_GRP_OFFICE_MBR_REF_OFFICE_ID_REF_OFFICE"
-  add_foreign_key "CUST_ADDR", "CUST", column: "CUST_ID", name: "FK_CUST_ADDR_CUST_ID_CUST"
-  add_foreign_key "CUST_ADDR_ATTR_CONTENT", "CUST_ADDR", column: "CUST_ADDR_ID", name: "FK_CUST_ADDR_ATTR_CONTENT_CUST_ADDR_ID_CUST_ADDR"
-  add_foreign_key "CUST_ADDR_ATTR_CONTENT", "REF_ATTR", column: "REF_ATTR_ID", name: "FK_CUST_ADDR_ATTR_CONTENT_REF_ATTR_ID_REF_ATTR"
-  add_foreign_key "CUST_ADDR_ATTR_CONTENT_HIST", "CUST_ADDR", column: "CUST_ADDR_ID", name: "FK_CUST_ADDR_ATTR_CONTENT_HIST_CUST_ADDR_ID_CUST_ADDR"
-  add_foreign_key "CUST_ADDR_ATTR_CONTENT_HIST", "REF_ATTR", column: "REF_ATTR_ID", name: "FK_CUST_ADDR_ATTR_CONTENT_HIST_REF_ATTR_ID_REF_ATTR"
-  add_foreign_key "CUST_ADDR_HIST", "CUST_ADDR", column: "CUST_ADDR_ID", name: "FK_CUST_ADDR_HIST_CUST_ADDR_ID_CUST_ADDR"
-  add_foreign_key "CUST_ADDR_HIST", "CUST", column: "CUST_ID", name: "FK_CUST_ADDR_HIST_CUST_ID_CUST"
-  add_foreign_key "CUST_ASSET", "CUST
+ 
+  add_foreign_key "asset_accessory", "asset_type", column: "asset_type_id", name: "FK_ASSET_ACCESSORY_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "asset_attr", "asset_type", column: "asset_type_id", name: "FK_ASSET_ATTR_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "asset_attr", "ref_attr", column: "ref_attr_id", name: "FK_ASSET_ATTR_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "asset_category", "asset_type", column: "asset_type_id", name: "FK_ASSET_CATEGORY_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "asset_doc_list", "asset_type", column: "asset_type_id", name: "FK_ASSET_DOC_LIST_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "asset_doc_list", "ref_asset_doc", column: "ref_asset_doc_id", name: "FK_ASSET_DOC_LIST_REF_ASSET_DOC_ID_REF_ASSET_DOC"
+  add_foreign_key "asset_master", "asset_category", column: "asset_category_id", name: "FK_ASSET_MASTER_ASSET_CATEGORY_ID_ASSET_CATEGORY"
+  add_foreign_key "asset_master", "asset_type", column: "asset_type_id", name: "FK_ASSET_MASTER_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "asset_master", "asset_master", column: "parent_id", name: "FK_ASSET_MASTER_PARENT_ID_ASSET_MASTER"
+  add_foreign_key "asset_master_attr_content", "asset_attr", column: "asset_attr_id", name: "FK_ASSET_MASTER_ATTR_CONTENT_ASSET_ATTR_ID_ASSET_ATTR"
+  add_foreign_key "asset_master_attr_content", "asset_master", column: "asset_master_id", name: "FK_ASSET_MASTER_ATTR_CONTENT_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "asset_negative", "asset_master", column: "asset_master_id", name: "FK_ASSET_NEGATIVE_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "asset_negative_hist", "asset_negative", column: "asset_negative_id", name: "FK_ASSET_NEGATIVE_HIST_ASSET_NEGATIVE_ID_ASSET_NEGATIVE"
+  add_foreign_key "asset_schm_d", "asset_master", column: "asset_master_id", name: "FK_ASSET_SCHM_D_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "asset_schm_d", "asset_schm_h", column: "asset_schm_h_id", name: "FK_ASSET_SCHM_D_ASSET_SCHM_H_ID_ASSET_SCHM_H"
+  add_foreign_key "asset_schm_h", "asset_type", column: "asset_type_id", name: "FK_ASSET_SCHM_H_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "auth_api", "ref_api", column: "ref_api_id", name: "FK_AUTH_API_REF_API_ID_REF_API"
+  add_foreign_key "auth_api", "ref_form", column: "ref_form_id", name: "FK_AUTH_API_REF_FORM_ID_REF_FORM"
+  add_foreign_key "auth_form", "ref_form", column: "ref_form_id", name: "FK_AUTH_FORM_REF_FORM_ID_REF_FORM"
+  add_foreign_key "auth_form", "ref_role", column: "ref_role_id", name: "FK_AUTH_FORM_REF_ROLE_ID_REF_ROLE"
+  add_foreign_key "center_grp_office_mbr", "center_grp", column: "center_grp_id", name: "FK_CENTER_GRP_OFFICE_MBR_CENTER_GRP_ID_CENTER_GRP"
+  add_foreign_key "center_grp_office_mbr", "ref_office", column: "ref_office_id", name: "FK_CENTER_GRP_OFFICE_MBR_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "cust_addr", "cust", column: "cust_id", name: "FK_CUST_ADDR_CUST_ID_CUST"
+  add_foreign_key "cust_addr_attr_content", "cust_addr", column: "cust_addr_id", name: "FK_CUST_ADDR_ATTR_CONTENT_CUST_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_addr_attr_content", "ref_attr", column: "ref_attr_id", name: "FK_CUST_ADDR_ATTR_CONTENT_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "cust_addr_attr_content_hist", "cust_addr", column: "cust_addr_id", name: "FK_CUST_ADDR_ATTR_CONTENT_HIST_CUST_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_addr_attr_content_hist", "ref_attr", column: "ref_attr_id", name: "FK_CUST_ADDR_ATTR_CONTENT_HIST_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "cust_addr_hist", "cust_addr", column: "cust_addr_id", name: "FK_CUST_ADDR_HIST_CUST_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_addr_hist", "cust", column: "cust_id", name: "FK_CUST_ADDR_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_asset", "cust", column: "cust_id", name: "FK_CUST_ASSET_CUST_ID_CUST"
+  add_foreign_key "cust_attr_content", "cust", column: "cust_id", name: "FK_CUST_ATTR_CONTENT_CUST_ID_CUST"
+  add_foreign_key "cust_attr_content", "ref_attr", column: "ref_attr_id", name: "FK_CUST_ATTR_CONTENT_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "cust_attr_content_hist", "cust", column: "cust_id", name: "FK_CUST_ATTR_CONTENT_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_attr_content_hist", "ref_attr", column: "ref_attr_id", name: "FK_CUST_ATTR_CONTENT_HIST_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "cust_bank_acc", "cust", column: "cust_id", name: "FK_CUST_BANK_ACC_CUST_ID_CUST"
+  add_foreign_key "cust_bank_acc", "ref_bank", column: "ref_bank_id", name: "FK_CUST_BANK_ACC_REF_BANK_ID_REF_BANK"
+  add_foreign_key "cust_bank_stmnt", "cust_bank_acc", column: "cust_bank_acc_id", name: "FK_CUST_BANK_STMNT_CUST_BANK_ACC_ID_CUST_BANK_ACC"
+  add_foreign_key "cust_company", "cust", column: "cust_id", name: "FK_CUST_COMPANY_CUST_ID_CUST"
+  add_foreign_key "cust_company", "ref_industry_type", column: "ref_industry_type_id", name: "FK_CUST_COMPANY_REF_INDUSTRY_TYPE_ID_REF_INDUSTRY_TYPE"
+  add_foreign_key "cust_company_contact_person", "cust_company", column: "cust_company_id", name: "FK_CUST_COMPANY_CONTACT_PERSON_CUST_COMPANY_ID_CUST_COMPANY"
+  add_foreign_key "cust_company_fin_data", "cust_company", column: "cust_company_id", name: "FK_CUST_COMPANY_FIN_DATA_CUST_COMPANY_ID_CUST_COMPANY"
+  add_foreign_key "cust_company_hist", "cust_company", column: "cust_company_id", name: "FK_CUST_COMPANY_HIST_CUST_COMPANY_ID_CUST_COMPANY"
+  add_foreign_key "cust_company_hist", "cust", column: "cust_id", name: "FK_CUST_COMPANY_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_company_legal_doc", "cust_company", column: "cust_company_id", name: "FK_CUST_COMPANY_LEGAL_DOC_CUST_COMPANY_ID_CUST_COMPANY"
+  add_foreign_key "cust_company_mgmnt_shrholder", "cust", column: "cust_id", name: "FK_CUST_COMPANY_MGMNT_SHRHOLDER_CUST_ID_CUST"
+  add_foreign_key "cust_company_mgmnt_shrholder", "cust", column: "shareholder_id", name: "FK_CUST_COMPANY_MGMNT_SHRHOLDER_SHAREHOLDER_ID_CUST"
+  add_foreign_key "cust_expsr_app_agr_hist", "cust_expsr_h", column: "cust_expsr_h_id", name: "FK_CUST_EXPSR_APP_AGR_HIST_CUST_EXPSR_H_ID_CUST_EXPSR_H"
+  add_foreign_key "cust_expsr_bucket", "cust_expsr_d", column: "cust_expsr_d_id", name: "FK_CUST_EXPSR_BUCKET_CUST_EXPSR_D_ID_CUST_EXPSR_D"
+  add_foreign_key "cust_expsr_d", "cust_expsr_h", column: "cust_expsr_h_id", name: "FK_CUST_EXPSR_D_CUST_EXPSR_H_ID_CUST_EXPSR_H"
+  add_foreign_key "cust_expsr_h", "cust_expsr_info", column: "cust_expsr_info_id", name: "FK_CUST_EXPSR_H_CUST_EXPSR_INFO_ID_CUST_EXPSR_INFO"
+  add_foreign_key "cust_expsr_info", "cust", column: "cust_id", name: "FK_CUST_EXPSR_INFO_CUST_ID_CUST"
+  add_foreign_key "cust_fin_data_attr_content", "cust", column: "cust_id", name: "FK_CUST_FIN_DATA_ATTR_CONTENT_CUST_ID_CUST"
+  add_foreign_key "cust_fin_data_attr_content", "ref_attr", column: "ref_attr_id", name: "FK_CUST_FIN_DATA_ATTR_CONTENT_REF_ATTR_ID_REF_ATTR"
+  add_foreign_key "cust_grp", "cust", column: "cust_id", name: "FK_CUST_GRP_CUST_ID_CUST"
+  add_foreign_key "cust_grp", "cust", column: "member_cust_id", name: "FK_CUST_GRP_MEMBER_CUST_ID_CUST"
+  add_foreign_key "cust_hist", "cust", column: "cust_id", name: "FK_CUST_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_id_type_hist", "cust", column: "cust_id", name: "FK_CUST_ID_TYPE_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_other_info", "cust", column: "cust_id", name: "FK_CUST_OTHER_INFO_CUST_ID_CUST"
+  add_foreign_key "cust_other_info", "lbppms_biz_scl", column: "lbppms_biz_scl_id", name: "FK_CUST_OTHER_INFO_LBPPMS_BIZ_SCL_ID_LBPPMS_BIZ_SCL"
+  add_foreign_key "cust_other_info", "lbppms_biz_sustain", column: "lbppms_biz_sustain_id", name: "FK_CUST_OTHER_INFO_LBPPMS_BIZ_SUSTAIN_ID_LBPPMS_BIZ_SUSTAIN"
+  add_foreign_key "cust_other_info", "lbppms_cntrprt", column: "lbppms_cntrprt_id", name: "FK_CUST_OTHER_INFO_LBPPMS_CNTRPRT_ID_LBPPMS_CNTRPRT"
+  add_foreign_key "cust_other_info", "lbppms_debt_grp", column: "lbppms_debt_grp_id", name: "FK_CUST_OTHER_INFO_LBPPMS_DEBT_GRP_ID_LBPPMS_DEBT_GRP"
+  add_foreign_key "cust_personal", "cust", column: "cust_id", name: "FK_CUST_PERSONAL_CUST_ID_CUST"
+  add_foreign_key "cust_personal_emergency_contact", "cust", column: "cust_id", name: "FK_CUST_PERSONAL_EMERGENCY_CONTACT_CUST_ID_CUST"
+  add_foreign_key "cust_personal_family", "cust", column: "cust_id", name: "FK_CUST_PERSONAL_FAMILY_CUST_ID_CUST"
+  add_foreign_key "cust_personal_family", "cust", column: "family_id", name: "FK_CUST_PERSONAL_FAMILY_FAMILY_ID_CUST"
+  add_foreign_key "cust_personal_fin_data", "cust_personal", column: "cust_personal_id", name: "FK_CUST_PERSONAL_FIN_DATA_CUST_PERSONAL_ID_CUST_PERSONAL"
+  add_foreign_key "cust_personal_hist", "cust", column: "cust_id", name: "FK_CUST_PERSONAL_HIST_CUST_ID_CUST"
+  add_foreign_key "cust_personal_hist", "cust_personal", column: "cust_personal_id", name: "FK_CUST_PERSONAL_HIST_CUST_PERSONAL_ID_CUST_PERSONAL"
+  add_foreign_key "cust_personal_job_data", "cust", column: "cust_id", name: "FK_CUST_PERSONAL_JOB_DATA_CUST_ID_CUST"
+  add_foreign_key "cust_personal_job_data", "cust_addr", column: "job_addr_id", name: "FK_CUST_PERSONAL_JOB_DATA_JOB_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_personal_job_data", "cust_addr", column: "oth_biz_addr_id", name: "FK_CUST_PERSONAL_JOB_DATA_OTH_BIZ_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_personal_job_data", "cust_addr", column: "prev_job_addr_id", name: "FK_CUST_PERSONAL_JOB_DATA_PREV_JOB_ADDR_ID_CUST_ADDR"
+  add_foreign_key "cust_personal_job_data", "ref_industry_type", column: "ref_industry_type_id", name: "FK_CUST_PERSONAL_JOB_DATA_REF_INDUSTRY_TYPE_ID_REF_INDUSTRY_TYPE"
+  add_foreign_key "emp_bank_acc", "ref_bank", column: "ref_bank_id", name: "FK_EMP_BANK_ACC_REF_BANK_ID_REF_BANK"
+  add_foreign_key "emp_bank_acc", "ref_emp", column: "ref_emp_id", name: "FK_EMP_BANK_ACC_REF_EMP_ID_REF_EMP"
+  add_foreign_key "exchange_rate", "ref_curr", column: "ref_curr_id", name: "FK_EXCHANGE_RATE_REF_CURR_ID_REF_CURR"
+  add_foreign_key "holiday_schm_d", "holiday_schm_h", column: "holiday_schm_h_id", name: "FK_HOLIDAY_SCHM_D_HOLIDAY_SCHM_H_ID_HOLIDAY_SCHM_H"
+  add_foreign_key "journal_log_failed_d", "journal_log_failed_h", column: "journal_log_failed_h_id", name: "FK_JOURNAL_LOG_FAILED_D_JOURNAL_LOG_FAILED_H_ID_JOURNAL_LOG_FAILED_H"
+  add_foreign_key "journal_log_failed_h", "journal_log", column: "journal_log_id", name: "FK_JOURNAL_LOG_FAILED_H_JOURNAL_LOG_ID_JOURNAL_LOG"
+  add_foreign_key "jr_m_entity", "jr_m_header", column: "jr_m_header_id", name: "FK_JR_M_ENTITY_JR_M_HEADER_ID_JR_M_HEADER"
+  add_foreign_key "jr_m_group", "jr_m_header", column: "jr_m_header_id", name: "FK_JR_M_GROUP_JR_M_HEADER_ID_JR_M_HEADER"
+  add_foreign_key "jr_m_group_d_fact", "jr_m_group", column: "jr_m_group_id", name: "FK_JR_M_GROUP_D_FACT_JR_M_GROUP_ID_JR_M_GROUP"
+  add_foreign_key "jr_m_group_d_r", "jr_m_header_r", column: "jr_m_header_r_id", name: "FK_JR_M_GROUP_D_R_JR_M_HEADER_R_ID_JR_M_HEADER_R"
+  add_foreign_key "jr_m_group_fact_r", "jr_m_group_d_r", column: "jr_m_group_d_r_id", name: "FK_JR_M_GROUP_FACT_R_JR_M_GROUP_D_R_ID_JR_M_GROUP_D_R"
+  add_foreign_key "jr_m_header_fact", "jr_m_header", column: "jr_m_header_id", name: "FK_JR_M_HEADER_FACT_JR_M_HEADER_ID_JR_M_HEADER"
+  add_foreign_key "jr_m_header_fact_r", "jr_m_header_r", column: "jr_m_header_r_id", name: "FK_JR_M_HEADER_FACT_R_JR_M_HEADER_R_ID_JR_M_HEADER_R"
+  add_foreign_key "jr_m_item_value", "jr_m_group", column: "jr_m_group_id", name: "FK_JR_M_ITEM_VALUE_JR_M_GROUP_ID_JR_M_GROUP"
+  add_foreign_key "jr_m_item_value_r", "jr_m_group_d_r", column: "jr_m_group_d_r_id", name: "FK_JR_M_ITEM_VALUE_R_JR_M_GROUP_D_R_ID_JR_M_GROUP_D_R"
+  add_foreign_key "master_sequence", "ref_office", column: "ref_office_id", name: "FK_MASTER_SEQUENCE_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "negative_cust", "cust", column: "cust_id", name: "FK_NEGATIVE_CUST_CUST_ID_CUST"
+  add_foreign_key "negative_cust_change_trx", "negative_cust", column: "negative_cust_id", name: "FK_NEGATIVE_CUST_CHANGE_TRX_NEGATIVE_CUST_ID_NEGATIVE_CUST"
+  add_foreign_key "negative_cust_hist", "negative_cust", column: "negative_cust_id", name: "FK_NEGATIVE_CUST_HIST_NEGATIVE_CUST_ID_NEGATIVE_CUST"
+  add_foreign_key "office_bank_acc", "ref_bank", column: "ref_bank_id", name: "FK_OFFICE_BANK_ACC_REF_BANK_ID_REF_BANK"
+  add_foreign_key "office_bank_acc", "ref_curr", column: "ref_curr_id", name: "FK_OFFICE_BANK_ACC_REF_CURR_ID_REF_CURR"
+  add_foreign_key "office_bank_acc", "ref_office", column: "ref_office_id", name: "FK_OFFICE_BANK_ACC_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "ref_api", "ref_module", column: "ref_module_id", name: "FK_REF_API_REF_MODULE_ID_REF_MODULE"
+  add_foreign_key "ref_app_src_office_mbr", "ref_app_src", column: "ref_app_src_id", name: "FK_REF_APP_SRC_OFFICE_MBR_REF_APP_SRC_ID_REF_APP_SRC"
+  add_foreign_key "ref_app_src_office_mbr", "ref_office", column: "ref_office_id", name: "FK_REF_APP_SRC_OFFICE_MBR_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "ref_coa", "coa_schm", column: "coa_schm_id", name: "FK_REF_COA_COA_SCHM_ID_COA_SCHM"
+  add_foreign_key "ref_emp_leave_mngmnt", "ref_emp", column: "ref_emp_id", name: "FK_REF_EMP_LEAVE_MNGMNT_REF_EMP_ID_REF_EMP"
+  add_foreign_key "ref_form", "ref_form", column: "parent_id", name: "FK_REF_FORM_PARENT_ID_REF_FORM"
+  add_foreign_key "ref_form", "ref_module", column: "ref_module_id", name: "FK_REF_FORM_REF_MODULE_ID_REF_MODULE"
+  add_foreign_key "ref_industry_type", "ref_industry_type_category", column: "ref_industry_type_category_id", name: "FK_REF_INDUSTRY_TYPE_REF_INDUSTRY_TYPE_CATEGORY_ID_REF_INDUSTRY_TYPE_CATEGORY"
+  add_foreign_key "ref_industry_type_category", "ref_economic_sector", column: "ref_economic_sector_id", name: "FK_REF_INDUSTRY_TYPE_CATEGORY_REF_ECONOMIC_SECTOR_ID_REF_ECONOMIC_SECTOR"
+  add_foreign_key "ref_office", "holiday_schm_h", column: "holiday_schm_h_id", name: "FK_REF_OFFICE_HOLIDAY_SCHM_H_ID_HOLIDAY_SCHM_H"
+  add_foreign_key "ref_office", "ref_office", column: "parent_id", name: "FK_REF_OFFICE_PARENT_ID_REF_OFFICE"
+  add_foreign_key "ref_office", "ref_office_area", column: "ref_office_area_id", name: "FK_REF_OFFICE_REF_OFFICE_AREA_ID_REF_OFFICE_AREA"
+  add_foreign_key "ref_office", "ref_tax_office", column: "ref_tax_office_id", name: "FK_REF_OFFICE_REF_TAX_OFFICE_ID_REF_TAX_OFFICE"
+  add_foreign_key "ref_office", "working_hour_schm_h", column: "working_hour_schm_h_id", name: "FK_REF_OFFICE_WORKING_HOUR_SCHM_H_ID_WORKING_HOUR_SCHM_H"
+  add_foreign_key "ref_payment_alloc_attr", "ref_payment_alloc", column: "ref_payment_alloc_id", name: "FK_REF_PAYMENT_ALLOC_ATTR_REF_PAYMENT_ALLOC_ID_REF_PAYMENT_ALLOC"
+  add_foreign_key "ref_payment_alloc_grp_d", "ref_payment_alloc_grp_h", column: "ref_payment_alloc_grp_h_id", name: "FK_REF_PAYMENT_ALLOC_GRP_D_REF_PAYMENT_ALLOC_GRP_H_ID_REF_PAYMENT_ALLOC_GRP_H"
+  add_foreign_key "ref_payment_alloc_grp_d", "ref_payment_alloc", column: "ref_payment_alloc_id", name: "FK_REF_PAYMENT_ALLOC_GRP_D_REF_PAYMENT_ALLOC_ID_REF_PAYMENT_ALLOC"
+  add_foreign_key "ref_prov_district", "ref_prov_district", column: "parent_id", name: "FK_REF_PROV_DISTRICT_PARENT_ID_REF_PROV_DISTRICT"
+  add_foreign_key "ref_status", "ref_trx_type", column: "ref_trx_type_id", name: "FK_REF_STATUS_REF_TRX_TYPE_ID_REF_TRX_TYPE"
+  add_foreign_key "ref_tax_office", "ref_bank", column: "ref_bank_id", name: "FK_REF_TAX_OFFICE_REF_BANK_ID_REF_BANK"
+  add_foreign_key "ref_tc", "ref_trx_type", column: "ref_trx_type_id", name: "FK_REF_TC_REF_TRX_TYPE_ID_REF_TRX_TYPE"
+  add_foreign_key "ref_user", "ref_emp", column: "ref_emp_id", name: "FK_REF_USER_REF_EMP_ID_REF_EMP"
+  add_foreign_key "ref_user_hist", "ref_user", column: "ref_user_id", name: "FK_REF_USER_HIST_REF_USER_ID_REF_USER"
+  add_foreign_key "ref_user_log", "ref_user", column: "ref_user_id", name: "FK_REF_USER_LOG_REF_USER_ID_REF_USER"
+  add_foreign_key "ref_user_role", "ref_biz_unit", column: "ref_biz_unit_id", name: "FK_REF_USER_ROLE_REF_BIZ_UNIT_ID_REF_BIZ_UNIT"
+  add_foreign_key "ref_user_role", "ref_job_title", column: "ref_job_title_id", name: "FK_REF_USER_ROLE_REF_JOB_TITLE_ID_REF_JOB_TITLE"
+  add_foreign_key "ref_user_role", "ref_office", column: "ref_office_id", name: "FK_REF_USER_ROLE_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "ref_user_role", "ref_role", column: "ref_role_id", name: "FK_REF_USER_ROLE_REF_ROLE_ID_REF_ROLE"
+  add_foreign_key "ref_user_role", "ref_user", column: "ref_user_id", name: "FK_REF_USER_ROLE_REF_USER_ID_REF_USER"
+  add_foreign_key "ref_user_role", "ref_user", column: "spv_id", name: "FK_REF_USER_ROLE_SPV_ID_REF_USER"
+  add_foreign_key "ref_zipcode", "ref_prov_district", column: "ref_prov_district_id", name: "FK_REF_ZIPCODE_REF_PROV_DISTRICT_ID_REF_PROV_DISTRICT"
+  add_foreign_key "scoring_result_d", "scoring_result_h", column: "scoring_result_h_id", name: "FK_SCORING_RESULT_D_SCORING_RESULT_H_ID_SCORING_RESULT_H"
+  add_foreign_key "task_upd_cust_data", "ref_office", column: "ref_office_id", name: "FK_TASK_UPD_CUST_DATA_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "trx_type_ref_payment_alloc", "ref_payment_alloc", column: "ref_payment_alloc_id", name: "FK_TRX_TYPE_REF_PAYMENT_ALLOC_REF_PAYMENT_ALLOC_ID_REF_PAYMENT_ALLOC"
+  add_foreign_key "update_cust_bank_statement", "update_cust_bank_acc", column: "update_cust_bank_acc_id", name: "FK_UPDATE_CUST_BANK_STATEMENT_UPDATE_CUST_BANK_ACC_ID_UPDATE_CUST_BANK_ACC"
+  add_foreign_key "update_cust_company_contact_person", "update_cust_company_data", column: "update_cust_company_data_id", name: "FK_UPDATE_CUST_COMPANY_CONTACT_PERSON_UPDATE_CUST_COMPANY_DATA_ID_UPDATE_CUST_COMPANY_DATA"
+  add_foreign_key "update_cust_company_data", "ref_industry_type", column: "ref_industry_type_id", name: "FK_UPDATE_CUST_COMPANY_DATA_REF_INDUSTRY_TYPE_ID_REF_INDUSTRY_TYPE"
+  add_foreign_key "upload_asset_master", "asset_category", column: "asset_category_id", name: "FK_UPLOAD_ASSET_MASTER_ASSET_CATEGORY_ID_ASSET_CATEGORY"
+  add_foreign_key "upload_asset_master", "asset_master", column: "asset_master_id", name: "FK_UPLOAD_ASSET_MASTER_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "upload_asset_master", "asset_type", column: "asset_type_id", name: "FK_UPLOAD_ASSET_MASTER_ASSET_TYPE_ID_ASSET_TYPE"
+  add_foreign_key "upload_asset_master", "asset_master", column: "parent_asset_master_id", name: "FK_UPLOAD_ASSET_MASTER_PARENT_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "upload_asset_negative", "asset_master", column: "asset_master_id", name: "FK_UPLOAD_ASSET_NEGATIVE_ASSET_MASTER_ID_ASSET_MASTER"
+  add_foreign_key "upload_asset_negative", "asset_negative", column: "asset_negative_id", name: "FK_UPLOAD_ASSET_NEGATIVE_ASSET_NEGATIVE_ID_ASSET_NEGATIVE"
+  add_foreign_key "upload_monitoring_h", "upload_type", column: "upload_type_id", name: "FK_UPLOAD_MONITORING_H_UPLOAD_TYPE_ID_UPLOAD_TYPE"
+  add_foreign_key "upload_negative_cust", "cust", column: "cust_id", name: "FK_UPLOAD_NEGATIVE_CUST_CUST_ID_CUST"
+  add_foreign_key "upload_negative_cust", "negative_cust", column: "negative_cust_id", name: "FK_UPLOAD_NEGATIVE_CUST_NEGATIVE_CUST_ID_NEGATIVE_CUST"
+  add_foreign_key "upload_setting_d", "ref_role", column: "ref_role_id", name: "FK_UPLOAD_SETTING_D_REF_ROLE_ID_REF_ROLE"
+  add_foreign_key "upload_setting_d", "upload_setting_h", column: "upload_setting_h_id", name: "FK_UPLOAD_SETTING_D_UPLOAD_SETTING_H_ID_UPLOAD_SETTING_H"
+  add_foreign_key "upload_setting_h", "upload_type", column: "upload_type_id", name: "FK_UPLOAD_SETTING_H_UPLOAD_TYPE_ID_UPLOAD_TYPE"
+  add_foreign_key "vendor", "vendor", column: "vendor_parent_id", name: "FK_VENDOR_VENDOR_PARENT_ID_VENDOR"
+  add_foreign_key "vendor_addr", "vendor_emp", column: "vendor_emp_id", name: "FK_VENDOR_ADDR_VENDOR_EMP_ID_VENDOR_EMP"
+  add_foreign_key "vendor_addr", "vendor_grp", column: "vendor_grp_id", name: "FK_VENDOR_ADDR_VENDOR_GRP_ID_VENDOR_GRP"
+  add_foreign_key "vendor_addr", "vendor", column: "vendor_id", name: "FK_VENDOR_ADDR_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_addr_hist", "vendor_addr", column: "vendor_addr_id", name: "FK_VENDOR_ADDR_HIST_VENDOR_ADDR_ID_VENDOR_ADDR"
+  add_foreign_key "vendor_area_mbr", "vendor_area", column: "vendor_area_id", name: "FK_VENDOR_AREA_MBR_VENDOR_AREA_ID_VENDOR_AREA"
+  add_foreign_key "vendor_area_mbr", "vendor", column: "vendor_id", name: "FK_VENDOR_AREA_MBR_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_atpm_mapping", "vendor", column: "vendor_id", name: "FK_VENDOR_ATPM_MAPPING_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_attr_content", "vendor", column: "vendor_id", name: "FK_VENDOR_ATTR_CONTENT_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_bank_acc", "ref_bank", column: "ref_bank_id", name: "FK_VENDOR_BANK_ACC_REF_BANK_ID_REF_BANK"
+  add_foreign_key "vendor_bank_acc", "vendor_emp", column: "vendor_emp_id", name: "FK_VENDOR_BANK_ACC_VENDOR_EMP_ID_VENDOR_EMP"
+  add_foreign_key "vendor_bank_acc", "vendor", column: "vendor_id", name: "FK_VENDOR_BANK_ACC_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_contact_person", "vendor", column: "vendor_id", name: "FK_VENDOR_CONTACT_PERSON_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_emp", "vendor_emp", column: "supervisor_id", name: "FK_VENDOR_EMP_SUPERVISOR_ID_VENDOR_EMP"
+  add_foreign_key "vendor_emp", "vendor", column: "vendor_id", name: "FK_VENDOR_EMP_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_grading_hist", "ref_reason", column: "ref_reason_id", name: "FK_VENDOR_GRADING_HIST_REF_REASON_ID_REF_REASON"
+  add_foreign_key "vendor_grading_hist", "vendor", column: "vendor_id", name: "FK_VENDOR_GRADING_HIST_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_grading_hist", "vendor", column: "vendor_parent_id", name: "FK_VENDOR_GRADING_HIST_VENDOR_PARENT_ID_VENDOR"
+  add_foreign_key "vendor_grp_mbr", "vendor_grp", column: "vendor_grp_id", name: "FK_VENDOR_GRP_MBR_VENDOR_GRP_ID_VENDOR_GRP"
+  add_foreign_key "vendor_grp_mbr", "vendor", column: "vendor_id", name: "FK_VENDOR_GRP_MBR_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_office_mbr", "ref_office", column: "ref_office_id", name: "FK_VENDOR_OFFICE_MBR_REF_OFFICE_ID_REF_OFFICE"
+  add_foreign_key "vendor_office_mbr", "vendor", column: "vendor_id", name: "FK_VENDOR_OFFICE_MBR_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_schm_mbr", "vendor", column: "vendor_id", name: "FK_VENDOR_SCHM_MBR_VENDOR_ID_VENDOR"
+  add_foreign_key "vendor_schm_mbr", "vendor_schm", column: "vendor_schm_id", name: "FK_VENDOR_SCHM_MBR_VENDOR_SCHM_ID_VENDOR_SCHM"
+  add_foreign_key "verf_question_answer", "ref_verf_answer_type", column: "ref_verf_answer_type_id", name: "FK_VERF_QUESTION_ANSWER_REF_VERF_ANSWER_TYPE_ID_REF_VERF_ANSWER_TYPE"
+  add_foreign_key "verf_question_grp_d", "verf_question_answer", column: "verf_question_answer_id", name: "FK_VERF_QUESTION_GRP_D_VERF_QUESTION_ANSWER_ID_VERF_QUESTION_ANSWER"
+  add_foreign_key "verf_question_grp_d", "verf_question_grp_h", column: "verf_question_grp_h_id", name: "FK_VERF_QUESTION_GRP_D_VERF_QUESTION_GRP_H_ID_VERF_QUESTION_GRP_H"
+  add_foreign_key "verf_result_d", "verf_question_answer", column: "verf_question_answer_id", name: "FK_VERF_RESULT_D_VERF_QUESTION_ANSWER_ID_VERF_QUESTION_ANSWER"
+  add_foreign_key "verf_result_d", "verf_result_h", column: "verf_result_h_id", name: "FK_VERF_RESULT_D_VERF_RESULT_H_ID_VERF_RESULT_H"
+  add_foreign_key "verf_result_h", "verf_result", column: "verf_result_id", name: "FK_VERF_RESULT_H_VERF_RESULT_ID_VERF_RESULT"
+  add_foreign_key "verf_result_h", "verf_scheme_h", column: "verf_scheme_h_id", name: "FK_VERF_RESULT_H_VERF_SCHEME_H_ID_VERF_SCHEME_H"
+  add_foreign_key "verf_scheme_d", "verf_question_grp_h", column: "verf_question_grp_h_id", name: "FK_VERF_SCHEME_D_VERF_QUESTION_GRP_H_ID_VERF_QUESTION_GRP_H"
+  add_foreign_key "verf_scheme_d", "verf_scheme_h", column: "verf_scheme_h_id", name: "FK_VERF_SCHEME_D_VERF_SCHEME_H_ID_VERF_SCHEME_H"
+  add_foreign_key "working_hour_schm_d", "working_hour_schm_h", column: "working_hour_schm_h_id", name: "FK_WORKING_HOUR_SCHM_D_WORKING_HOUR_SCHM_H_ID_WORKING_HOUR_SCHM_H"
+ 
+end
