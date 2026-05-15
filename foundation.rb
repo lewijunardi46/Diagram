@@ -2730,4 +2730,106 @@ ActiveRecord::Schema[8.1].define(version: 20260515_000000) do
   add_foreign_key "verf_scheme_d", "verf_scheme_h", column: "verf_scheme_h_id", name: "FK_VERF_SCHEME_D_VERF_SCHEME_H_ID_VERF_SCHEME_H"
   add_foreign_key "working_hour_schm_d", "working_hour_schm_h", column: "working_hour_schm_h_id", name: "FK_WORKING_HOUR_SCHM_D_WORKING_HOUR_SCHM_H_ID_WORKING_HOUR_SCHM_H"
  
+
+# =============================================
+  # VIEWPOINTS - Grouping tabel per modul
+  # =============================================
+
+  create_viewpoint "Customer", desc: "Data master dan transaksi customer" do |v|
+    v.tables = %w[
+      cust cust_hist cust_grp
+      cust_addr cust_addr_hist cust_addr_attr_content cust_addr_attr_content_hist
+      cust_attr_content cust_attr_content_hist cust_fin_data_attr_content
+      cust_asset cust_bank_acc cust_bank_stmnt
+      cust_company cust_company_hist cust_company_contact_person
+      cust_company_fin_data cust_company_legal_doc cust_company_mgmnt_shrholder
+      cust_personal cust_personal_hist cust_personal_emergency_contact
+      cust_personal_family cust_personal_fin_data cust_personal_job_data
+      cust_id_type_hist cust_other_info
+      cust_expsr_info cust_expsr_h cust_expsr_d cust_expsr_bucket cust_expsr_app_agr_hist
+      negative_cust negative_cust_hist negative_cust_change_trx
+    ]
+  end
+
+  create_viewpoint "Vendor", desc: "Data master dan transaksi vendor" do |v|
+    v.tables = %w[
+      vendor vendor_addr vendor_addr_hist vendor_attr vendor_attr_content
+      vendor_emp vendor_bank_acc vendor_contact_person
+      vendor_grp vendor_grp_mbr vendor_schm vendor_schm_mbr
+      vendor_area vendor_area_mbr vendor_office_mbr
+      vendor_atpm_mapping vendor_grading_hist
+    ]
+  end
+
+  create_viewpoint "Asset", desc: "Data master asset dan skema" do |v|
+    v.tables = %w[
+      asset_type asset_category asset_master asset_master_attr_content
+      asset_attr asset_accessory asset_doc_list
+      asset_negative asset_negative_hist
+      asset_schm_h asset_schm_d
+      ref_asset_doc
+    ]
+  end
+
+  create_viewpoint "Reference - Office & User", desc: "Referensi kantor, user, dan role" do |v|
+    v.tables = %w[
+      ref_office ref_office_area
+      ref_emp ref_emp_leave_mngmnt emp_bank_acc
+      ref_user ref_user_hist ref_user_log ref_user_role
+      ref_role ref_biz_unit ref_job_title
+      ref_module ref_form ref_api
+      auth_form auth_api
+      center_grp center_grp_office_mbr
+      master_sequence
+    ]
+  end
+
+  create_viewpoint "Reference - Master Data", desc: "Tabel referensi dan master data umum" do |v|
+    v.tables = %w[
+      ref_attr ref_attr_type ref_master ref_master_type
+      ref_bank ref_curr ref_coa coa_schm
+      ref_industry_type ref_industry_type_category ref_economic_sector
+      ref_prov_district ref_zipcode ref_country ref_coy
+      ref_trx_type ref_status ref_tc ref_reason ref_reason_type
+      ref_payment_alloc ref_payment_alloc_attr ref_payment_alloc_grp_h ref_payment_alloc_grp_d
+      ref_tax_office ref_lob ref_pay_freq ref_profession ref_fin_info ref_app_src ref_app_src_office_mbr
+      ref_verf_answer_type
+      lbppms_cntrprt lbppms_biz_sustain lbppms_biz_scl lbppms_debt_grp
+      office_bank_acc exchange_rate
+      holiday_schm_h holiday_schm_d working_hour_schm_h working_hour_schm_d
+    ]
+  end
+
+  create_viewpoint "Journal & Accounting", desc: "Jurnal dan mapping akuntansi" do |v|
+    v.tables = %w[
+      journal_log journal_log_failed_h journal_log_failed_d
+      jr_m_header jr_m_header_fact jr_m_header_r jr_m_header_fact_r
+      jr_m_entity jr_m_group jr_m_group_d_fact jr_m_group_d_r jr_m_group_fact_r
+      jr_m_item_value jr_m_item_value_r jr_source_file
+      trx_type_ref_payment_alloc
+      scoring_result_h scoring_result_d
+      rfa_log
+    ]
+  end
+
+  create_viewpoint "Upload & Verification", desc: "Upload data massal dan verifikasi" do |v|
+    v.tables = %w[
+      upload_type upload_monitoring_h upload_setting_h upload_setting_d
+      upload_asset_master upload_asset_negative upload_negative_cust
+      verf_question_answer verf_question_grp_h verf_question_grp_d
+      verf_scheme_h verf_scheme_d
+      verf_result verf_result_h verf_result_d
+    ]
+  end
+
+  create_viewpoint "Update Customer Task", desc: "Task update data customer dari proses" do |v|
+    v.tables = %w[
+      task_upd_cust_data
+      update_cust_personal_data update_cust_address update_cust_emergency update_cust_family
+      update_cust_job_data update_cust_personal_fin_data
+      update_cust_bank_acc update_cust_bank_statement
+      update_cust_company_data update_cust_company_contact_person
+      update_cust_company_fin_data update_cust_company_legal_doc update_cust_company_mgmnt_shareholder
+    ]
+  end
 end
