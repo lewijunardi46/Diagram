@@ -4191,102 +4191,102 @@
     "name": "Customer",
     "desc": "Data master dan transaksi customer",
     "tables": [
-      "cust", "cust_hist", "cust_grp",
-      "cust_addr", "cust_addr_hist", "cust_addr_attr_content", "cust_addr_attr_content_hist",
-      "cust_attr_content", "cust_attr_content_hist", "cust_fin_data_attr_content",
-      "cust_asset", "cust_bank_acc", "cust_bank_stmnt",
-      "cust_company", "cust_company_hist", "cust_company_contact_person",
-      "cust_company_fin_data", "cust_company_legal_doc", "cust_company_mgmnt_shrholder",
-      "cust_personal", "cust_personal_hist", "cust_personal_emergency_contact",
-      "cust_personal_family", "cust_personal_fin_data", "cust_personal_job_data",
-      "cust_id_type_hist", "cust_other_info",
-      "cust_expsr_info", "cust_expsr_h", "cust_expsr_d", "cust_expsr_bucket", "cust_expsr_app_agr_hist",
-      "negative_cust", "negative_cust_hist", "negative_cust_change_trx"
+      "CUST", "CUST_HIST", "CUST_GRP",
+      "CUST_ADDR", "CUST_ADDR_HIST", "CUST_ADDR_ATTR_CONTENT", "CUST_ADDR_ATTR_CONTENT_HIST",
+      "CUST_ATTR_CONTENT", "CUST_ATTR_CONTENT_HIST", "CUST_FIN_DATA_ATTR_CONTENT",
+      "CUST_ASSET", "CUST_BANK_ACC", "CUST_BANK_STMNT",
+      "CUST_COMPANY", "CUST_COMPANY_HIST", "CUST_COMPANY_CONTACT_PERSON",
+      "CUST_COMPANY_FIN_DATA", "CUST_COMPANY_LEGAL_DOC", "CUST_COMPANY_MGMNT_SHRHOLDER",
+      "CUST_PERSONAL", "CUST_PERSONAL_HIST", "CUST_PERSONAL_EMERGENCY_CONTACT",
+      "CUST_PERSONAL_FAMILY", "CUST_PERSONAL_FIN_DATA", "CUST_PERSONAL_JOB_DATA",
+      "CUST_ID_TYPE_HIST", "CUST_OTHER_INFO",
+      "CUST_EXPSR_INFO", "CUST_EXPSR_H", "CUST_EXPSR_D", "CUST_EXPSR_BUCKET", "CUST_EXPSR_APP_AGR_HIST",
+      "NEGATIVE_CUST", "NEGATIVE_CUST_HIST", "NEGATIVE_CUST_CHANGE_TRX"
     ]
   },
   {
     "name": "Vendor",
     "desc": "Data master dan transaksi vendor",
     "tables": [
-      "vendor", "vendor_addr", "vendor_addr_hist", "vendor_attr", "vendor_attr_content",
-      "vendor_emp", "vendor_bank_acc", "vendor_contact_person",
-      "vendor_grp", "vendor_grp_mbr", "vendor_schm", "vendor_schm_mbr",
-      "vendor_area", "vendor_area_mbr", "vendor_office_mbr",
-      "vendor_atpm_mapping", "vendor_grading_hist"
+      "VENDOR", "VENDOR_ADDR", "VENDOR_ADDR_HIST", "VENDOR_ATTR", "VENDOR_ATTR_CONTENT",
+      "VENDOR_EMP", "VENDOR_BANK_ACC", "VENDOR_CONTACT_PERSON",
+      "VENDOR_GRP", "VENDOR_GRP_MBR", "VENDOR_SCHM", "VENDOR_SCHM_MBR",
+      "VENDOR_AREA", "VENDOR_AREA_MBR", "VENDOR_OFFICE_MBR",
+      "VENDOR_ATPM_MAPPING", "VENDOR_GRADING_HIST"
     ]
   },
   {
     "name": "Asset",
     "desc": "Data master asset dan skema",
     "tables": [
-      "asset_type", "asset_category", "asset_master", "asset_master_attr_content",
-      "asset_attr", "asset_accessory", "asset_doc_list",
-      "asset_negative", "asset_negative_hist",
-      "asset_schm_h", "asset_schm_d", "ref_asset_doc"
+      "ASSET_TYPE", "ASSET_CATEGORY", "ASSET_MASTER", "ASSET_MASTER_ATTR_CONTENT",
+      "ASSET_ATTR", "ASSET_ACCESSORY", "ASSET_DOC_LIST",
+      "ASSET_NEGATIVE", "ASSET_NEGATIVE_HIST",
+      "ASSET_SCHM_H", "ASSET_SCHM_D", "REF_ASSET_DOC"
     ]
   },
   {
     "name": "Reference - Office & User",
     "desc": "Referensi kantor, user, dan role",
     "tables": [
-      "ref_office", "ref_office_area",
-      "ref_emp", "ref_emp_leave_mngmnt", "emp_bank_acc",
-      "ref_user", "ref_user_hist", "ref_user_log", "ref_user_role",
-      "ref_role", "ref_biz_unit", "ref_job_title",
-      "ref_module", "ref_form", "ref_api",
-      "auth_form", "auth_api",
-      "center_grp", "center_grp_office_mbr", "master_sequence"
+      "REF_OFFICE", "REF_OFFICE_AREA",
+      "REF_EMP", "REF_EMP_LEAVE_MNGMNT", "EMP_BANK_ACC",
+      "REF_USER", "REF_USER_HIST", "REF_USER_LOG", "REF_USER_ROLE",
+      "REF_ROLE", "REF_BIZ_UNIT", "REF_JOB_TITLE",
+      "REF_MODULE", "REF_FORM", "REF_API",
+      "AUTH_FORM", "AUTH_API",
+      "CENTER_GRP", "CENTER_GRP_OFFICE_MBR", "MASTER_SEQUENCE"
     ]
   },
   {
     "name": "Reference - Master Data",
     "desc": "Tabel referensi dan master data umum",
     "tables": [
-      "ref_attr", "ref_attr_type", "ref_master", "ref_master_type",
-      "ref_bank", "ref_curr", "ref_coa", "coa_schm",
-      "ref_industry_type", "ref_industry_type_category", "ref_economic_sector",
-      "ref_prov_district", "ref_zipcode", "ref_country", "ref_coy",
-      "ref_trx_type", "ref_status", "ref_tc", "ref_reason", "ref_reason_type",
-      "ref_payment_alloc", "ref_payment_alloc_attr", "ref_payment_alloc_grp_h", "ref_payment_alloc_grp_d",
-      "ref_tax_office", "ref_lob", "ref_pay_freq", "ref_profession", "ref_fin_info",
-      "ref_app_src", "ref_app_src_office_mbr", "ref_verf_answer_type",
-      "lbppms_cntrprt", "lbppms_biz_sustain", "lbppms_biz_scl", "lbppms_debt_grp",
-      "office_bank_acc", "exchange_rate",
-      "holiday_schm_h", "holiday_schm_d", "working_hour_schm_h", "working_hour_schm_d"
+      "REF_ATTR", "REF_ATTR_TYPE", "REF_MASTER", "REF_MASTER_TYPE",
+      "REF_BANK", "REF_CURR", "REF_COA", "COA_SCHM",
+      "REF_INDUSTRY_TYPE", "REF_INDUSTRY_TYPE_CATEGORY", "REF_ECONOMIC_SECTOR",
+      "REF_PROV_DISTRICT", "REF_ZIPCODE", "REF_COUNTRY", "REF_COY",
+      "REF_TRX_TYPE", "REF_STATUS", "REF_TC", "REF_REASON", "REF_REASON_TYPE",
+      "REF_PAYMENT_ALLOC", "REF_PAYMENT_ALLOC_ATTR", "REF_PAYMENT_ALLOC_GRP_H", "REF_PAYMENT_ALLOC_GRP_D",
+      "REF_TAX_OFFICE", "REF_LOB", "REF_PAY_FREQ", "REF_PROFESSION", "REF_FIN_INFO",
+      "REF_APP_SRC", "REF_APP_SRC_OFFICE_MBR", "REF_VERF_ANSWER_TYPE",
+      "LBPPMS_CNTRPRT", "LBPPMS_BIZ_SUSTAIN", "LBPPMS_BIZ_SCL", "LBPPMS_DEBT_GRP",
+      "OFFICE_BANK_ACC", "EXCHANGE_RATE",
+      "HOLIDAY_SCHM_H", "HOLIDAY_SCHM_D", "WORKING_HOUR_SCHM_H", "WORKING_HOUR_SCHM_D"
     ]
   },
   {
     "name": "Journal & Accounting",
     "desc": "Jurnal dan mapping akuntansi",
     "tables": [
-      "journal_log", "journal_log_failed_h", "journal_log_failed_d",
-      "jr_m_header", "jr_m_header_fact", "jr_m_header_r", "jr_m_header_fact_r",
-      "jr_m_entity", "jr_m_group", "jr_m_group_d_fact", "jr_m_group_d_r", "jr_m_group_fact_r",
-      "jr_m_item_value", "jr_m_item_value_r", "jr_source_file",
-      "trx_type_ref_payment_alloc", "scoring_result_h", "scoring_result_d", "rfa_log"
+      "JOURNAL_LOG", "JOURNAL_LOG_FAILED_H", "JOURNAL_LOG_FAILED_D",
+      "JR_M_HEADER", "JR_M_HEADER_FACT", "JR_M_HEADER_R", "JR_M_HEADER_FACT_R",
+      "JR_M_ENTITY", "JR_M_GROUP", "JR_M_GROUP_D_FACT", "JR_M_GROUP_D_R", "JR_M_GROUP_FACT_R",
+      "JR_M_ITEM_VALUE", "JR_M_ITEM_VALUE_R", "JR_SOURCE_FILE",
+      "TRX_TYPE_REF_PAYMENT_ALLOC", "SCORING_RESULT_H", "SCORING_RESULT_D", "RFA_LOG"
     ]
   },
   {
     "name": "Upload & Verification",
     "desc": "Upload data massal dan verifikasi",
     "tables": [
-      "upload_type", "upload_monitoring_h", "upload_setting_h", "upload_setting_d",
-      "upload_asset_master", "upload_asset_negative", "upload_negative_cust",
-      "verf_question_answer", "verf_question_grp_h", "verf_question_grp_d",
-      "verf_scheme_h", "verf_scheme_d",
-      "verf_result", "verf_result_h", "verf_result_d"
+      "UPLOAD_TYPE", "UPLOAD_MONITORING_H", "UPLOAD_SETTING_H", "UPLOAD_SETTING_D",
+      "UPLOAD_ASSET_MASTER", "UPLOAD_ASSET_NEGATIVE", "UPLOAD_NEGATIVE_CUST",
+      "VERF_QUESTION_ANSWER", "VERF_QUESTION_GRP_H", "VERF_QUESTION_GRP_D",
+      "VERF_SCHEME_H", "VERF_SCHEME_D",
+      "VERF_RESULT", "VERF_RESULT_H", "VERF_RESULT_D"
     ]
   },
   {
     "name": "Update Customer Task",
     "desc": "Task update data customer dari proses",
     "tables": [
-      "task_upd_cust_data",
-      "update_cust_personal_data", "update_cust_address", "update_cust_emergency", "update_cust_family",
-      "update_cust_job_data", "update_cust_personal_fin_data",
-      "update_cust_bank_acc", "update_cust_bank_statement",
-      "update_cust_company_data", "update_cust_company_contact_person",
-      "update_cust_company_fin_data", "update_cust_company_legal_doc", "update_cust_company_mgmnt_shareholder"
+      "TASK_UPD_CUST_DATA",
+      "UPDATE_CUST_PERSONAL_DATA", "UPDATE_CUST_ADDRESS", "UPDATE_CUST_EMERGENCY", "UPDATE_CUST_FAMILY",
+      "UPDATE_CUST_JOB_DATA", "UPDATE_CUST_PERSONAL_FIN_DATA",
+      "UPDATE_CUST_BANK_ACC", "UPDATE_CUST_BANK_STATEMENT",
+      "UPDATE_CUST_COMPANY_DATA", "UPDATE_CUST_COMPANY_CONTACT_PERSON",
+      "UPDATE_CUST_COMPANY_FIN_DATA", "UPDATE_CUST_COMPANY_LEGAL_DOC", "UPDATE_CUST_COMPANY_MGMNT_SHAREHOLDER"
     ]
   }
 ]
